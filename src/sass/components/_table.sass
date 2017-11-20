@@ -1,0 +1,85 @@
+.fig-table 
+    max-width: 100%
+    overflow-x: scroll
+
+table 
+    font-family: Helvetica, Arial, sans-serif
+    font-variant-numeric: lining-nums tabular-nums
+    font-size: 14px
+    width: 100%
+    border-collapse: collapse
+    
+    &.table2 
+        td.actions 
+            .button 
+                margin-left: 5px
+
+    caption 
+        caption-side: bottom
+        padding: .75em 1em  
+
+    td, th
+        padding: 0.125em 0.5em 0.25em 0.5em
+        line-height: 1
+        padding: 10px 15px
+        vertical-align: top
+
+    thead
+        background: #ddddbb
+    
+    thead tr, tbody tr
+        .qnt 
+            text-align: center
+        .price 
+            text-align: right 
+
+    tbody > tr
+        border-bottom: 1px solid #e3e3e3
+        th,
+        td 
+            .title
+                margin-bottom: 5px !important
+        td 
+            // text-align: "." center
+        
+.target:target 
+    color: red
+
+@media (max-width: 25em) 
+    table, caption, tbody, tbody > tr, tbody > tr > th, tbody > tr > td, tbody > tr > td.qnt, tbody > tr > td.price
+        display: block
+        text-align: left
+    table
+        thead, th:empty, td:empty 
+            display: none
+            visibility: hidden
+        
+        th[data-title]:before, 
+        td[data-title]:before 
+            content: attr(data-title) "："
+            display: inline-block
+            font-weight: bold
+            width: 5em
+        td
+            .content 
+                display: inline-block
+                vertical-align: middle
+    
+    table.table2
+        tbody tr
+            position: relative
+            padding-left: 30px
+        td
+            padding-left: 10px 
+            padding-right: 10px 
+        td.checkbox,
+        td.checkbox label
+            position: absolute
+            left: 0
+            top: 0
+            padding: 10px
+            height: 100%
+        td.date,
+        td.actions
+            display: inline-block
+            width: 49%

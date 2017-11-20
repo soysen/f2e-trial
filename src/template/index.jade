@@ -1,0 +1,16 @@
+doctype html
+html(lang='zh-TW')
+    head
+        include ../partials/head
+    body 
+      
+        include ../partials/header
+        main
+            .container
+                svg 
+                    rect(width="60" height="60" x="50" y="50" fill="#0c0")
+                        animateTransform(dur="2s" attributeName="transform" repeatCount="indefinite" type="rotate" from="0,80,80" to="360,80,80")
+      
+        include ../partials/footer
+
+      script(src="../js/app.js")

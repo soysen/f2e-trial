@@ -1,0 +1,24 @@
+
+@keyframes dash 
+    0%
+        stroke-dashoffset: 1000
+    80%
+        fill: transparent
+    90% 
+        stroke-dashoffset: 0
+    100% 
+        fill: #004E8A
+        stroke-dashoffset: 0
+
+svg#font
+    width: 100%
+    max-height: 150px
+    margin: 0 auto
+    display: block
+    path 
+        stroke: #004E8A
+        stroke-width: 1px
+        stroke-dasharray: 1000
+        stroke-dashoffset: 1000
+        fill: transparent
+        animation: dash 5s forwards

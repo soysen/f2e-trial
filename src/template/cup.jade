@@ -1,0 +1,25 @@
+doctype html
+html(lang='zh-TW')
+    head
+        include ../partials/head
+    body 
+        include ../partials/header
+        main
+            .container
+                h1.title.is-3.has-text-centered 猜兔子
+                .canvas-container#cup-container
+                    #hat-1.hat-container(role="button")
+                        .hat
+                    #hat-2.hat-container(role="button")
+                        .hat
+                    #hat-3.hat-container(role="button")
+                        .hat
+                .layer#game-start
+                    button#start START
+                .layer.hidden#game-finish
+                    | FINISH
+                
+        include ../partials/footer
+
+      script(src="/js/app.js")
+      script(src="/js/cup.js")

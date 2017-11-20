@@ -1,0 +1,25 @@
+header
+    .container
+        nav.navbar
+            .navbar-brand
+                a.navbar-item.brand(href="#") F2E TRIAL
+                .navbar-burger(data-target="navMenuTransparentExample")
+                    span
+                    span
+                    span
+            
+            #navMenuTransparentExample.navbar-menu
+
+                .navbar-item.has-dropdown.is-hoverable 
+                    .navbar-link LAYOUT 
+                    #canvasDropdown.navbar-dropdown.is-boxed
+                        a.navbar-item(href="./svg.html") SVG
+                        a.navbar-item(href="./table.html") Table
+                        a.navbar-item(href="./parallax.html") Parallax
+
+                .navbar-item.has-dropdown.is-hoverable 
+                    .navbar-link CANVAS 
+                    #canvasDropdown.navbar-dropdown.is-boxed
+                        a.navbar-item(href="./ball.html") 重力加速度
+                        a.navbar-item(href="./rocket.html") 火箭飛飛
+                        a.navbar-item(href="./cup.html") 猜兔子
