@@ -8696,6 +8696,22 @@ canvas#rocket {
   background-size: contain;
 }
 
+.brand {
+  padding: 12px 20px 8px 10px;
+}
+.brand img {
+  width: 72px;
+  vertical-align: bottom;
+}
+
+body.xmas .layer button {
+  top: 65%;
+}
+body.xmas .layer h1.title {
+  margin-top: 0;
+  top: 15%;
+}
+
 @media screen and (max-width: 768px) {
   .layer .left,
   .layer .right {
