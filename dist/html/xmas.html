@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AJA - Xmas</title>
     <link href="../css/app.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   </head>
   <body class="xmas">
     <header>
@@ -47,10 +48,20 @@
       </div>
       <div id="got-gift-layer" class="layer hidden"><small>YOU HAVE &nbsp;<span id="gift-score">0</span>&nbsp; GIFTS</small></div>
       <div id="finish-layer" class="layer hidden">
-        <h1 class="title is-1">OOOOPS, Santa Claus got in a car crash.<br/><small>Santa Claus fly &nbsp;<span id="final-score"> 0</span>&nbsp; light year away.</small></h1>
+        <h1 class="title is-1">OOOOPS, Santa Claus got in a car crash.<br/><small>Santa Claus fly&nbsp;<span id="final-score">0</span>&nbsp;light year away.</small><small>YOU HAVE<span id="final-scoreGift"></span>GIFTS</small></h1>
         <button id="restart" class="button is-info is-large is-inverted is-outlined">PLAY AGAIN</button>
       </div>
+      <div class="xmas-plant"><img src="/img/xmas-planet.png"></div>
     </main>
     <script src="/js/xmas.js"></script>
+    <script>
+      $('#start').on('click', function() {
+        $('.xmas-plant').animate({
+          bottom: '-=480'
+        }, 2000, function() {
+          /* stuff to do after animation is complete */
+        });
+      });
+    </script>
   </body>
 </html>

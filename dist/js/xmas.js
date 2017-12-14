@@ -29360,17 +29360,19 @@ class rocket {
     this.outer_h = window.innerHeight;
     this.canvas.width = this.outer_w;
     this.canvas.height = this.outer_h - document.querySelector('header').clientHeight;
+    this.xmasPlanet;
     this.startBtn;
     this.restartBtn;
     this.gameStart = false;
     this.gameFisnish = false;
-    this.distance = 0;
+    // this.distance = 0;
+    this.gotGift = 0;
     this.TURN_FACTOR = 5; //how far the ship turns per frame
     this.SPEED = 8; //how far the ship turns per frame
     this.SPEED_RATE = 0.1;
     this.stars = [];
     this.rocks = [];
-    this.gift = [];
+    this.gifts = [];
     this.snowflake = [];
     this.rockNumber = 5;
     this.starNumber = 20;
@@ -29381,7 +29383,8 @@ class rocket {
     this.fwdHeld = false;
     this.fsdHeld = false;
     this.rocket;
-    this.score = new createjs.Text(this.distance + " light year", "bold 2em Oswald", "#FFFFFF");
+    // this.score = new createjs.Text(this.distance + " light year", "bold 2em Oswald", "#FFFFFF");
+    this.scoreGift = new createjs.Text("YOU HAVE " + this.gotGift + "GIFTS", "bold 2em Oswald", "#FFFFFF");
     this.stage = new createjs.Stage(this.id);
     this.queue = new createjs.LoadQueue();
     this.xmasPlanetQue = new createjs.LoadQueue();
@@ -29395,7 +29398,7 @@ class rocket {
 
     this.queue.loadFile({
       src: "../img/santa-claus.png",
-      id: "image"
+      id: "santaClaus"
     });
 
 
@@ -29410,8 +29413,19 @@ class rocket {
 
     // Load image
     this.queue.on("complete", e => {
-      var image = this.queue.getResult("image");
+      var image = this.queue.getResult("santaClaus");
       this.rocket = new createjs.Bitmap(image);
+
+      // this.xmasPlanetQue.loadFile({
+      //   src: "../img/xmas-planet.png",
+      //   id: "xmasPlanet"
+      // });
+
+      // this.xmasPlanetQue.on("fileload", e => {
+      //   this.xmasPlanet = new createjs.Bitmap(e.result);
+      //   this.init();
+      //   console.log('load');
+      // });
 
       this.btnQue.loadFile({
         src: "../img/start-btn.png",
@@ -29421,6 +29435,7 @@ class rocket {
       this.btnQue.on("fileload", e => {
         this.startBtn = new createjs.Bitmap(e.result);
         this.init();
+        // console.log('btn');
       });
 
     });
@@ -29460,10 +29475,10 @@ class rocket {
   init() {
     this.renderStar();
     this.renderGift();
-    this.renderSnowflake();
+    this.renderSnowflake(0);
 
     var img = this.rocket.image;
-    // default 定位
+    // default 定位, 中心點
     this.rocket.regX = img.naturalWidth / 2;
     this.rocket.regY = img.naturalHeight / 2;
     this.rocket.width = img.naturalWidth;
@@ -29478,7 +29493,8 @@ class rocket {
 
     if (this.gameFisnish) {
       document.querySelector('#finish-layer').className = 'layer';
-      document.querySelector('#final-score').innerHTML = this.distance.toFixed(1);
+      // document.querySelector('#final-score').innerHTML = this.distance.toFixed(1);
+      document.querySelector('#final-scoreGift').innerHTML = this.gotGift.toFixed(1);
     } else {
       document.querySelector('#start-layer').className = 'layer';
     }
@@ -29499,6 +29515,7 @@ class rocket {
     this.SPEED_RATE = 0.1;
     this.stars = [];
     this.rocks = [];
+    this.gifts = [];
     this.rockNumber = 5;
     this.snowflakeNumber = 6;
     this.starNumber = 20;
@@ -29513,7 +29530,8 @@ class rocket {
 
   startGame(e) {
     this.gameFisnish = false;
-    this.distance = 0;
+    // this.distance = 0;
+    this.gotGift = 0;
 
     // this.finishAudio.currentTime = 0;
     // this.finishAudio.pause();
@@ -29529,10 +29547,15 @@ class rocket {
     this.gameStart = true;
     this.stage.removeChild(this.startBtn, this.title);
 
-    this.score.textAlign = 'left';
-    this.score.x = 20;
-    this.score.y = 20;
-    this.stage.addChild(this.score);
+    // this.score.textAlign = 'left';
+    // this.score.x = 20;
+    // this.score.y = 20;
+    // this.stage.addChild(this.score);
+
+    this.scoreGift.textAlign = 'left';
+    this.scoreGift.x = 20;
+    this.scoreGift.y = 60;
+    this.stage.addChild(this.scoreGift);
 
     this.stage.update();
 
@@ -29540,6 +29563,10 @@ class rocket {
     this.renderGift(0);
     this.renderSnowflake(0);
     this.starPass();
+  }
+
+  reStartGame() {
+
   }
 
   resizeCanvas() {
@@ -29624,7 +29651,7 @@ class rocket {
           this.renderSnowflake(i + 1);
         }, Math.ceil(Math.random() * 5000))
       }
-      console.log('snowflake' + i);
+      // console.log('snowflake' + i);
     }, this);
   }
 
@@ -29654,20 +29681,20 @@ class rocket {
 
     que.on("fileload", e => {
       let image = e.result;
-      this.gift[i] = new createjs.Bitmap(image);
-      var img = this.gift[i].image;
-      this.gift[i].regX = img.naturalWidth;
-      this.gift[i].regY = img.naturalHeight;
-      this.gift[i].scaleX = 1;
-      this.gift[i].scaleY = 1;
-      this.gift[i].width = img.naturalWidth;
-      this.gift[i].height = img.naturalWidth;
-      this.gift[i].x = Math.random() * this.outer_w;
-      this.gift[i].y = -img.naturalHeight;
-      this.stage.addChild(this.gift[i]);
+      this.gifts[i] = new createjs.Bitmap(image);
+      var img = this.gifts[i].image;
+      this.gifts[i].regX = img.naturalWidth;
+      this.gifts[i].regY = img.naturalHeight;
+      this.gifts[i].scaleX = 1;
+      this.gifts[i].scaleY = 1;
+      this.gifts[i].width = img.naturalWidth;
+      this.gifts[i].height = img.naturalWidth;
+      this.gifts[i].x = Math.random() * this.outer_w;
+      this.gifts[i].y = -img.naturalHeight;
+      this.stage.addChild(this.gifts[i]);
       this.stage.update();
 
-      this.flyGift(this.gift[i]);
+      this.flyGift(this.gifts[i]);
     }, this);
 
     que.on("complete", e => {
@@ -29676,7 +29703,7 @@ class rocket {
           this.renderGift(i + 1);
         }, Math.ceil(Math.random() * 5000))
       }
-      console.log('gift' + i);
+      // console.log('gift' + i);
     }, this);
   }
 
@@ -29725,19 +29752,19 @@ class rocket {
     var img_w = rock.width
     if (rock.y > this.outer_h + img_h || rock.y < -img_h || rock.x > this.outer_w + img_w || rock.x < -img_w) {
       if (angle > 45 && angle < 135) {
-        rock.x = this.outer_w + img_w / 2;
+        rock.x = this.outer_w + img_w;
       } else if (angle > 225 && angle < 315) {
-        rock.x = -img_w / 2;
+        rock.x = -img_w;
       } else {
         rock.x = Math.random() * this.outer_w;
       }
 
       if (angle > 315 && angle <= 360 || angle >= 0 && angle <= 45) {
-        rock.y = -img_h / 2;
+        rock.y = -img_h;
       } else if (angle > 45 && angle < 135 || angle > 225 && angle < 315) {
         rock.y = Math.random() * this.outer_h;
       } else if (angle > 135 && angle < 225) {
-        rock.y = this.outer_h + img_h / 2;
+        rock.y = this.outer_h + img_h;
       } else {
         rock.y = Math.random() * this.outer_h;
       }
@@ -29760,23 +29787,23 @@ class rocket {
 
   flyGift(gift) {
     var angle = this.rocket.rotation % 360 * (this.rocket.rotation % 360 < 0 ? -1 : 1);
-    var img_h = gift.height * 2
-    var img_w = gift.width * 2
+    var img_h = gift.height
+    var img_w = gift.width
     if (gift.y > this.outer_h + img_h || gift.y < -img_h || gift.x > this.outer_w + img_w || gift.x < -img_w) {
       if (angle > 45 && angle < 135) {
-        gift.x = this.outer_w + img_w / 2;
+        gift.x = this.outer_w + img_w;
       } else if (angle > 225 && angle < 315) {
-        gift.x = -img_w / 2;
+        gift.x = -img_w;
       } else {
         gift.x = Math.random() * this.outer_w;
       }
 
       if (angle > 315 && angle <= 360 || angle >= 0 && angle <= 45) {
-        gift.y = -img_h / 2;
+        gift.y = -img_h;
       } else if (angle > 45 && angle < 135 || angle > 225 && angle < 315) {
         gift.y = Math.random() * this.outer_h;
       } else if (angle > 135 && angle < 225) {
-        gift.y = this.outer_h + img_h / 2;
+        gift.y = this.outer_h + img_h;
       } else {
         gift.y = Math.random() * this.outer_h;
       }
@@ -29791,6 +29818,7 @@ class rocket {
 
     if (this.gameStart) {
       setTimeout(() => {
+        // this.flyGift(gift);
         this.flyGift(gift);
       }, 60);
     }
@@ -29799,23 +29827,23 @@ class rocket {
 
   flySnowflake(snowflake) {
     var angle = this.rocket.rotation % 360 * (this.rocket.rotation % 360 < 0 ? -1 : 1);
-    var img_h = snowflake.height * 2
-    var img_w = snowflake.width * 2
+    var img_h = snowflake.height
+    var img_w = snowflake.width
     if (snowflake.y > this.outer_h + img_h || snowflake.y < -img_h || snowflake.x > this.outer_w + img_w || snowflake.x < -img_w) {
       if (angle > 45 && angle < 135) {
-        snowflake.x = this.outer_w + img_w / 2;
+        snowflake.x = this.outer_w + img_w;
       } else if (angle > 225 && angle < 315) {
-        snowflake.x = -img_w / 2;
+        snowflake.x = -img_w;
       } else {
         snowflake.x = Math.random() * this.outer_w;
       }
 
       if (angle > 315 && angle <= 360 || angle >= 0 && angle <= 45) {
-        snowflake.y = -img_h / 2;
+        snowflake.y = -img_h;
       } else if (angle > 45 && angle < 135 || angle > 225 && angle < 315) {
         snowflake.y = Math.random() * this.outer_h;
       } else if (angle > 135 && angle < 225) {
-        snowflake.y = this.outer_h + img_h / 2;
+        snowflake.y = this.outer_h + img_h;
       } else {
         snowflake.y = Math.random() * this.outer_h;
       }
@@ -29859,9 +29887,19 @@ class rocket {
           this.gameFinish();
         }
       }
+      for (let k in this.gifts) {
+        var gift = this.gifts[k];
+        if (this.detectGift(gift)) {
+          // this.gameStart = false;
+          // this.gameFisnish = false;
+          // this.gameFinish();
+          console.log('got gift')
+        }
+      }
 
-      this.distance += (this.SPEED / 50);
-      this.score.text = this.distance.toFixed(1) + " light year";
+      // this.distance += (this.SPEED / 50);
+      // this.score.text = this.distance.toFixed(1) + " light year";
+      this.scoreGift.text = "YOU HAVE " + this.gotGift.toFixed(1) + " GIFTS";
     }
     this.stage.update();
   }
@@ -29906,6 +29944,46 @@ class rocket {
     }
 
     return false
+  }
+
+  detectGift(gift) {
+    if (!gift) return;
+    var cx, cy;
+    var angleOfRad = this.degToRad(-this.rocket.rotation);
+
+    var rectCenterX = this.rocket.x + this.rocket.image.naturalWidth;
+    var rectCenterY = this.rocket.y + this.rocket.image.naturalHeight;
+    var rotateCircleX = Math.cos(angleOfRad) * (gift.x - rectCenterX) - Math.sin(angleOfRad) * (gift.y - rectCenterY) + rectCenterX
+    var rotateCircleY = Math.sin(angleOfRad) * (gift.x - rectCenterX) + Math.cos(angleOfRad) * (gift.y - rectCenterY) + rectCenterY
+
+    if (rotateCircleX < this.rocket.x)
+      cx = this.rocket.x
+    else if (rotateCircleX > this.rocket.x + this.rocket.image.naturalWidth)
+      cx = this.rocket.x + this.rocket.image.naturalWidth
+    else
+      cx = rotateCircleX
+
+    if (rotateCircleY < this.rocket.y)
+      cy = this.rocket.y
+    else if (rotateCircleY > this.rocket.y + this.rocket.image.naturalHeight)
+      cy = this.rocket.y + this.rocket.image.naturalHeight
+    else
+      cy = rotateCircleY
+
+    // console.log('rotateCircleX', rotateCircleX)
+    // console.log('rotateCircleY', rotateCircleY)
+    // console.log('cx', cx)
+    // console.log('cy', cy)
+    // console.log(this.countDistance(rotateCircleX, rotateCircleY, cx, cy));
+    let cound = this.countDistance(rotateCircleX, rotateCircleY, cx, cy);
+    // console.log(cound, (rock.height * 0.3) / 2, (rock.width * 0.3) / 2)
+    if (cound < gift.height && cound < gift.width ) {
+      console.log('got gift');
+      // return true;
+    }
+
+    // return false
+
   }
 
   countDistance(x1, y1, x2, y2) {
@@ -29975,6 +30053,9 @@ function renderCanvas() {
   new rocket('rocket');
 }
 
-window.onload = renderCanvas()
+window.onload = renderCanvas();
+
+
+
 },{"createjs-easeljs":1,"createjs-module":2,"hammerjs":3}]},{},[4])
 //# sourceMappingURL=xmas.js.map

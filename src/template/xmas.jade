@@ -6,6 +6,7 @@ html(lang='zh-TW')
       meta(name="viewport" content="width=device-width, initial-scale=1")
       title AJA - Xmas
       link(href="../css/app.css" rel="stylesheet")
+      script(src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous")
 
     body.xmas
       //- audio#bg-sound(autoplay loop)
@@ -47,6 +48,7 @@ html(lang='zh-TW')
                 .fa.fa-arrow-left
               div.box
                 .fa.fa-arrow-right
+
           button#start.button.is-info.is-large.is-inverted.is-outlined START
 
         #got-gift-layer.layer.hidden
@@ -56,12 +58,26 @@ html(lang='zh-TW')
 
         #finish-layer.layer.hidden
           h1.title.is-1 OOOOPS, Santa Claus got in a car crash.<br/>
-            small Santa Claus fly &nbsp;
-              span#final-score  0
-              | &nbsp; light year away.
+            small Santa Claus fly&nbsp;
+              span#final-score 0
+              | &nbsp;light year away.
+            small YOU HAVE
+              span#final-scoreGift
+              | GIFTS
           button#restart.button.is-info.is-large.is-inverted.is-outlined PLAY AGAIN
+
+        .xmas-plant
+          img(src="/img/xmas-planet.png")
 
         //- include ../partials/footer
 
       //- script(src="/js/app.js")
       script(src="/js/xmas.js")
+      script.
+        $('#start').on('click', function() {
+          $('.xmas-plant').animate({
+            bottom: '-=480'
+          }, 2000, function() {
+            /* stuff to do after animation is complete */
+          });
+        });
