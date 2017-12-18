@@ -29928,5 +29928,6 @@ window.onload = renderCanvas();
 
 
 
+
 },{"createjs-easeljs":1,"createjs-module":2,"hammerjs":3}]},{},[4])
 //# sourceMappingURL=xmas.js.map
