@@ -25,65 +25,46 @@ html(lang='zh-TW')
               a.navbar-item(href="#") MERRY CHRISTMAS
 
       main
-        //- canvas#rocket
+        canvas#rocket
 
-        //- #start-layer.layer.hidden
-        //-   h1.title.is-1 MERRY CHRISTMAS
-        //-   .note
-        //-     .left
-        //-       h3.title.is-5 SPEED UP/DOWN
-        //-       div.box W
-        //-       div.box
-        //-         .fa.fa-arrow-up
-        //-       br
-        //-       div.box S
-        //-       div.box
-        //-         .fa.fa-arrow-down
-        //-     .right
-        //-       h3.title.is-5 ROTATE LEFT/RIGHT
-        //-       div.box A
-        //-       div.box D
-        //-       br
-        //-       div.box
-        //-         .fa.fa-arrow-left
-        //-       div.box
-        //-         .fa.fa-arrow-right
+        #start-layer.layer.hidden
+          h1.title.is-1 MERRY CHRISTMAS
+          .note
+            .left
+              h3.title.is-5 SPEED UP/DOWN
+              div.box W
+              div.box
+                .fa.fa-arrow-up
+              br
+              div.box S
+              div.box
+                .fa.fa-arrow-down
+            .right
+              h3.title.is-5 ROTATE LEFT/RIGHT
+              div.box A
+              div.box D
+              br
+              div.box
+                .fa.fa-arrow-left
+              div.box
+                .fa.fa-arrow-right
 
-        //-   button#start.button.is-info.is-large.is-inverted.is-outlined START
+          button#start.button.is-info.is-large.is-inverted.is-outlined START
 
-        //- #got-gift-layer.layer.hidden
-        //-   small YOU HAVE &nbsp;
-        //-     span#gift-score 0
-        //-     | &nbsp; GIFTS
+        #got-gift-layer.layer.hidden
+          small YOU HAVE &nbsp;
+            span#gift-score 0
+            | &nbsp; GIFTS
 
-        //- #finish-layer.layer.hidden
-        //-   h1.title.is-1 OOOOPS, Santa Claus got in a car crash.<br/>
-        //-     //- small Santa Claus fly&nbsp;
-        //-     //-   span#final-score 0
-        //-     //-   | &nbsp;light year away.
-        //-     small YOU HAVE&nbsp;
-        //-       span#final-scoreGift
-        //-       | &nbsp;GIFTS
-        //-   button#restart.button.is-info.is-large.is-inverted.is-outlined PLAY AGAIN
-
-        .card-content.hidden
-          h1.title.white.center MERRY<br>CHRISTMAS
-          p.wording.white.center 聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂！
-
-          .gifts
-            img.gift-1(src="../img/gift-1.png")
-            img.gift-2(src="../img/gift-2.png")
-            img.gift-3(src="../img/gift-3.png")
-
-          .snowflakes
-            img.snowflakes-1(src="../img/snowflake-1.png")
-            img.snowflakes-2(src="../img/snowflake-2.png")
-            img.snowflakes-3(src="../img/snowflake-3.png")
-            img.snowflakes-4(src="../img/snowflake-4.png")
-            img.snowflakes-5(src="../img/snowflake-5.png")
-
-          .santa-cloud
-            img(src="../img/santa-claus.png")
+        #finish-layer.layer.hidden
+          h1.title.is-1 OOOOPS, Santa Claus got in a car crash.<br/>
+            small Santa Claus fly&nbsp;
+              span#final-score 0
+              | &nbsp;light year away.
+            small YOU HAVE
+              span#final-scoreGift
+              | GIFTS
+          button#restart.button.is-info.is-large.is-inverted.is-outlined PLAY AGAIN
 
         .xmas-plant
           img(src="../img/xmas-planet.png")

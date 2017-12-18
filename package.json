@@ -85,8 +85,5 @@
     "assets": [
       "'./node_modules/bootstrap-sass/assets/fonts/bootstrap/*'"
     ]
-  },
-  "dependencies": {
-    "browserify-shim": "^3.8.14"
   }
 }
