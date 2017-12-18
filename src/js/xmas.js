@@ -156,7 +156,7 @@ class rocket {
     if (this.gameFisnish) {
       document.querySelector('#finish-layer').className = 'layer';
       // document.querySelector('#final-score').innerHTML = this.distance.toFixed(1);
-      document.querySelector('#final-scoreGift').innerHTML = this.gotGift.toFixed(1);
+      document.querySelector('#final-scoreGift').innerHTML = this.gotGift.toFixed(0);
     } else {
       document.querySelector('#start-layer').className = 'layer';
     }
@@ -216,7 +216,7 @@ class rocket {
 
     this.scoreGift.textAlign = 'left';
     this.scoreGift.x = 20;
-    this.scoreGift.y = 60;
+    this.scoreGift.y = 20;
     this.stage.addChild(this.scoreGift);
 
     this.stage.update();
@@ -555,13 +555,14 @@ class rocket {
           // this.gameStart = false;
           // this.gameFisnish = false;
           // this.gameFinish();
+          this.stage.removeChild(this.gifts[k])
           console.log('got gift')
         }
       }
 
       // this.distance += (this.SPEED / 50);
       // this.score.text = this.distance.toFixed(1) + " light year";
-      this.scoreGift.text = "YOU HAVE " + this.gotGift.toFixed(1) + " GIFTS";
+      this.scoreGift.text = "YOU HAVE " + this.gotGift.toFixed(0) + " GIFTS";
     }
     this.stage.update();
   }
