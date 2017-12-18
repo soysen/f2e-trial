@@ -29363,9 +29363,11 @@ class rocket {
     this.xmasPlanet;
     this.startBtn;
     this.restartBtn;
+    this.giftID = 0;
     this.gameStart = false;
     this.gameFisnish = false;
     // this.distance = 0;
+    this.gotGiftID = [];
     this.gotGift = 0;
     this.TURN_FACTOR = 5; //how far the ship turns per frame
     this.SPEED = 8; //how far the ship turns per frame
@@ -29374,9 +29376,9 @@ class rocket {
     this.rocks = [];
     this.gifts = [];
     this.snowflake = [];
-    this.rockNumber = 5;
+    this.rockNumber = 3;
     this.starNumber = 20;
-    this.giftNumber = 6;
+    this.giftNumber = 2;
     this.snowflakeNumber = 6;
     this.lfHeld = false;
     this.rtHeld = false;
@@ -29515,6 +29517,8 @@ class rocket {
     this.SPEED_RATE = 0.1;
     this.stars = [];
     this.rocks = [];
+    this.giftID = 0;
+    this.gotGiftID = [];
     this.gifts = [];
     this.rockNumber = 5;
     this.snowflakeNumber = 6;
@@ -29594,15 +29598,14 @@ class rocket {
     que.on("fileload", e => {
       let image = e.result;
       this.rocks[i] = new createjs.Bitmap(image);
-      var img = this.rocks[i].image;
-      this.rocks[i].regX = img.naturalWidth;
-      this.rocks[i].regY = img.naturalHeight;
+      this.rocks[i].regX = image.naturalWidth;
+      this.rocks[i].regY = image.naturalHeight;
       this.rocks[i].scaleX = 1;
       this.rocks[i].scaleY = 1;
-      this.rocks[i].width = img.naturalWidth;
-      this.rocks[i].height = img.naturalWidth;
+      this.rocks[i].width = image.naturalWidth;
+      this.rocks[i].height = image.naturalWidth;
       this.rocks[i].x = Math.random() * this.outer_w;
-      this.rocks[i].y = -img.naturalHeight;
+      this.rocks[i].y = -image.naturalHeight;
       this.stage.addChild(this.rocks[i]);
       this.stage.update();
 
@@ -29680,9 +29683,11 @@ class rocket {
     });
 
     que.on("fileload", e => {
+      this.giftID++;
       let image = e.result;
       this.gifts[i] = new createjs.Bitmap(image);
       var img = this.gifts[i].image;
+      this.gifts[i].id = this.giftID;
       this.gifts[i].regX = img.naturalWidth;
       this.gifts[i].regY = img.naturalHeight;
       this.gifts[i].scaleX = 1;
@@ -29694,7 +29699,9 @@ class rocket {
       this.stage.addChild(this.gifts[i]);
       this.stage.update();
 
-      this.flyGift(this.gifts[i]);
+
+      this.flyRock(this.gifts[i]);
+
     }, this);
 
     que.on("complete", e => {
@@ -29748,8 +29755,9 @@ class rocket {
 
   flyRock(rock) {
     var angle = this.rocket.rotation % 360 * (this.rocket.rotation % 360 < 0 ? -1 : 1);
-    var img_h = rock.height
-    var img_w = rock.width
+    var img_h = rock.height;
+    var img_w = rock.width;
+    // debugger;
     if (rock.y > this.outer_h + img_h || rock.y < -img_h || rock.x > this.outer_w + img_w || rock.x < -img_w) {
       if (angle > 45 && angle < 135) {
         rock.x = this.outer_w + img_w;
@@ -29769,6 +29777,8 @@ class rocket {
         rock.y = Math.random() * this.outer_h;
       }
 
+      rock.visible = true;
+
     } else {
       rock.x += Math.sin(this.rocket.rotation * (Math.PI / -180)) * this.SPEED * (img_h / 300);
       rock.y += Math.cos(this.rocket.rotation * (Math.PI / -180)) * this.SPEED * (img_h / 300);
@@ -29785,50 +29795,50 @@ class rocket {
   }
 
 
-  flyGift(gift) {
-    var angle = this.rocket.rotation % 360 * (this.rocket.rotation % 360 < 0 ? -1 : 1);
-    var img_h = gift.height
-    var img_w = gift.width
-    if (gift.y > this.outer_h + img_h || gift.y < -img_h || gift.x > this.outer_w + img_w || gift.x < -img_w) {
-      if (angle > 45 && angle < 135) {
-        gift.x = this.outer_w + img_w;
-      } else if (angle > 225 && angle < 315) {
-        gift.x = -img_w;
-      } else {
-        gift.x = Math.random() * this.outer_w;
-      }
+  // flyGift(gift) {
+  //   var angle = this.rocket.rotation % 360 * (this.rocket.rotation % 360 < 0 ? -1 : 1);
+  //   var img_h = gift.height
+  //   var img_w = gift.width
+  //   if (gift.y > this.outer_h + img_h || gift.y < -img_h || gift.x > this.outer_w + img_w || gift.x < -img_w) {
+  //     if (angle > 45 && angle < 135) {
+  //       gift.x = this.outer_w + img_w;
+  //     } else if (angle > 225 && angle < 315) {
+  //       gift.x = -img_w;
+  //     } else {
+  //       gift.x = Math.random() * this.outer_w;
+  //     }
 
-      if (angle > 315 && angle <= 360 || angle >= 0 && angle <= 45) {
-        gift.y = -img_h;
-      } else if (angle > 45 && angle < 135 || angle > 225 && angle < 315) {
-        gift.y = Math.random() * this.outer_h;
-      } else if (angle > 135 && angle < 225) {
-        gift.y = this.outer_h + img_h;
-      } else {
-        gift.y = Math.random() * this.outer_h;
-      }
+  //     if (angle > 315 && angle <= 360 || angle >= 0 && angle <= 45) {
+  //       gift.y = -img_h;
+  //     } else if (angle > 45 && angle < 135 || angle > 225 && angle < 315) {
+  //       gift.y = Math.random() * this.outer_h;
+  //     } else if (angle > 135 && angle < 225) {
+  //       gift.y = this.outer_h + img_h;
+  //     } else {
+  //       gift.y = Math.random() * this.outer_h;
+  //     }
 
-    } else {
-      gift.x += Math.sin(this.rocket.rotation * (Math.PI / -180)) * this.SPEED * (img_h / 300);
-      gift.y += Math.cos(this.rocket.rotation * (Math.PI / -180)) * this.SPEED * (img_h / 300);
-    }
+  //   } else {
+  //     gift.x += Math.sin(this.rocket.rotation * (Math.PI / -180)) * this.SPEED * (img_h / 300);
+  //     gift.y += Math.cos(this.rocket.rotation * (Math.PI / -180)) * this.SPEED * (img_h / 300);
+  //   }
 
 
-    this.stage.update();
+  //   this.stage.update();
 
-    if (this.gameStart) {
-      setTimeout(() => {
-        // this.flyGift(gift);
-        this.flyGift(gift);
-      }, 60);
-    }
-  }
+  //   if (this.gameStart) {
+  //     setTimeout(() => {
+  //       // this.flyGift(gift);
+  //       this.flyGift(gift);
+  //     }, 60);
+  //   }
+  // }
 
 
   flySnowflake(snowflake) {
     var angle = this.rocket.rotation % 360 * (this.rocket.rotation % 360 < 0 ? -1 : 1);
-    var img_h = snowflake.height
-    var img_w = snowflake.width
+    var img_h = snowflake.height;
+    var img_w = snowflake.width;
     if (snowflake.y > this.outer_h + img_h || snowflake.y < -img_h || snowflake.x > this.outer_w + img_w || snowflake.x < -img_w) {
       if (angle > 45 && angle < 135) {
         snowflake.x = this.outer_w + img_w;
@@ -29879,21 +29889,25 @@ class rocket {
       } else if (this.rtHeld) {
         this.rocket.rotation += this.TURN_FACTOR;
       }
+
       for (let r in this.rocks) {
         var rock = this.rocks[r];
-        if (this.detectHit(rock)) {
+        // debugger;
+        if(this.detectIntersection(rock)) {
           this.gameStart = false;
           this.gameFisnish = false;
           this.gameFinish();
         }
       }
+
       for (let k in this.gifts) {
         var gift = this.gifts[k];
         if (this.detectGift(gift)) {
-          // this.gameStart = false;
-          // this.gameFisnish = false;
-          // this.gameFinish();
-          console.log('got gift')
+          gift.visible = false;
+          if( this.gotGiftID.indexOf(gift.id)==-1 ) {
+              this.gotGiftID.push(gift.id);
+              this.gotGift++;
+          }
         }
       }
 
@@ -29908,43 +29922,60 @@ class rocket {
     return deg * Math.PI / 180;
   }
 
-  detectHit(rock) {
-    if (!rock) return;
-    var cx, cy;
-    var angleOfRad = this.degToRad(-this.rocket.rotation);
+  detectIntersection(rock) {
+    var rect2CenterX = rock.x + rock.width/2,
+    rect2CenterY = rock.y + rock.height/2,
+    rect1CenterX = this.rocket.x + this.rocket.width/2,
+    rect1CenterY = this.rocket.y + this.rocket.height/2;
 
-    var rectCenterX = this.rocket.x + this.rocket.image.naturalWidth;
-    var rectCenterY = this.rocket.y + this.rocket.image.naturalHeight;
-    var rotateCircleX = Math.cos(angleOfRad) * (rock.x - rectCenterX) - Math.sin(angleOfRad) * (rock.y - rectCenterY) + rectCenterX
-    var rotateCircleY = Math.sin(angleOfRad) * (rock.x - rectCenterX) + Math.cos(angleOfRad) * (rock.y - rectCenterY) + rectCenterY
-
-    if (rotateCircleX < this.rocket.x)
-      cx = this.rocket.x
-    else if (rotateCircleX > this.rocket.x + this.rocket.image.naturalWidth)
-      cx = this.rocket.x + this.rocket.image.naturalWidth
-    else
-      cx = rotateCircleX
-
-    if (rotateCircleY < this.rocket.y)
-      cy = this.rocket.y
-    else if (rotateCircleY > this.rocket.y + this.rocket.image.naturalHeight)
-      cy = this.rocket.y + this.rocket.image.naturalHeight
-    else
-      cy = rotateCircleY
-
-    // console.log('rotateCircleX', rotateCircleX)
-    // console.log('rotateCircleY', rotateCircleY)
-    // console.log('cx', cx)
-    // console.log('cy', cy)
-    // console.log(this.countDistance(rotateCircleX, rotateCircleY, cx, cy));
-    let cound = this.countDistance(rotateCircleX, rotateCircleY, cx, cy);
-    // console.log(cound, (rock.height * 0.3) / 2, (rock.width * 0.3) / 2)
-    if (cound < rock.height && cound < rock.width ) {
-      return true
+    // 加上 = 就是相切
+    // debugger;
+    if((Math.abs(rect2CenterX - rect1CenterX) < rock.width / 2 + this.rocket.width / 2) &&
+        Math.abs(rect2CenterY - rect1CenterY) < rock.height / 2 + this.rocket.height / 2) {
+      return true;
+    } else {
+      return false;
     }
-
-    return false
   }
+
+  getIntersectionRect(rock) {
+    // isCollisions = this.handleEgdeCollisions(intersectionRect);
+    // console.log()
+    var rect1Right = rock.x + rock.width,
+      rect1Bottom = rock.y + rock.height,
+      rect2Right = this.rocket.x + this.rocket.width,
+      rect2Bottom = this.rocket.y + this.rocket.height;
+
+    var rect3Left = Math.max(rock.x, this.rocket.x),
+      rect3Top = Math.max(rock.y, this.rocket.y),
+      rect3Right = Math.min(rect1Right, rect2Right),
+      rect3Bottom = Math.min(rect1Bottom, rect2Bottom);
+
+    return {
+      left: rect3Left,
+      top: rect3Top,
+      width: rect3Right - rect3Left,
+      height: rect3Bottom - rect3Top
+    };
+  }
+
+  // rect 是交集矩形
+  handleEgdeCollisions(rect, rock) {
+    // console.log(rect)
+    var imgData1 = rock.getImageData(rect.x, rect.y, rect.width, rect.height),
+      imgData2 = this.rocket.getImageData(rect.x, rect.y, rect.width, rect.height);
+    var imgData1Data = imgData1.data;
+    var imgData2Data = imgData2.data;
+
+    for(var i = 3, len = imgData1Data.length; i < len; i += 4) {
+      if(imgData1Data[i] > 0 && imgData2Data[i] > 0) {
+        console.log('撞了')
+        return true;
+      }
+    }
+    return false;
+  }
+
 
   detectGift(gift) {
     if (!gift) return;
@@ -29953,36 +29984,30 @@ class rocket {
 
     var rectCenterX = this.rocket.x + this.rocket.image.naturalWidth;
     var rectCenterY = this.rocket.y + this.rocket.image.naturalHeight;
-    var rotateCircleX = Math.cos(angleOfRad) * (gift.x - rectCenterX) - Math.sin(angleOfRad) * (gift.y - rectCenterY) + rectCenterX
-    var rotateCircleY = Math.sin(angleOfRad) * (gift.x - rectCenterX) + Math.cos(angleOfRad) * (gift.y - rectCenterY) + rectCenterY
+    var rotateCircleX = Math.cos(angleOfRad) * (gift.x - rectCenterX) - Math.sin(angleOfRad) * (gift.y - rectCenterY) + rectCenterX;
+    var rotateCircleY = Math.sin(angleOfRad) * (gift.x - rectCenterX) + Math.cos(angleOfRad) * (gift.y - rectCenterY) + rectCenterY;
 
     if (rotateCircleX < this.rocket.x)
-      cx = this.rocket.x
+      cx = this.rocket.x;
     else if (rotateCircleX > this.rocket.x + this.rocket.image.naturalWidth)
-      cx = this.rocket.x + this.rocket.image.naturalWidth
+      cx = this.rocket.x + this.rocket.image.naturalWidth;
     else
-      cx = rotateCircleX
+      cx = rotateCircleX;
 
     if (rotateCircleY < this.rocket.y)
-      cy = this.rocket.y
+      cy = this.rocket.y;
     else if (rotateCircleY > this.rocket.y + this.rocket.image.naturalHeight)
-      cy = this.rocket.y + this.rocket.image.naturalHeight
+      cy = this.rocket.y + this.rocket.image.naturalHeight;
     else
-      cy = rotateCircleY
+      cy = rotateCircleY;
 
-    // console.log('rotateCircleX', rotateCircleX)
-    // console.log('rotateCircleY', rotateCircleY)
-    // console.log('cx', cx)
-    // console.log('cy', cy)
-    // console.log(this.countDistance(rotateCircleX, rotateCircleY, cx, cy));
     let cound = this.countDistance(rotateCircleX, rotateCircleY, cx, cy);
-    // console.log(cound, (rock.height * 0.3) / 2, (rock.width * 0.3) / 2)
+    
     if (cound < gift.height && cound < gift.width ) {
-      console.log('got gift');
-      // return true;
+      return true;
     }
 
-    // return false
+    return false;
 
   }
 
