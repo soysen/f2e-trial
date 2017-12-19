@@ -28,7 +28,7 @@ html(lang='zh-TW')
         canvas#rocket
 
         #start-layer.layer.hidden
-          h1.title.is-1 MERRY CHRISTMAS
+          h1.title.is-1 MERRY<br>CHRISTMAS
           .note
             .left
               h3.title.is-5 SPEED UP/DOWN
@@ -58,13 +58,32 @@ html(lang='zh-TW')
 
         #finish-layer.layer.hidden
           h1.title.is-1 OOOOPS, Santa Claus got in a car crash.<br/>
-            small Santa Claus fly&nbsp;
-              span#final-score 0
-              | &nbsp;light year away.
-            small YOU HAVE
+            //- small Santa Claus fly&nbsp;
+            //-   span#final-score 0
+            //-   | &nbsp;light year away.
+            small YOU HAVE&nbsp;
               span#final-scoreGift
-              | GIFTS
+              | &nbsp;GIFTS
           button#restart.button.is-info.is-large.is-inverted.is-outlined PLAY AGAIN
+
+        .card-content.hidden
+          h1.title.white.center MERRY<br>CHRISTMAS
+          p.wording.white.center 聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂！
+
+          .gifts
+            img.gift-1(src="../img/gift-1.png")
+            img.gift-2(src="../img/gift-2.png")
+            img.gift-3(src="../img/gift-3.png")
+
+          .snowflakes
+            img.snowflakes-1(src="../img/snowflake-1.png")
+            img.snowflakes-2(src="../img/snowflake-2.png")
+            img.snowflakes-3(src="../img/snowflake-3.png")
+            img.snowflakes-4(src="../img/snowflake-4.png")
+            img.snowflakes-5(src="../img/snowflake-5.png")
+
+          .santa-cloud
+            img(src="../img/santa-claus.png")
 
         .xmas-plant
           img(src="../img/xmas-planet.png")

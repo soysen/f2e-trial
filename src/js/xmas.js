@@ -158,7 +158,7 @@ class rocket {
     if (this.gameFisnish) {
       document.querySelector('#finish-layer').className = 'layer';
       // document.querySelector('#final-score').innerHTML = this.distance.toFixed(1);
-      document.querySelector('#final-scoreGift').innerHTML = this.gotGift.toFixed(1);
+      document.querySelector('#final-scoreGift').innerHTML = this.gotGift.toFixed(0);
     } else {
       document.querySelector('#start-layer').className = 'layer';
     }
@@ -434,7 +434,7 @@ class rocket {
       }
 
       if (angle > 315 && angle <= 360 || angle >= 0 && angle <= 45) {
-        item.y = -img_h; 
+        item.y = -img_h;
       } else if (angle > 45 && angle < 135 || angle > 225 && angle < 315) {
         item.y = Math.random() * this.outer_h;
       } else if (angle > 135 && angle < 225) {
@@ -442,7 +442,7 @@ class rocket {
       } else {
         item.y = Math.random() * this.outer_h;
       }
-      
+
       item.visible = true;
 
       if( type=='gift' ) {
@@ -501,10 +501,10 @@ class rocket {
           }
         }
       }
-      
+
       // this.distance += (this.SPEED / 50);
       // this.score.text = this.distance.toFixed(1) + " light year";
-      this.scoreGift.text = "YOU HAVE " + this.gotGift.toFixed(1) + " GIFTS";
+      this.scoreGift.text = "YOU HAVE " + this.gotGift.toFixed(0) + " GIFTS";
     }
     this.stage.update();
   }
