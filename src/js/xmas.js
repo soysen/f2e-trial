@@ -32,7 +32,7 @@ class rocket {
     this.gotGiftID = [];
     this.gotGift = 0;
     this.TURN_FACTOR = 5; //how far the ship turns per frame
-    this.SPEED = 8; //how far the ship turns per frame
+    this.SPEED = 11; //how far the ship turns per frame
     this.SPEED_RATE = 0.1;
     this.stars = [];
     this.rocks = [];
@@ -175,7 +175,7 @@ class rocket {
     this.restartBtn;
     this.gameStart = false;
     this.TURN_FACTOR = 5; //how far the ship turns per frame
-    this.SPEED = 8; //how far the ship turns per frame
+    this.SPEED = 11; //how far the ship turns per frame
     this.SPEED_RATE = 0.1;
     this.stars = [];
     this.rocks = [];
@@ -220,7 +220,7 @@ class rocket {
 
     this.scoreGift.textAlign = 'left';
     this.scoreGift.x = 20;
-    this.scoreGift.y = 60;
+    this.scoreGift.y = 20;
     this.stage.addChild(this.scoreGift);
 
     this.stage.update();
@@ -353,6 +353,7 @@ class rocket {
       this.gifts[i] = new createjs.Bitmap(image);
       var img = this.gifts[i].image;
       this.gifts[i].id = 'gift-' + this.giftID;
+      console.log(this.giftID);
       this.gifts[i].regX = img.naturalWidth / 2;
       this.gifts[i].regY = img.naturalHeight / 2;
       this.gifts[i].scaleX = 1;
@@ -495,9 +496,10 @@ class rocket {
         var gift = this.gifts[k];
         if (this.detectHit(gift)) {
           gift.visible = false;
-          if( this.gotGiftID.indexOf(gift.id)==-1 ) {
-              this.gotGiftID.push(gift.id);
-              this.gotGift++;
+          if ( this.gotGiftID.indexOf(gift.id)==-1 ) {
+            console.log('detect ' + gift.id);
+            this.gotGiftID.push(gift.id);
+            this.gotGift++;
           }
         }
       }
