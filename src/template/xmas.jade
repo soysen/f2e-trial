@@ -6,6 +6,7 @@ html(lang='zh-TW')
       meta(name="viewport" content="width=device-width, initial-scale=1")
       title AJA - Xmas
       link(href="../css/app.css" rel="stylesheet")
+      link(href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet")
       script(src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous")
 
     body.xmas
@@ -28,7 +29,7 @@ html(lang='zh-TW')
         canvas#rocket
 
         #start-layer.layer.hidden
-          h1.title.is-1 MERRY<br>CHRISTMAS
+          p.title.is-1 聖誕老人找不到他的禮物，有些禮盒看起來似乎是空的，還要躲避飄忽不定的星球，你可以幫忙聖誕老人找到禮物並放到身後的雪橇嗎？
           .note
             .left
               h3.title.is-5 SPEED UP/DOWN
@@ -52,23 +53,22 @@ html(lang='zh-TW')
           button#start.button.is-info.is-large.is-inverted.is-outlined START
 
         #got-gift-layer.layer.hidden
-          small YOU HAVE &nbsp;
+          small 你找到了 &nbsp;
             span#gift-score 0
-            | &nbsp; GIFTS
+            | &nbsp; 個禮物
 
         #finish-layer.layer.hidden
-          h1.title.is-1 OOOOPS, Santa Claus got in a crash.<br/>
+          h1.title.is-1 OOOPS!!!<br>聖誕老人被死星擊落了<br/>你找到了&nbsp;
             //- small Santa Claus fly&nbsp;
             //-   span#final-score 0
             //-   | &nbsp;light year away.
-            small YOU HAVE&nbsp;
-              span#final-scoreGift
-              | &nbsp;GIFTS
+            span#final-scoreGift
+            | &nbsp;個禮物<br>還不夠呢再加油吧!
           button#restart.button.is-info.is-large.is-inverted.is-outlined PLAY AGAIN
 
         .card-content.hidden
-          h1.title.white.center MERRY<br>CHRISTMAS
-          p.wording.white.center 聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂！
+          h1.title.white.center.animated.bounceIn MERRY<br>CHRISTMAS
+          p.wording.white.center.animated.bounceIn 聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂！
 
           .gifts
             img.gift-1(src="../img/gift-1.png")
@@ -84,6 +84,8 @@ html(lang='zh-TW')
 
           .santa-cloud
             img(src="../img/santa-claus.png")
+          .xmas-plant-img
+            img(src="../img/xmas-planet.png")
 
         .xmas-plant
           img(src="../img/xmas-planet.png")

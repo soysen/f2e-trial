@@ -8553,11 +8553,18 @@ body.xmas .layer {
   z-index: 1;
 }
 body.xmas .layer button {
-  top: 77%;
+  top: 18%;
 }
-body.xmas .layer h1.title {
+body.xmas .layer h1.title,
+body.xmas .layer p.title {
   margin-top: 0;
-  top: 15%;
+  top: 10%;
+}
+body.xmas .layer p.title {
+  width: 80%;
+  margin: 0 10%;
+  font-size: 1.8rem;
+  line-height: 1.5;
 }
 body.xmas canvas#rocket {
   background: none;
@@ -8575,18 +8582,31 @@ body.xmas .xmas-plant {
   z-index: 0;
 }
 body.xmas #start {
-  border-color: #999;
-  color: #999;
+  color: #fff;
+  border-color: #fff;
+}
+body.xmas #start:hover, body.xmas #start:focus {
+  color: #777;
+  background: #f3f3f3;
+}
+body.xmas #start:active {
+  color: #666;
+  background: #f3f3f3;
+}
+body.xmas #finish-layer button {
+  top: 50%;
 }
 body.xmas .card-content {
   padding: 52px 0 0 0;
   position: relative;
   height: 100vh;
   overflow: hidden;
+  background: #181861;
+  z-index: 999;
 }
 body.xmas h1.title {
   margin-top: 30px;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 body.xmas .wording {
   width: 60%;
@@ -8596,7 +8616,7 @@ body.xmas .santa-cloud {
   height: 347px;
   text-align: center;
   z-index: 18;
-  bottom: 52px;
+  bottom: 90px;
 }
 body.xmas .gifts,
 body.xmas .snowflake {
@@ -8616,15 +8636,15 @@ body.xmas .gifts [class^='gift-'] {
 }
 body.xmas .gift-1 {
   top: 70%;
-  left: 10%;
+  left: 5%;
 }
 body.xmas .gift-2 {
-  top: 30%;
+  top: 10%;
   left: 60%;
 }
 body.xmas .gift-3 {
-  top: 65%;
-  left: 80%;
+  top: 60%;
+  left: 71%;
 }
 body.xmas .snowflakes {
   height: 80%;
@@ -8638,20 +8658,27 @@ body.xmas .snowflakes-1 {
   left: 10%;
 }
 body.xmas .snowflakes-2 {
-  top: 10%;
-  left: 10%;
+  top: 7%;
+  left: 80%;
 }
 body.xmas .snowflakes-3 {
-  top: 10%;
-  left: 10%;
+  top: 50%;
+  left: 9%;
 }
 body.xmas .snowflakes-4 {
-  top: 10%;
-  left: 10%;
+  top: 25%;
+  left: 55%;
 }
 body.xmas .snowflakes-5 {
-  top: 10%;
-  left: 10%;
+  top: 60%;
+  left: 74%;
+}
+body.xmas .xmas-plant-img {
+  width: 100%;
+  position: absolute;
+  bottom: -6px;
+  text-align: center;
+  z-index: 0;
 }
 
 header {
@@ -8714,7 +8741,7 @@ canvas#rocket {
   position: absolute;
   display: block;
   width: 200px;
-  height: 240px;
+  height: 300px;
   top: 0;
   bottom: 0;
   margin: auto;

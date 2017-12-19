@@ -32,15 +32,15 @@ class rocket {
     this.gotGiftID = [];
     this.gotGift = 0;
     this.TURN_FACTOR = 5; //how far the ship turns per frame
-    this.SPEED = 11; //how far the ship turns per frame
+    this.SPEED = 18; //how far the ship turns per frame
     this.SPEED_RATE = 0.1;
     this.stars = [];
     this.rocks = [];
     this.gifts = [];
     this.snowflake = [];
-    this.rockNumber = 3;
+    this.rockNumber = 2;
     this.starNumber = 20;
-    this.giftNumber = 1;
+    this.giftNumber = 3;
     this.snowflakeNumber = 6;
     this.lfHeld = false;
     this.rtHeld = false;
@@ -169,13 +169,15 @@ class rocket {
     // this.finishAudio.volumn = 100;
     // this.finishAudio.play();
 
+    // $('.card-content').removeClass('hidden');
+
     this.stage.removeAllChildren();
 
     this.startBtn;
     this.restartBtn;
     this.gameStart = false;
     this.TURN_FACTOR = 5; //how far the ship turns per frame
-    this.SPEED = 11; //how far the ship turns per frame
+    this.SPEED = 18; //how far the ship turns per frame
     this.SPEED_RATE = 0.1;
     this.stars = [];
     this.rocks = [];
@@ -192,6 +194,42 @@ class rocket {
     this.gameFisnish = true;
 
     this.init();
+
+
+  }
+
+
+  gameFinishSuccess() {
+    // this.bgAudio.pause();
+    // this.finishAudio.volumn = 100;
+    // this.finishAudio.play();
+
+    $('.card-content').removeClass('hidden');
+
+    this.stage.removeAllChildren();
+
+    this.startBtn;
+    this.restartBtn;
+    this.gameStart = false;
+    this.TURN_FACTOR = 5; //how far the ship turns per frame
+    this.SPEED = 18; //how far the ship turns per frame
+    this.SPEED_RATE = 0.1;
+    this.stars = [];
+    this.rocks = [];
+    this.giftID = 0;
+    this.gotGiftID = [];
+    this.gifts = [];
+    this.rockNumber = 5;
+    this.snowflakeNumber = 6;
+    this.starNumber = 20;
+    this.lfHeld = false;
+    this.rtHeld = false;
+    this.fwdHeld = false;
+    this.fsdHeld = false;
+    this.gameFisnish = true;
+
+    this.init();
+
   }
 
   startGame(e) {
@@ -237,10 +275,10 @@ class rocket {
 
   resizeCanvas() {
     var img = this.rocket.image;
-    this.rocket.regX = img.naturalWidth;
-    this.rocket.regY = img.naturalHeight;
-    this.rocket.x = this.outer_w;
-    this.rocket.y = this.outer_h;
+    this.rocket.regX = img.naturalWidth / 2;
+    this.rocket.regY = img.naturalWidth / 3;
+    this.rocket.x = this.outer_w / 2;
+    this.rocket.y = this.outer_h / 2;
     this.outer_w = window.innerWidth;
     this.outer_h = window.innerHeight;
     this.canvas.width = this.outer_w;
@@ -446,7 +484,7 @@ class rocket {
 
       item.visible = true;
 
-      if( type=='gift' ) {
+      if ( type == 'gift' ) {
         this.gotGiftID = [];
       }
 
@@ -496,13 +534,20 @@ class rocket {
         var gift = this.gifts[k];
         if (this.detectHit(gift)) {
           gift.visible = false;
-          if ( this.gotGiftID.indexOf(gift.id)==-1 ) {
+          if ( this.gotGiftID.indexOf(gift.id) == -1 ) {
             console.log('detect ' + gift.id);
             this.gotGiftID.push(gift.id);
             this.gotGift++;
+            console.log('gotGift' + this.gotGift);
+            if (this.gotGift.toFixed(0) == 4) {
+              this.gameFinishSuccess();
+            }
           }
+          // gift.id = 0;
         }
       }
+
+      // this.gotGiftID = [];
 
       // this.distance += (this.SPEED / 50);
       // this.score.text = this.distance.toFixed(1) + " light year";
@@ -517,7 +562,7 @@ class rocket {
 
   detectHit(item) {
     var cx, cy;
-    var position = item.localToLocal(100,0,this.rocket);
+    var position = item.localToLocal(100, 0, this.rocket);
     return this.rocket.hitTest(position.x, position.y);
   }
 
