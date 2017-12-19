@@ -29485,6 +29485,10 @@ class rocket {
     this.rocket.regY = img.naturalWidth / 3;
     this.rocket.width = img.naturalWidth;
     this.rocket.height = img.naturalHeight;
+    if (this.outer_w < 768) {
+      this.rocket.scaleX = 0.5;
+      this.rocket.scaleY = 0.5;
+    }
     this.rocket.x = this.outer_w / 2;
     this.rocket.y = this.outer_h / 2;
 
@@ -29617,6 +29621,10 @@ class rocket {
     this.rocket.regY = img.naturalWidth / 3;
     this.rocket.x = this.outer_w / 2;
     this.rocket.y = this.outer_h / 2;
+    if (this.outer_w < 768) {
+      this.rocket.scaleX = 0.5;
+      this.rocket.scaleY = 0.5;
+    }
     this.outer_w = window.innerWidth;
     this.outer_h = window.innerHeight;
     this.canvas.width = this.outer_w;
@@ -29640,6 +29648,10 @@ class rocket {
       this.rocks[i].radius = image.naturalHeight;
       this.rocks[i].regX = image.naturalWidth / 2;
       this.rocks[i].regY = 0;
+      if (this.outer_w < 768) {
+        this.rocks[i].scaleX = 0.5;
+        this.rocks[i].scaleY = 0.5;
+      }
       // this.rocks[i].scaleX = 1;
       // this.rocks[i].scaleY = 1;
       this.rocks[i].width = image.naturalWidth;
@@ -29676,8 +29688,12 @@ class rocket {
       var img = this.snowflake[i].image;
       this.snowflake[i].regX = img.naturalWidth;
       this.snowflake[i].regY = img.naturalHeight;
-      this.snowflake[i].scaleX = 1;
-      this.snowflake[i].scaleY = 1;
+      if (this.outer_w < 768) {
+        this.snowflake[i].scaleX = 0.5;
+        this.snowflake[i].scaleY = 0.5;
+      }
+      // this.snowflake[i].scaleX = 1;
+      // this.snowflake[i].scaleY = 1;
       this.snowflake[i].width = img.naturalWidth;
       this.snowflake[i].height = img.naturalWidth;
       this.snowflake[i].x = Math.random() * this.outer_w;
@@ -29732,8 +29748,12 @@ class rocket {
       console.log(this.giftID);
       this.gifts[i].regX = img.naturalWidth / 2;
       this.gifts[i].regY = img.naturalHeight / 2;
-      this.gifts[i].scaleX = 1;
-      this.gifts[i].scaleY = 1;
+      if (this.outer_w < 768) {
+        this.gifts[i].scaleX = 0.5;
+        this.gifts[i].scaleY = 0.5;
+      }
+      // this.gifts[i].scaleX = 1;
+      // this.gifts[i].scaleY = 1;
       this.gifts[i].width = img.naturalWidth;
       this.gifts[i].height = img.naturalWidth;
       this.gifts[i].x = Math.random() * this.outer_w;
