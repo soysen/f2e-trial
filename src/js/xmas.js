@@ -104,7 +104,8 @@ class rocket {
 
     });
 
-    this.mc.on('panend panleft panright panup pandown', e => this.mcSwipe(e));
+    // this.mc.on('panend panleft panright panup pandown', e => this.mcSwipe(e));
+    this.mc.on('panend panleft panright', e => this.mcSwipe(e));
 
     createjs.Ticker.addEventListener("tick", (e) => this.tick());
   }
@@ -119,12 +120,12 @@ class rocket {
       case 'panright':
         this.rtHeld = true;
         break;
-      case 'panup':
-        this.fwdHeld = true;
-        break;
-      case 'pandown':
-        this.fsdHeld = true;
-        break;
+      // case 'panup':
+      //   this.fwdHeld = true;
+      //   break;
+      // case 'pandown':
+      //   this.fsdHeld = true;
+      //   break;
       case 'panend':
         this.lfHeld = false;
         this.rtHeld = false;
@@ -147,10 +148,12 @@ class rocket {
     this.rocket.regY = img.naturalWidth / 3;
     this.rocket.width = img.naturalWidth;
     this.rocket.height = img.naturalHeight;
+
     if (this.outer_w < 768) {
       this.rocket.scaleX = 0.5;
       this.rocket.scaleY = 0.5;
     }
+
     this.rocket.x = this.outer_w / 2;
     this.rocket.y = this.outer_h / 2;
 
@@ -604,14 +607,14 @@ class rocket {
       case KEYCODE_RIGHT:
         this.rtHeld = true;
         return false;
-      case KEYCODE_W:
-      case KEYCODE_UP:
-        this.fwdHeld = true;
-        return false;
-      case KEYCODE_S:
-      case KEYCODE_DOWN:
-        this.fsdHeld = true;
-        return false;
+      // case KEYCODE_W:
+      // case KEYCODE_UP:
+      //   this.fwdHeld = true;
+      //   return false;
+      // case KEYCODE_S:
+      // case KEYCODE_DOWN:
+      //   this.fsdHeld = true;
+      //   return false;
     }
 
     setTimeout(() => {

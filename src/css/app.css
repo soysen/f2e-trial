@@ -8607,10 +8607,12 @@ body.xmas .card-content {
 body.xmas h1.title {
   margin-top: 30px;
   font-size: 3rem;
+  z-index: 20;
 }
 body.xmas .wording {
   width: 60%;
   margin: 0 auto;
+  z-index: 20;
 }
 body.xmas .santa-cloud {
   height: 347px;
@@ -8862,10 +8864,37 @@ canvas#rocket {
   body.xmas .layer p.title {
     font-size: 1rem;
   }
-
   body.xmas h1.title {
-    font-size: 1rem;
+    font-size: 2rem;
     line-height: 1.5;
+  }
+  body.xmas .wording {
+    width: 80%;
+    margin: 0 10%;
+  }
+  body.xmas .card-content .santa-cloud img {
+    max-width: 20%;
+  }
+  body.xmas .card-content .santa-cloud {
+    height: 50%;
+    bottom: -60px;
+  }
+  body.xmas .card-content .snowflakes img,
+  body.xmas .card-content .gifts img {
+    max-width: 10%;
+  }
+  body.xmas .gift-1 {
+    top: 35%;
+  }
+  body.xmas .gift-3 {
+    top: 40%;
+    left: 67%;
+  }
+  body.xmas .santa-cloud {
+    bottom: -100px;
+  }
+  body.xmas .xmas-plant-img {
+    bottom: 45px;
   }
 }
 .fig-table {
