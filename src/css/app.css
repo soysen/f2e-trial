@@ -8566,7 +8566,7 @@ body.xmas .layer p.title {
   margin-top: 0;
   top: 10%;
   width: 80%;
-  margin: 0 10%;
+  margin: 0 auto;
   font-size: 1.8rem;
   line-height: 1.5;
 }
@@ -8577,7 +8577,7 @@ body.xmas canvas#rocket {
   background: none;
   z-index: 1;
 }
-body.xmas .start-layer {
+body.xmas #start-layer {
   position: relative;
   z-index: 2;
 }
@@ -8766,6 +8766,8 @@ canvas#rocket {
   position: relative;
   top: 0;
   margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 .layer .left .box,
 .layer .right .box {
@@ -8776,12 +8778,11 @@ canvas#rocket {
   color: #FFF;
 }
 .layer .title {
-  position: absolute;
   color: #FFF;
   display: block;
   width: 100%;
   left: 0;
-  top: 50%;
+  max-width: 600px;
   margin-top: -170px;
 }
 .layer button {
@@ -8898,8 +8899,9 @@ canvas#rocket {
     opacity: 0.5;
   }
   body.xmas .wording {
-    width: 80%;
-    margin: 0 10%;
+    width: 75%;
+    margin: 0 auto;
+    text-align: justify;
   }
   body.xmas .card-content .santa-cloud img {
     max-width: 20%;

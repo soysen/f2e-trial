@@ -29673,7 +29673,7 @@ class rocket {
     if (i < this.rockNumber) {
       setTimeout(() => {
         this.renderRock(i + 1);
-      }, Math.ceil(Math.random() * 5000))
+      }, Math.ceil(Math.random() * 8000))
     }
   }
 
@@ -29703,7 +29703,7 @@ class rocket {
     if (i < this.snowflakeNumber) {
       setTimeout(() => {
         this.renderSnowflake(i + 1);
-      }, Math.ceil(Math.random() * 5000))
+      }, Math.ceil(Math.random() * 15000))
     }
 
   }
@@ -29751,7 +29751,7 @@ class rocket {
     if (i < this.giftNumber) {
       setTimeout(() => {
         this.renderGift(i + 1);
-      }, Math.ceil(Math.random() * 5000))
+      }, Math.ceil(Math.random() * 10000))
       }
 
   }
