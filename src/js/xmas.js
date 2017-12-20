@@ -1,5 +1,4 @@
 window.createjs = this.createjs = require('createjs-module');
-require('createjs-easeljs');
 require('hammerjs');
 
 
@@ -114,9 +113,21 @@ class rocket {
     }, {
       src: "../img/start-btn.png",
       id: "start-btn"
+    },{
+      src: "../sounds/boom.mp3",
+      id: "bell" 
+    },{
+      src: "../sounds/gift.mp3",
+      id: "bell"
+    },{
+      src: "../sounds/jingle-bells-country.mp3",
+      id: "jingle-bell"
     }];
-
-    this.queue = new createjs.LoadQueue();;
+    
+    this.queue = new createjs.LoadQueue();
+    this.queue.installPlugin(createjs.Sound);
+    createjs.Sound.registerPlugins([createjs.WebAudioPlugin]);
+    createjs.Sound.alternateExtensions = ["mp3"];
 
     this.mc.add(new Hammer.Pan());
     this.stage.enableMouseOver(10);
@@ -131,12 +142,25 @@ class rocket {
     this.queue.loadManifest(this.manifest);
 
     this.queue.on("complete", e => {
+      var sounds = [{
+        src:"../sounds/boom.mp3",
+        id: 'boom'
+      }, {
+        src:"../sounds/gift.mp3",
+        id: 'gift'
+      },{
+        src: "../sounds/jingle-bells-country.mp3",
+        id: "jingle-bell"
+      }];
+      createjs.Sound.alternateExtensions = ["mp3"];
+      createjs.Sound.registerSounds(sounds);
+      
+      createjs.Sound.play("jingle-bell", 3);
       this.rocket = new createjs.Bitmap(this.queue.getResult("santaClaus"));
       this.startBtn = new createjs.Bitmap(e.result);
       this.init();
     });
 
-    // this.mc.on('panend panleft panright panup pandown', e => this.mcSwipe(e));
     this.mc.on('panmove panend', e => this.mcSwipe(e));
 
     createjs.Ticker.addEventListener("tick", (e) => this.tick());
@@ -146,18 +170,6 @@ class rocket {
     if (!this.gameStart) return;
 
     switch (e.type) {
-      // case 'panleft':
-      //   this.lfHeld = true;
-      //   break;
-      // case 'panright':
-      //   this.rtHeld = true;
-      //   break;
-      // case 'panup':
-      //   this.fwdHeld = true;
-      //   break;
-      // case 'pandown':
-      //   this.fsdHeld = true;
-      //   break;
       case 'panmove':
         if( e.overallVelocityX > 0) {
           this.rtHeld = true;
@@ -518,6 +530,7 @@ class rocket {
         var rock = this.rocks[r];
         
         if (this.detectHit(rock)) {
+          createjs.Sound.play("boom", 3);
           this.rocket.image = this.queue.getResult('santaClausBroke');
           this.gameStart = false;
           this.gameFisnish = false;
@@ -534,6 +547,7 @@ class rocket {
           
           if ( this.gotGiftID.indexOf(gift.id) == -1 ) {
             
+            createjs.Sound.play("gift", 3);
             this.gotGiftID.push(gift.id);
             this.gotGift++;
             

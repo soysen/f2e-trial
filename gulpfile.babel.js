@@ -35,11 +35,7 @@ var srcPath = {
   partials: dirs.src + "/partials/**/*.jade",
   img: dirs.src + '/img',
   font: dirs.src + '/font',
-<<<<<<< HEAD
-  sound: dirs.src + '/sound'
-=======
-  sounds: dirs.src + '/sounds'
->>>>>>> 5d2d371ca891a005604be9cd740816a5685f0a00
+  sound: dirs.src + '/sounds'
 };
 var dist = {
   font: dirs.dist + '/font',
@@ -47,11 +43,7 @@ var dist = {
   js: dirs.dist + '/js',
   html: dirs.dist + '/html',
   img: dirs.dist + '/img',
-<<<<<<< HEAD
-  sound: dirs.dist + '/sound'
-=======
-  sounds: dirs.dist + '/sounds'
->>>>>>> 5d2d371ca891a005604be9cd740816a5685f0a00
+  sound: dirs.dist + '/sounds'
 };
 
 const date = new Date();
@@ -250,6 +242,7 @@ gulp.task('server', ['jade', 'compileCSS', 'compileJS'], () => {
   watch("./src/js/**/*.js", function () {
     runSequence('compileJS')
   });
+
   watch([
     srcPath.jade,
     srcPath.partials
@@ -258,10 +251,14 @@ gulp.task('server', ['jade', 'compileCSS', 'compileJS'], () => {
   });
   watch([
     srcPath.sass + "/**/*.sass", 
-    srcPath.img + "/*",
-    srcPath.sound + "/*"
+    srcPath.img + "/*"
   ], function () {
     runSequence('compileCSS')
+  });
+  watch([
+    srcPath.sound + "/*.mp3"
+  ], function () {
+    runSequence('copySound')
   });
 
 });

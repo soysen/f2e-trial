@@ -8605,6 +8605,7 @@ body.xmas .card-content {
   z-index: 999;
 }
 body.xmas h1.title {
+  position: relative;
   margin-top: 30px;
   font-size: 3rem;
   z-index: 20;
@@ -8613,6 +8614,7 @@ body.xmas .wording {
   width: 60%;
   margin: 0 auto;
   z-index: 20;
+  position: relative;
 }
 body.xmas .santa-cloud {
   height: 347px;
