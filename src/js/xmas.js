@@ -115,7 +115,7 @@ class rocket {
       id: "start-btn"
     },{
       src: "../sounds/boom.mp3",
-      id: "bell" 
+      id: "bell"
     },{
       src: "../sounds/gift.mp3",
       id: "bell"
@@ -123,7 +123,7 @@ class rocket {
       src: "../sounds/jingle-bells-country.mp3",
       id: "jingle-bell"
     }];
-    
+
     this.queue = new createjs.LoadQueue();
     this.queue.installPlugin(createjs.Sound);
     createjs.Sound.registerPlugins([createjs.WebAudioPlugin]);
@@ -154,7 +154,7 @@ class rocket {
       }];
       createjs.Sound.alternateExtensions = ["mp3"];
       createjs.Sound.registerSounds(sounds);
-      
+
       createjs.Sound.play("jingle-bell", 3);
       this.rocket = new createjs.Bitmap(this.queue.getResult("santaClaus"));
       this.startBtn = new createjs.Bitmap(e.result);
@@ -282,7 +282,7 @@ class rocket {
   startGame(e) {
     this.gameFisnish = false;
     this.gotGift = 0;
-    
+
     this.rocket.image = this.queue.getResult('santaClaus');
     document.querySelector('#finish-layer').className = 'layer hidden';
     document.querySelector('#start-layer').className = 'layer hidden';
@@ -322,7 +322,7 @@ class rocket {
 
   renderRock(i) {
     var rockType = Math.floor(Math.random() * 6) + 1;
-    
+
     let image = this.queue.getResult("planet-" + rockType);
 
     this.rocks[i] = new createjs.Shape();
@@ -334,7 +334,7 @@ class rocket {
       this.rocks[i].scaleX = 0.5;
       this.rocks[i].scaleY = 0.5;
     }
-    
+
     this.rocks[i].width = image.naturalWidth;
     this.rocks[i].height = image.naturalHeight;
     this.rocks[i].x = Math.random() * this.outer_w;
@@ -354,17 +354,17 @@ class rocket {
   renderSnowflake(i) {
     var snowflakeType = Math.floor(Math.random() * 6) + 1;
     var image = this.queue.getResult("snowflake-" + snowflakeType);
-    
+
     this.snowflake[i] = new createjs.Bitmap(image);
     var img = this.snowflake[i].image;
     this.snowflake[i].regX = img.naturalWidth;
     this.snowflake[i].regY = img.naturalHeight;
-    
+
     if (this.outer_w < 768) {
       this.snowflake[i].scaleX = 0.5;
       this.snowflake[i].scaleY = 0.5;
     }
-    
+
     this.snowflake[i].width = img.naturalWidth;
     this.snowflake[i].height = img.naturalWidth;
     this.snowflake[i].x = Math.random() * this.outer_w;
@@ -379,7 +379,7 @@ class rocket {
         this.renderSnowflake(i + 1);
       }, Math.ceil(Math.random() * 5000))
     }
-    
+
   }
 
   renderStar() {
@@ -399,7 +399,7 @@ class rocket {
 
   renderGift(i) {
     this.giftID++;
-    
+
     let image = this.queue.getResult("gift-" + this.giftID);
     this.gifts[i] = new createjs.Bitmap(image);
     var img = this.gifts[i].image;
@@ -411,7 +411,7 @@ class rocket {
       this.gifts[i].scaleX = 0.5;
       this.gifts[i].scaleY = 0.5;
     }
-    
+
     this.gifts[i].width = img.naturalWidth;
     this.gifts[i].height = img.naturalWidth;
     this.gifts[i].x = Math.random() * this.outer_w;
@@ -427,7 +427,7 @@ class rocket {
         this.renderGift(i + 1);
       }, Math.ceil(Math.random() * 5000))
       }
-      
+
   }
 
 
@@ -466,14 +466,14 @@ class rocket {
         this.starPass();
       }, 50);
     }
-    
+
   }
 
   flyItem(item, type, idx) {
     var angle = this.rocket.rotation % 360 * (this.rocket.rotation % 360 < 0 ? -1 : 1);
     var img_h = item.height;
     var img_w = item.width;
-    
+
     if (item.y > this.outer_h + img_h || item.y < -img_h || item.x > this.outer_w + img_w || item.x < -img_w) {
 
       if (angle > 45 && angle < 135) {
@@ -516,7 +516,7 @@ class rocket {
   }
 
   tick(event) {
-    
+
     if (this.gameStart) {
 
       if (this.lfHeld) {
@@ -527,7 +527,7 @@ class rocket {
 
       for (let r in this.rocks) {
         var rock = this.rocks[r];
-        
+
         if (this.detectHit(rock)) {
           createjs.Sound.play("boom", 3);
           this.rocket.image = this.queue.getResult('santaClausBroke');
@@ -546,10 +546,10 @@ class rocket {
             createjs.Sound.play("gift", 3);
             this.gotGiftID.push(gift.id);
             this.gotGift++;
-            if (this.gotGift.toFixed(0) == 4) 
+            if (this.gotGift.toFixed(0) == 4)
               this.gameFinishSuccess();
           }
-          
+
         } else {
           var index =  this.gotGiftID.indexOf(gift.id);
           if( index != -1 && gift.visible == true ) {
@@ -579,9 +579,9 @@ class rocket {
 
 
   handleKeyDown(e) {
-    if (!e) 
+    if (!e)
       var e = window.event;
-    
+
     switch (e.keyCode) {
       case KEYCODE_A:
       case KEYCODE_LEFT:
@@ -592,7 +592,7 @@ class rocket {
       case KEYCODE_RIGHT:
         this.rtHeld = true;
         return false;
-        
+
     }
 
     setTimeout(() => {
