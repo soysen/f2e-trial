@@ -31,7 +31,7 @@ class rocket {
     // this.distance = 0;
     this.gotGiftID = [];
     this.gotGift = 0;
-    this.TURN_FACTOR = 5; //how far the ship turns per frame
+    this.TURN_FACTOR = window.innerWidth > 768 ? 5 : 4; //how far the ship turns per frame
     this.SPEED = 18; //how far the ship turns per frame
     this.SPEED_RATE = 0.1;
     this.stars = [];
@@ -48,7 +48,7 @@ class rocket {
     this.fsdHeld = false;
     this.rocket;
     // this.score = new createjs.Text(this.distance + " light year", "bold 2em Oswald", "#FFFFFF");
-    this.scoreGift = new createjs.Text("YOU HAVE " + this.gotGift + "GIFTS", "bold 2em Oswald", "#FFFFFF");
+    this.scoreGift = new createjs.Text("YOU HAVE " + this.gotGift + "GIFTS", "bold 2em", "#FFFFFF");
     this.stage = new createjs.Stage(this.id);
     this.queue = new createjs.LoadQueue();
     this.xmasPlanetQue = new createjs.LoadQueue();
@@ -105,7 +105,7 @@ class rocket {
     });
 
     // this.mc.on('panend panleft panright panup pandown', e => this.mcSwipe(e));
-    this.mc.on('panend panleft panright', e => this.mcSwipe(e));
+    this.mc.on('panmove panend', e => this.mcSwipe(e));
 
     createjs.Ticker.addEventListener("tick", (e) => this.tick());
   }
@@ -114,18 +114,27 @@ class rocket {
     if (!this.gameStart) return;
 
     switch (e.type) {
-      case 'panleft':
-        this.lfHeld = true;
-        break;
-      case 'panright':
-        this.rtHeld = true;
-        break;
+      // case 'panleft':
+      //   this.lfHeld = true;
+      //   break;
+      // case 'panright':
+      //   this.rtHeld = true;
+      //   break;
       // case 'panup':
       //   this.fwdHeld = true;
       //   break;
       // case 'pandown':
       //   this.fsdHeld = true;
       //   break;
+      case 'panmove':
+        if( e.overallVelocityX > 0) {
+          this.rtHeld = true;
+          this.lfHeld = false;
+        } else {
+          this.rtHeld = false;
+          this.lfHeld = true;
+        }
+        break;
       case 'panend':
         this.lfHeld = false;
         this.rtHeld = false;
@@ -529,13 +538,13 @@ class rocket {
   tick(event) {
     //handle turning
     if (this.gameStart) {
-      if (this.fwdHeld) {
-        this.SPEED_RATE += 0.1;
-        this.SPEED += this.SPEED_RATE;
-      } else if (this.fsdHeld && this.SPEED_RATE > 0.1) {
-        this.SPEED_RATE -= 0.1;
-        this.SPEED -= this.SPEED < 1 ? 0 : this.SPEED_RATE;
-      }
+      // if (this.fwdHeld) {
+      //   this.SPEED_RATE += 0.1;
+      //   this.SPEED += this.SPEED_RATE;
+      // } else if (this.fsdHeld && this.SPEED_RATE > 0.1) {
+      //   this.SPEED_RATE -= 0.1;
+      //   this.SPEED -= this.SPEED < 1 ? 0 : this.SPEED_RATE;
+      // }
 
       if (this.lfHeld) {
         this.rocket.rotation -= this.TURN_FACTOR;
@@ -638,14 +647,14 @@ class rocket {
       case KEYCODE_RIGHT:
         this.rtHeld = false;
         break;
-      case KEYCODE_W:
-      case KEYCODE_UP:
-        this.fwdHeld = false;
-        break;
-      case KEYCODE_S:
-      case KEYCODE_DOWN:
-        this.fsdHeld = false;
-        break;
+      // case KEYCODE_W:
+      // case KEYCODE_UP:
+      //   this.fwdHeld = false;
+      //   break;
+      // case KEYCODE_S:
+      // case KEYCODE_DOWN:
+      //   this.fsdHeld = false;
+      //   break;
     }
   }
 
