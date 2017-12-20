@@ -3,23 +3,24 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
     <title>AJA - Xmas</title>
     <link href="../css/app.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   </head>
   <body class="xmas">
     <header>
       <div class="container">
         <nav class="navbar">
-          <div class="navbar-brand"><a href="#" class="brand"><img src="../img/aja@2x.png"></a><a href="#" class="navbar-item">MERRY CHRISTMAS</a></div>
+          <div class="navbar-brand"><a href="http://www.aja.com.tw/" class="brand"><img src="../img/aja@2x.png"></a><a href="#" class="navbar-item">MERRY CHRISTMAS</a></div>
         </nav>
       </div>
     </header>
     <main>
       <canvas id="rocket"></canvas>
       <div id="start-layer" class="layer hidden">
-        <h1 class="title is-1">MERRY CHRISTMAS</h1>
+        <p class="title is-1">聖誕老人太匆忙禮物弄丟了，你可以幫忙找回"三"個禮物放到身後的雪橇嗎？要小心躲避滿天飄忽不定的星球喔！</p>
         <div class="note">
           <div class="left">
             <h3 class="title is-5">SPEED UP/DOWN</h3>
@@ -46,10 +47,19 @@
         </div>
         <button id="start" class="button is-info is-large is-inverted is-outlined">START</button>
       </div>
-      <div id="got-gift-layer" class="layer hidden"><small>YOU HAVE &nbsp;<span id="gift-score">0</span>&nbsp; GIFTS</small></div>
+      <div id="got-gift-layer" class="layer hidden"><small>你找到了 &nbsp;<span id="gift-score">0</span>&nbsp; 個禮物</small></div>
       <div id="finish-layer" class="layer hidden">
-        <h1 class="title is-1">OOOOPS, Santa Claus got in a car crash.<br/><small>Santa Claus fly&nbsp;<span id="final-score">0</span>&nbsp;light year away.</small><small>YOU HAVE<span id="final-scoreGift"></span>GIFTS</small></h1>
+        <h1 class="title is-1">OOOPS!!!<br>聖誕老人被死星擊落了<br/>你找到了&nbsp;<span id="final-scoreGift"></span>&nbsp;個禮物<br>還不夠呢再加油吧!
+        </h1>
         <button id="restart" class="button is-info is-large is-inverted is-outlined">PLAY AGAIN</button>
+      </div>
+      <div class="card-content hidden">
+        <h1 class="title white center animated bounceIn">MERRY<br>CHRISTMAS</h1>
+        <p class="wording white center animated bounceIn">聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂，聖誕快樂！</p>
+        <div class="gifts"><img src="../img/gift-1.png" class="gift-1"><img src="../img/gift-2.png" class="gift-2"><img src="../img/gift-3.png" class="gift-3"></div>
+        <div class="snowflakes"><img src="../img/snowflake-1.png" class="snowflakes-1"><img src="../img/snowflake-2.png" class="snowflakes-2"><img src="../img/snowflake-3.png" class="snowflakes-3"><img src="../img/snowflake-4.png" class="snowflakes-4"><img src="../img/snowflake-5.png" class="snowflakes-5"></div>
+        <div class="santa-cloud"><img src="../img/santa-claus.png"></div>
+        <div class="xmas-plant-img"><img src="../img/xmas-planet.png"></div>
       </div>
       <div class="xmas-plant"><img src="../img/xmas-planet.png"></div>
     </main>
