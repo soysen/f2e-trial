@@ -29386,7 +29386,7 @@ class rocket {
     this.fsdHeld = false;
     this.rocket;
     // this.score = new createjs.Text(this.distance + " light year", "bold 2em Oswald", "#FFFFFF");
-    this.scoreGift = new createjs.Text("YOU HAVE " + this.gotGift + "GIFTS", "bold 2em Oswald", "#FFFFFF");
+    this.scoreGift = new createjs.Text("YOU HAVE " + this.gotGift + "GIFTS", "bold 2em", "#FFFFFF");
     this.stage = new createjs.Stage(this.id);
 
     this.manifest = [{
@@ -29474,6 +29474,7 @@ class rocket {
       this.init();
     });
 
+    // this.mc.on('panend panleft panright panup pandown', e => this.mcSwipe(e));
     this.mc.on('panmove panend', e => this.mcSwipe(e));
 
     createjs.Ticker.addEventListener("tick", (e) => this.tick());
@@ -29481,8 +29482,20 @@ class rocket {
 
   mcSwipe(e) {
     if (!this.gameStart) return;
-    
+
     switch (e.type) {
+      // case 'panleft':
+      //   this.lfHeld = true;
+      //   break;
+      // case 'panright':
+      //   this.rtHeld = true;
+      //   break;
+      // case 'panup':
+      //   this.fwdHeld = true;
+      //   break;
+      // case 'pandown':
+      //   this.fsdHeld = true;
+      //   break;
       case 'panmove':
         if( e.overallVelocityX > 0) {
           this.rtHeld = true;
@@ -29514,10 +29527,12 @@ class rocket {
     this.rocket.regY = img.naturalWidth / 3;
     this.rocket.width = img.naturalWidth;
     this.rocket.height = img.naturalHeight;
+
     if (this.outer_w < 768) {
       this.rocket.scaleX = 0.5;
       this.rocket.scaleY = 0.5;
     }
+
     this.rocket.x = this.outer_w / 2;
     this.rocket.y = this.outer_h / 2;
 
@@ -29664,7 +29679,6 @@ class rocket {
 
   renderSnowflake(i) {
     var snowflakeType = Math.floor(Math.random() * 6) + 1;
-    console.log(snowflakeType);
     var image = this.queue.getResult("snowflake-" + snowflakeType);
     
     this.snowflake[i] = new createjs.Bitmap(image);
