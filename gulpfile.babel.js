@@ -34,14 +34,16 @@ var srcPath = {
   jade: dirs.src + "/template/**/*.jade",
   partials: dirs.src + "/partials/**/*.jade",
   img: dirs.src + '/img',
-  font: dirs.src + '/font'
+  font: dirs.src + '/font',
+  sounds: dirs.src + '/sounds'
 };
 var dist = {
   font: dirs.dist + '/font',
   style: dirs.dist + '/css',
   js: dirs.dist + '/js',
   html: dirs.dist + '/html',
-  img: dirs.dist + '/img'
+  img: dirs.dist + '/img',
+  sounds: dirs.dist + '/sounds'
 };
 
 const date = new Date();
@@ -131,7 +133,7 @@ gulp.task('compass', () => {
     .pipe(sourcemaps.write('.'))
     .on('error', (err) => {
       console.log(err.message);
-      // Would like to catch the error here 
+      // Would like to catch the error here
     })
     .pipe(gulp.dest('css'));
 });
@@ -151,6 +153,11 @@ gulp.task('clean-html', () => {
 gulp.task('copy-font', () => {
   gulp.src(assetPath).pipe(gulp.dest(srcPath.font));
   return gulp.src(assetPath).pipe(gulp.dest(dist.font));
+});
+
+gulp.task('copy-sounds', () => {
+  gulp.src(assetPath).pipe(gulp.dest(srcPath.sounds));
+  return gulp.src(assetPath).pipe(gulp.dest(dist.sounds));
 });
 
 gulp.task('compileCSS', ['compass', 'clean-img'], () => {
@@ -235,9 +242,9 @@ gulp.task('archive', () => {
 
 // If project need separate library css and js, you can use 'concatCSSLib', 'concatJSLib'
 gulp.task('default', () => {
-  runSequence('jade', 'compileCSS', 'copy-font', 'compileJS');
+  runSequence('jade', 'compileCSS', 'copy-font', 'copy-sounds', 'compileJS');
 });
 
 gulp.task('watch', () => {
-  runSequence('server', 'jade', 'compileCSS', 'copy-font', 'compileJS');
+  runSequence('server', 'jade', 'compileCSS', 'copy-font', 'copy-sounds', 'compileJS');
 });
