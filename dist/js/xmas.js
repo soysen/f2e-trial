@@ -29722,9 +29722,8 @@ class rocket {
 
   renderGift(i) {
     this.giftID++;
-    let giftType = Math.floor(Math.random() * 6) + 1;
-
-    let image = this.queue.getResult("gift-" + giftType);
+    
+    let image = this.queue.getResult("gift-" + this.giftID);
     this.gifts[i] = new createjs.Bitmap(image);
     var img = this.gifts[i].image;
     this.gifts[i].id = 'gift-' + this.giftID;
@@ -29865,20 +29864,20 @@ class rocket {
         var gift = this.gifts[k];
 
         if (this.detectHit(gift)) {
-
           gift.visible = false;
-          
           if ( this.gotGiftID.indexOf(gift.id) == -1 ) {
-            
             createjs.Sound.play("gift", 3);
             this.gotGiftID.push(gift.id);
             this.gotGift++;
-            
             if (this.gotGift.toFixed(0) == 4) 
               this.gameFinishSuccess();
-              
           }
           
+        } else {
+          var index =  this.gotGiftID.indexOf(gift.id);
+          if( index != -1 && gift.visible == true ) {
+            this.gotGiftID.splice(index, 1);
+          }
         }
       }
 
