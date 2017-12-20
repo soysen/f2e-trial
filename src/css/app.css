@@ -8879,7 +8879,7 @@ canvas#rocket {
   }
   body.xmas .layer button {
     width: 150px;
-    top: 35%;
+    top: 25%;
     font-size: 1.3rem;
   }
   body.xmas h1.title {
@@ -8892,7 +8892,7 @@ canvas#rocket {
     width: 100%;
     display: block;
     position: absolute;
-    top: 35%;
+    top: 25%;
   }
   body.xmas .swipe img {
     width: 20%;
