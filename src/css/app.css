@@ -8559,8 +8559,6 @@ body.xmas .layer h1.title,
 body.xmas .layer p.title {
   margin-top: 0;
   top: 10%;
-}
-body.xmas .layer p.title {
   width: 80%;
   margin: 0 10%;
   font-size: 1.8rem;
