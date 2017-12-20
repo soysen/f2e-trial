@@ -8597,8 +8597,15 @@ body.xmas #start:active {
   color: #666;
   background: #f3f3f3;
 }
+body.xmas #finish-layer {
+  background: rgba(0, 0, 0, 0.3);
+}
 body.xmas #finish-layer button {
   top: 50%;
+}
+body.xmas #finish-layer p.wording {
+  top: 12%;
+  color: #FFF;
 }
 body.xmas .card-content {
   padding: 52px 0 0 0;
@@ -8613,6 +8620,10 @@ body.xmas h1.title {
   margin-top: 0;
   font-size: 3rem;
   z-index: 20;
+}
+body.xmas h1.title small {
+  font-size: 0.7rem;
+  line-height: 1.2rem;
 }
 body.xmas .wording {
   width: 60%;

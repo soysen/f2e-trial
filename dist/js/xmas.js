@@ -29567,9 +29567,6 @@ class rocket {
     this.giftID = 0;
     this.gotGiftID = [];
     this.gifts = [];
-    this.rockNumber = 5;
-    this.snowflakeNumber = 6;
-    this.starNumber = 20;
     this.lfHeld = false;
     this.rtHeld = false;
     this.fwdHeld = false;
@@ -29594,9 +29591,6 @@ class rocket {
     this.giftID = 0;
     this.gotGiftID = [];
     this.gifts = [];
-    this.rockNumber = 5;
-    this.snowflakeNumber = 6;
-    this.starNumber = 20;
     this.lfHeld = false;
     this.rtHeld = false;
     this.fwdHeld = false;
