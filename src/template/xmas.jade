@@ -49,6 +49,9 @@ html(lang='zh-TW')
               div.box
                 .fa.fa-arrow-right
 
+          .swipe
+            img(src="../img/swipe.png")
+
           button#start.button.is-info.is-large.is-inverted.is-outlined START
 
         #got-gift-layer.layer.hidden
@@ -65,7 +68,7 @@ html(lang='zh-TW')
 
         .card-content.hidden
           h1.title.white.center.animated.bounceIn 親愛的夥伴
-          p.wording.white.center.animated.bounceIn 
+          p.wording.white.center.animated.bounceIn
             | 謝謝你及時協助耶誕老人完成任務，一如過去您對AJA的協助與支持。
             | 在這個充滿祝福的聖誕節裡，我們想藉由這個互動小遊戲，讓你輕鬆一下喘口氣再出發。
             | 也藉此獻上我們誠摯的祝福，希望您在新的一年持續成長，平安順心！<br/><br/><br/>
@@ -97,6 +100,7 @@ html(lang='zh-TW')
       script(src="../js/xmas.js")
       script.
         $('#start').on('click', function() {
+          $('.swipe').addClass('hidden');
           $('.xmas-plant').animate({
             bottom: '-=480'
           }, 2000, function() {

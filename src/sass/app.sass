@@ -129,6 +129,9 @@ body
         font-size: 1.8rem
         line-height: 1.5
 
+    .swipe
+      display: none
+
     canvas#rocket
       background: none
       z-index: 1
@@ -162,7 +165,7 @@ body
       background: rgba(0,0,0,.3)
       button
         top: 50%
-      p.wording 
+      p.wording
         top: 12%
         color: #FFF
 
@@ -179,7 +182,7 @@ body
       margin-top: 0
       font-size: 3rem
       z-index: 20
-      small 
+      small
         font-size: .7rem
         line-height: 1.2rem
     .wording
@@ -424,11 +427,25 @@ canvas#rocket
     .layer
       p.title
         font-size: 1rem
+      button
+        width: 150px
+        top: 35%
+        // margin-top: 0
+        font-size: 1.3rem
     h1.title
       width: 80%
       font-size: 2rem
       line-height: 1.5
       margin: 0 10%
+
+    .swipe
+      width: 100%
+      display: block
+      position: absolute
+      top: 35%
+      img
+        width: 20%
+        opacity: 0.5
     .wording
       width: 80%
       margin: 0 10%

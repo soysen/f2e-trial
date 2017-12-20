@@ -8570,6 +8570,9 @@ body.xmas .layer p.title {
   font-size: 1.8rem;
   line-height: 1.5;
 }
+body.xmas .swipe {
+  display: none;
+}
 body.xmas canvas#rocket {
   background: none;
   z-index: 1;
@@ -8873,11 +8876,26 @@ canvas#rocket {
   body.xmas .layer p.title {
     font-size: 1rem;
   }
+  body.xmas .layer button {
+    width: 150px;
+    top: 35%;
+    font-size: 1.3rem;
+  }
   body.xmas h1.title {
     width: 80%;
     font-size: 2rem;
     line-height: 1.5;
     margin: 0 10%;
+  }
+  body.xmas .swipe {
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 35%;
+  }
+  body.xmas .swipe img {
+    width: 20%;
+    opacity: 0.5;
   }
   body.xmas .wording {
     width: 80%;
