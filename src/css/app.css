@@ -8456,6 +8456,32 @@ body #xmas {
   font-size: 1.6rem;
   color: #E83015;
 }
+body #loading {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+body #loading .content {
+  text-align: center;
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+body #loading img {
+  width: auto;
+  height: 100px;
+}
+body #loading h5.title {
+  color: #FFF;
+}
 body main {
   flex: 1;
   padding-top: 52px;

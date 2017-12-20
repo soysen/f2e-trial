@@ -144,6 +144,7 @@ class rocket {
     this.queue.loadManifest(this.manifest);
 
     this.queue.on("complete", e => {
+      $("#loading").remove();
       var sounds = [{
         src:"../sounds/boom.mp3",
         id: 'boom'
