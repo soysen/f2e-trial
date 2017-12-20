@@ -29521,9 +29521,7 @@ class rocket {
   }
 
   init() {
-    this.renderStar();
-    this.renderGift();
-    this.renderSnowflake(0);
+    this.stage.removeAllChildren();
 
     var img = this.rocket.image;
     // default 定位, 中心點
@@ -29543,6 +29541,8 @@ class rocket {
     if (this.outer_w < 768) {
       this.rocket.scaleX = 0.5;
       this.rocket.scaleY = 0.5;
+      this.firework.scaleX = 0.5;
+      this.firework.scaleY = 0.5;
     }
 
     this.rocket.x = this.outer_w / 2;
@@ -29553,7 +29553,6 @@ class rocket {
     this.stage.update();
 
     if (this.gameFisnish) {
-      document.querySelector('#finish-layer').className = 'layer';
       document.querySelector('#final-scoreGift').innerHTML = this.gotGift.toFixed(0);
     } else {
       document.querySelector('#start-layer').className = 'layer';
@@ -29561,14 +29560,9 @@ class rocket {
   }
 
   gameFinish() {
-    this.stage.removeAllChildren();
 
     this.gameStart = false;
-    this.TURN_FACTOR = 5; //how far the ship turns per frame
-    this.SPEED = 18; //how far the ship turns per frame
-    this.SPEED_RATE = 0.1;
     this.stars = [];
-    this.rocks = [];
     this.giftID = 0;
     this.gotGiftID = [];
     this.gifts = [];
@@ -29581,7 +29575,8 @@ class rocket {
     this.fsdHeld = false;
     this.gameFisnish = true;
 
-    this.init();
+    document.querySelector('#finish-layer').className = 'layer';
+    // this.init();
   }
 
 
@@ -29608,11 +29603,16 @@ class rocket {
     this.fsdHeld = false;
     this.gameFisnish = true;
 
-    this.init();
-
   }
 
   startGame(e) {
+    this.rocks = [];
+    this.init();
+
+    this.renderStar();
+    this.renderGift();
+    this.renderSnowflake(0);
+
     this.gameFisnish = false;
     this.gotGift = 0;
 
@@ -29877,7 +29877,7 @@ class rocket {
           this.firework.x = gift.x;
           this.firework.y = gift.y;
 
-          createjs.Tween.get(this.firework).to({alpha:1, scale: 0.5 }, 50).call(()=>{
+          createjs.Tween.get(this.firework).to({alpha:1, scaleX: 0.5, scaleY: 0.5 }, 50).call(()=>{
             createjs.Tween.get(this.firework).wait(300).to({alpha:0, scale: 0}, 100);
           });
 
