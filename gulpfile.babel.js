@@ -35,7 +35,11 @@ var srcPath = {
   partials: dirs.src + "/partials/**/*.jade",
   img: dirs.src + '/img',
   font: dirs.src + '/font',
+<<<<<<< HEAD
   sound: dirs.src + '/sound'
+=======
+  sounds: dirs.src + '/sounds'
+>>>>>>> 5d2d371ca891a005604be9cd740816a5685f0a00
 };
 var dist = {
   font: dirs.dist + '/font',
@@ -43,7 +47,11 @@ var dist = {
   js: dirs.dist + '/js',
   html: dirs.dist + '/html',
   img: dirs.dist + '/img',
+<<<<<<< HEAD
   sound: dirs.dist + '/sound'
+=======
+  sounds: dirs.dist + '/sounds'
+>>>>>>> 5d2d371ca891a005604be9cd740816a5685f0a00
 };
 
 const date = new Date();
@@ -133,7 +141,7 @@ gulp.task('compass', () => {
     .pipe(sourcemaps.write('.'))
     .on('error', (err) => {
       console.log(err.message);
-      // Would like to catch the error here 
+      // Would like to catch the error here
     })
     .pipe(gulp.dest('css'));
 });
@@ -153,6 +161,11 @@ gulp.task('clean-html', () => {
 gulp.task('copy-font', () => {
   gulp.src(assetPath).pipe(gulp.dest(srcPath.font));
   return gulp.src(assetPath).pipe(gulp.dest(dist.font));
+});
+
+gulp.task('copy-sounds', () => {
+  gulp.src(assetPath).pipe(gulp.dest(srcPath.sounds));
+  return gulp.src(assetPath).pipe(gulp.dest(dist.sounds));
 });
 
 gulp.task('compileCSS', ['compass', 'clean-img'], () => {
