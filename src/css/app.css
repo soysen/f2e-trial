@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import 'https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&amp;subset=cyrillic,latin-ext,vietnamese';
+@import 'https://fonts.googleapis.com/css?family=Lobster';
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 /*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
 @import url(../../node_modules/animate.css/animate.css);
@@ -8450,6 +8451,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+body #xmas {
+  font-family: "Lobster", cursive;
+  font-size: 1.6rem;
+  color: #E83015;
+}
 body main {
   flex: 1;
   padding-top: 52px;
@@ -8651,6 +8657,7 @@ body.xmas .gift-3 {
 body.xmas .snowflakes {
   height: 80%;
   top: 0;
+  opacity: 0.5;
 }
 body.xmas .snowflakes [class^='snowflakes-'] {
   position: relative;
@@ -8859,6 +8866,7 @@ canvas#rocket {
     width: 80%;
     font-size: 2rem;
     line-height: 1.5;
+    margin: 0 10%;
   }
   body.xmas .wording {
     width: 80%;

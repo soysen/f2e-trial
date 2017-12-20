@@ -29552,15 +29552,16 @@ class rocket {
     this.stage.addChild(this.firework);
     this.stage.update();
 
-    if (this.gameFisnish) {
-      document.querySelector('#final-scoreGift').innerHTML = this.gotGift.toFixed(0);
-    } else {
+    if (!this.gameFisnish) {
       document.querySelector('#start-layer').className = 'layer';
     }
   }
 
   gameFinish() {
 
+    document.querySelector('#finish-layer').className = 'layer';
+    document.querySelector('#final-scoreGift').innerHTML = (3 - this.gotGift.toFixed(0));
+    
     this.gameStart = false;
     this.stars = [];
     this.giftID = 0;
@@ -29575,7 +29576,6 @@ class rocket {
     this.fsdHeld = false;
     this.gameFisnish = true;
 
-    document.querySelector('#finish-layer').className = 'layer';
     // this.init();
   }
 
