@@ -129,6 +129,7 @@ body
     background: #181861
     header
       background: #fff
+    
     .brand
       padding: 12px 20px 8px 10px
       img
@@ -169,6 +170,9 @@ body
       text-align: center
       z-index: 0
 
+    .button.is-inverted.is-outlined
+      background: rgba(0,0,0,.3)
+
     #start
       // border-color: #999
       // color: #999
@@ -176,7 +180,7 @@ body
       border-color: #fff
       &:hover,
       &:focus
-        color: #777
+        color: #000
         background: #f3f3f3
       &:active
         color: #666
@@ -330,13 +334,13 @@ canvas#rocket
     top: 40%
     width: 100%
     opacity: .7
-    
+
     .title
       position: relative
       top: 0
       margin-top: 0
-      margin-left: auto 
-      margin-right: auto 
+      margin-left: auto
+      margin-right: auto
     .box
       display: inline-block
       width: 64px
@@ -447,7 +451,7 @@ canvas#rocket
         font-size: 1rem
       button
         width: 150px
-        top: 35%
+        top: 25%
         // margin-top: 0
         font-size: 1.3rem
     h1.title
@@ -460,7 +464,7 @@ canvas#rocket
       width: 100%
       display: block
       position: absolute
-      top: 35%
+      top: 25%
       img
         width: 20%
         opacity: 0.5
@@ -493,6 +497,7 @@ canvas#rocket
 
     .xmas-plant-img
       bottom: 45px
+      z-index: -1
 
 
 

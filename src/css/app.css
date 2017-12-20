@@ -8614,12 +8614,15 @@ body.xmas .xmas-plant {
   text-align: center;
   z-index: 0;
 }
+body.xmas .button.is-inverted.is-outlined {
+  background: rgba(0, 0, 0, 0.3);
+}
 body.xmas #start {
   color: #fff;
   border-color: #fff;
 }
 body.xmas #start:hover, body.xmas #start:focus {
-  color: #777;
+  color: #000;
   background: #f3f3f3;
 }
 body.xmas #start:active {
@@ -8905,7 +8908,7 @@ canvas#rocket {
   }
   body.xmas .layer button {
     width: 150px;
-    top: 35%;
+    top: 25%;
     font-size: 1.3rem;
   }
   body.xmas h1.title {
@@ -8918,7 +8921,7 @@ canvas#rocket {
     width: 100%;
     display: block;
     position: absolute;
-    top: 35%;
+    top: 25%;
   }
   body.xmas .swipe img {
     width: 20%;
@@ -8952,6 +8955,7 @@ canvas#rocket {
   }
   body.xmas .xmas-plant-img {
     bottom: 45px;
+    z-index: -1;
   }
 }
 .fig-table {
