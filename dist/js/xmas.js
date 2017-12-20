@@ -29869,7 +29869,7 @@ class rocket {
             createjs.Sound.play("gift", 3);
             this.gotGiftID.push(gift.id);
             this.gotGift++;
-            if (this.gotGift.toFixed(0) == 4)
+            if (this.gotGift.toFixed(0) == 3)
               this.gameFinishSuccess();
           }
 
@@ -29893,7 +29893,7 @@ class rocket {
   detectHit(item) {
     var cx, cy;
     if( !item ) return;
-    
+
     var position = item.localToLocal(150, 0, this.rocket);
     return this.rocket.hitTest(position.x, position.y);
   }
