@@ -29379,7 +29379,7 @@ class rocket {
       src: "../img/santa-claus-broke.png",
       id: "santaClausBroke"
     }, {
-      src: "../img/firework.png",
+      src: "../img/Got_it.png",
       id: "firework"
     }, {
       id: "planet-1",
@@ -29535,8 +29535,8 @@ class rocket {
     var fire = this.firework.image;
     this.firework.regX = fire.naturalWidth / 2;
     this.firework.regY = fire.naturalWidth / 2;
-    this.firework.width = fire.naturalWidth;
-    this.firework.height = fire.naturalHeight;
+    this.firework.width = fire.naturalWidth / 2;
+    this.firework.height = fire.naturalHeight / 2;
     this.firework.alpha = 0;
     this.firework.scale = 0.1;
 
@@ -29876,8 +29876,9 @@ class rocket {
 
           this.firework.x = gift.x;
           this.firework.y = gift.y;
-          createjs.Tween.get(this.firework).to({alpha:1, scale: 1 }, 300).call(()=>{
-            createjs.Tween.get(this.firework).to({alpha:0, scale: 0 }, 300);
+
+          createjs.Tween.get(this.firework).to({alpha:1, scale: 0.5 }, 50).call(()=>{
+            createjs.Tween.get(this.firework).wait(300).to({alpha:0, scale: 0}, 100);
           });
 
           gift.visible = false;
@@ -29886,8 +29887,11 @@ class rocket {
             createjs.Sound.play("gift", 3);
             this.gotGiftID.push(gift.id);
             this.gotGift++;
-            if (this.gotGift.toFixed(0) == 3)
-              this.gameFinishSuccess();
+            if (this.gotGift.toFixed(0) == 3) {
+              setTimeout(() => {
+                this.gameFinishSuccess();
+              }, 1000);
+            }
           }
 
         } else {
@@ -29911,7 +29915,7 @@ class rocket {
     var cx, cy;
     if( !item ) return;
 
-    var position = item.localToLocal(150, 0, this.rocket);
+    var position = item.localToLocal(80, 0, this.rocket);
     return this.rocket.hitTest(position.x, position.y);
   }
 
