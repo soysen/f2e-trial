@@ -8553,7 +8553,7 @@ body.xmas .layer {
   z-index: 1;
 }
 body.xmas .layer button {
-  top: 18%;
+  top: 12%;
 }
 body.xmas .layer h1.title,
 body.xmas .layer p.title {
@@ -8732,21 +8732,12 @@ canvas#rocket {
   text-align: center;
   height: calc(100vh - 52px);
 }
-.layer .left {
-  right: 60%;
-}
-.layer .right {
-  left: 60%;
-}
 .layer .left,
 .layer .right {
   position: absolute;
   display: block;
-  width: 200px;
-  height: 300px;
-  top: 0;
-  bottom: 0;
-  margin: auto;
+  top: 40%;
+  width: 100%;
   opacity: 0.7;
 }
 .layer .left .title,
