@@ -29422,7 +29422,7 @@ class rocket {
       id: "snowflake-2",
       src: "../img/snowflake-2.png"
     }, {
-      id: "gsnowflakeift-3",
+      id: "snowflake-3",
       src: "../img/snowflake-3.png"
     }, {
       id: "snowflake-4",
@@ -29892,7 +29892,9 @@ class rocket {
 
   detectHit(item) {
     var cx, cy;
-    var position = item.localToLocal(100, 0, this.rocket);
+    if( !item ) return;
+    
+    var position = item.localToLocal(150, 0, this.rocket);
     return this.rocket.hitTest(position.x, position.y);
   }
 
