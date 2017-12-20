@@ -22,8 +22,6 @@ class rocket {
     this.canvas.width = this.outer_w;
     this.canvas.height = this.outer_h - document.querySelector('header').clientHeight;
     this.xmasPlanet;
-    this.startBtn;
-    this.restartBtn;
     this.giftID = 0;
     this.gameStart = false;
     this.gameFisnish = false;
@@ -46,6 +44,7 @@ class rocket {
     this.fwdHeld = false;
     this.fsdHeld = false;
     this.rocket;
+    this.firework;
     // this.score = new createjs.Text(this.distance + " light year", "bold 2em Oswald", "#FFFFFF");
     this.scoreGift = new createjs.Text("YOU HAVE " + this.gotGift + "GIFTS", "bold 2em", "#FFFFFF");
     this.stage = new createjs.Stage(this.id);
@@ -56,6 +55,9 @@ class rocket {
     }, {
       src: "../img/santa-claus-broke.png",
       id: "santaClausBroke"
+    }, {
+      src: "../img/firework.png",
+      id: "firework"
     }, {
       id: "planet-1",
       src: "../img/planet-1.png"
@@ -155,9 +157,14 @@ class rocket {
       createjs.Sound.alternateExtensions = ["mp3"];
       createjs.Sound.registerSounds(sounds);
       
-      createjs.Sound.play("jingle-bell", 3);
+      createjs.Sound.play("jingle-bell", 
+        new createjs.PlayPropsConfig().set({
+          loop: -1,
+          volume: .5
+        })
+      );
       this.rocket = new createjs.Bitmap(this.queue.getResult("santaClaus"));
-      this.startBtn = new createjs.Bitmap(e.result);
+      this.firework = new createjs.Bitmap(this.queue.getResult("firework"));
       this.init();
     });
 
@@ -202,6 +209,14 @@ class rocket {
     this.rocket.width = img.naturalWidth;
     this.rocket.height = img.naturalHeight;
 
+    var fire = this.firework.image;
+    this.firework.regX = fire.naturalWidth / 2;
+    this.firework.regY = fire.naturalWidth / 2;
+    this.firework.width = fire.naturalWidth;
+    this.firework.height = fire.naturalHeight;
+    this.firework.alpha = 0;
+    this.firework.scale = 0.1;
+
     if (this.outer_w < 768) {
       this.rocket.scaleX = 0.5;
       this.rocket.scaleY = 0.5;
@@ -211,8 +226,7 @@ class rocket {
     this.rocket.y = this.outer_h / 2;
 
     this.stage.addChild(this.rocket);
-    this.stage.update();
-
+    this.stage.addChild(this.firework);
     this.stage.update();
 
     if (this.gameFisnish) {
@@ -226,8 +240,6 @@ class rocket {
   gameFinish() {
     this.stage.removeAllChildren();
 
-    this.startBtn;
-    this.restartBtn;
     this.gameStart = false;
     this.TURN_FACTOR = 5; //how far the ship turns per frame
     this.SPEED = 18; //how far the ship turns per frame
@@ -255,8 +267,6 @@ class rocket {
 
     this.stage.removeAllChildren();
 
-    this.startBtn;
-    this.restartBtn;
     this.gameStart = false;
     this.TURN_FACTOR = 5; //how far the ship turns per frame
     this.SPEED = 18; //how far the ship turns per frame
@@ -288,7 +298,6 @@ class rocket {
     document.querySelector('#start-layer').className = 'layer hidden';
 
     this.gameStart = true;
-    this.stage.removeChild(this.startBtn, this.title);
 
     this.scoreGift.textAlign = 'left';
     this.scoreGift.x = 20;
@@ -540,8 +549,16 @@ class rocket {
       for (let k in this.gifts) {
         var gift = this.gifts[k];
 
-        if (this.detectHit(gift)) {
+        if (this.detectHit(gift) && gift.visible) {
+
+          this.firework.x = gift.x;
+          this.firework.y = gift.y;
+          createjs.Tween.get(this.firework).to({alpha:1, scale: 1 }, 300).call(()=>{
+            createjs.Tween.get(this.firework).to({alpha:0, scale: 0 }, 300);
+          });
+
           gift.visible = false;
+          
           if ( this.gotGiftID.indexOf(gift.id) == -1 ) {
             createjs.Sound.play("gift", 3);
             this.gotGiftID.push(gift.id);
@@ -570,7 +587,7 @@ class rocket {
   detectHit(item) {
     var cx, cy;
     if( !item ) return;
-    
+
     var position = item.localToLocal(150, 0, this.rocket);
     return this.rocket.hitTest(position.x, position.y);
   }
