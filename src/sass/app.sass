@@ -129,7 +129,46 @@ body
     background: #181861
     header
       background: #fff
-    
+    a#sound
+      position: fixed
+      display: block
+      width: 70px
+      height: 32px
+      line-height: 0
+      right: 10px
+      top: 64px
+      border: 1px solid #FFF
+      padding-top: 0
+      padding-bottom: 0
+      text-align: center
+      color: #FFF
+      z-index: 99
+      border-radius: 5px
+      &:hover,
+      &:focus
+        color: #000
+        background: #FFF
+      &:active
+        color: #e83015
+        background: #FFF
+      .icon
+        margin-right: 3px
+        margin-left: -3px
+      .icon,
+      span
+        height: 32px
+        vertical-align: middle
+        line-height: 1
+      i.fa
+        vertical-align: middle
+        font-size: 1.5rem
+      i.fa-volume-up
+        display: none
+      &.on
+        i.fa-volume-up
+          display: inline-block
+        i.fa-volume-off
+          display: none
     .brand
       padding: 12px 20px 8px 10px
       img
