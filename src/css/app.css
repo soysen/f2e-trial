@@ -8569,6 +8569,53 @@ body.xmas {
 body.xmas header {
   background: #fff;
 }
+body.xmas a#sound {
+  position: fixed;
+  display: block;
+  width: 70px;
+  height: 32px;
+  line-height: 0;
+  right: 10px;
+  top: 64px;
+  border: 1px solid #FFF;
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+  color: #FFF;
+  z-index: 99;
+  border-radius: 5px;
+}
+body.xmas a#sound:hover, body.xmas a#sound:focus {
+  color: #000;
+  background: #FFF;
+}
+body.xmas a#sound:active {
+  color: #e83015;
+  background: #FFF;
+}
+body.xmas a#sound .icon {
+  margin-right: 3px;
+  margin-left: -3px;
+}
+body.xmas a#sound .icon,
+body.xmas a#sound span {
+  height: 32px;
+  vertical-align: middle;
+  line-height: 1;
+}
+body.xmas a#sound i.fa {
+  vertical-align: middle;
+  font-size: 1.5rem;
+}
+body.xmas a#sound i.fa-volume-up {
+  display: none;
+}
+body.xmas a#sound.on i.fa-volume-up {
+  display: inline-block;
+}
+body.xmas a#sound.on i.fa-volume-off {
+  display: none;
+}
 body.xmas .brand {
   padding: 12px 20px 8px 10px;
 }

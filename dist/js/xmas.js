@@ -29366,6 +29366,7 @@ class rocket {
     this.rtHeld = false;
     this.fwdHeld = false;
     this.fsdHeld = false;
+    this.soundMute = true;
     this.rocket;
     this.firework;
     // this.score = new createjs.Text(this.distance + " light year", "bold 2em Oswald", "#FFFFFF");
@@ -29463,6 +29464,7 @@ class rocket {
     window.addEventListener('resize', e => this.resizeCanvas(e));
     document.querySelector('#start').addEventListener('click', (e) => this.startGame(e));
     document.querySelector('#restart').addEventListener('click', (e) => this.startGame(e));
+    document.querySelector('#sound').addEventListener('click', (e) => this.toggleSound(e));
 
     this.queue.loadManifest(this.manifest);
 
@@ -29480,13 +29482,14 @@ class rocket {
       }];
       createjs.Sound.alternateExtensions = ["mp3"];
       createjs.Sound.registerSounds(sounds);
-      
+      createjs.Sound.muted = this.soundMute;
       createjs.Sound.play("jingle-bell", 
         new createjs.PlayPropsConfig().set({
           loop: -1,
-          volume: .5
+          volume: 0.5
         })
       );
+
       this.rocket = new createjs.Bitmap(this.queue.getResult("santaClaus"));
       this.firework = new createjs.Bitmap(this.queue.getResult("firework"));
       this.init();
@@ -29495,6 +29498,19 @@ class rocket {
     this.mc.on('panmove panend', e => this.mcSwipe(e));
 
     createjs.Ticker.addEventListener("tick", (e) => this.tick());
+  }
+  
+  toggleSound(e) {
+    this.soundMute = !this.soundMute;
+    createjs.Sound.muted = this.soundMute;
+
+    if( this.soundMute ) {
+      document.querySelector('#sound').className = '';
+      document.querySelector('#sound').querySelector('span').innerText = "Off";
+    } else {
+      document.querySelector('#sound').className = 'on';
+      document.querySelector('#sound').querySelector('span').innerText = "On";
+    }
   }
 
   mcSwipe(e) {
