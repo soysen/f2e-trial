@@ -9017,6 +9017,16 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
+table.table2 tbody > tr td {
+  position: relative;
+  padding-bottom: 40px;
+}
+table.table2 tbody > tr .labels {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  white-space: nowrap;
+}
 table.table2 td.actions .button {
   margin-left: 5px;
 }
@@ -9046,11 +9056,68 @@ table tbody > tr th .title,
 table tbody > tr td .title {
   margin-bottom: 5px !important;
 }
+table tbody > tr th small.note,
+table tbody > tr td small.note {
+  display: block;
+  color: #999;
+  margin-top: 5px;
+}
 
 .target:target {
   color: red;
 }
 
+@media (max-width: 768px) {
+  table.table2 caption, table.table2 tbody, table.table2 tbody > tr, table.table2 tbody > tr > th, table.table2 tbody > tr > td, table.table2 tbody > tr > td.qnt, table.table2 tbody > tr > td.price {
+    display: block;
+    text-align: left;
+  }
+  table.table2 thead, table.table2 th:empty, table.table2 td:empty {
+    display: none;
+    visibility: hidden;
+  }
+  table.table2 tbody tr {
+    position: relative;
+    padding-left: 30px;
+  }
+  table.table2 tbody > tr > td {
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+  }
+  table.table2 tbody > tr > td .labels {
+    position: relative;
+    display: block;
+    bottom: auto;
+    right: auto;
+    margin: 5px 0 10px;
+    width: 100%;
+    white-space: initial;
+  }
+  table.table2 tbody > tr > td .labels .tag {
+    margin: 2px;
+  }
+  table.table2 tbody > tr > td .labels .tag:first-child {
+    margin-left: 0;
+  }
+  table.table2 td.checkbox,
+  table.table2 td.checkbox label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    height: 100%;
+  }
+  table.table2 td.total_price,
+  table.table2 td.single_price,
+  table.table2 td.build_size,
+  table.table2 td.land_size,
+  table.table2 td.date,
+  table.table2 td.actions {
+    display: inline-block;
+    width: 49%;
+  }
+}
 @media (max-width: 25em) {
   table, caption, tbody, tbody > tr, tbody > tr > th, tbody > tr > td, tbody > tr > td.qnt, tbody > tr > td.price {
     display: block;
@@ -9071,28 +9138,6 @@ table tbody > tr td .title {
   table td .content {
     display: inline-block;
     vertical-align: middle;
-  }
-
-  table.table2 tbody tr {
-    position: relative;
-    padding-left: 30px;
-  }
-  table.table2 td {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  table.table2 td.checkbox,
-  table.table2 td.checkbox label {
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 10px;
-    height: 100%;
-  }
-  table.table2 td.date,
-  table.table2 td.actions {
-    display: inline-block;
-    width: 49%;
   }
 }
 @keyframes dash {
@@ -9217,4 +9262,90 @@ svg#font path {
   fill: none;
   stroke: #000;
   stroke-opacity: 0.2;
+}
+
+@keyframes loading {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -200%;
+  }
+}
+.card .card-image {
+  background: #eee;
+  overflow: hidden;
+}
+.card .card-image .image {
+  -webkit-filter: blur(0px);
+  filter: blur(0px);
+  -moz-transition: filter 0.3s ease-in-out;
+  -o-transition: filter 0.3s ease-in-out;
+  -webkit-transition: filter 0.3s ease-in-out;
+  transition: filter 0.3s ease-in-out;
+}
+.card .card-content .content-placeholder {
+  opacity: 0;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+.card .card-content .content {
+  opacity: 1;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+.card.loading .card-image .image {
+  -webkit-filter: blur(30px);
+  filter: blur(30px);
+}
+.card.loading .card-content {
+  position: relative;
+}
+.card.loading .card-content .content-placeholder {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 168px;
+  opacity: 1;
+  visibility: visible;
+  padding: 1.7rem 1.5rem 1.5rem;
+}
+.card.loading .card-content .content-placeholder span {
+  display: block;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNlZWVlZWUiLz48c3RvcCBvZmZzZXQ9IjY1JSIgc3RvcC1jb2xvcj0iI2NjY2NjYyIvPjxzdG9wIG9mZnNldD0iODAlIiBzdG9wLWNvbG9yPSIjZWVlZWVlIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(50%, #eeeeee), color-stop(65%, #cccccc), color-stop(80%, #eeeeee));
+  background-image: -moz-linear-gradient(left, #eeeeee 50%, #cccccc 65%, #eeeeee 80%);
+  background-image: -webkit-linear-gradient(left, #eeeeee 50%, #cccccc 65%, #eeeeee 80%);
+  background-image: linear-gradient(to right, #eeeeee 50%, #cccccc 65%, #eeeeee 80%);
+  background-size: 200% 1rem;
+  height: 1rem;
+  -moz-animation: loading 2s ease-in-out;
+  -webkit-animation: loading 2s ease-in-out;
+  animation: loading 2s ease-in-out;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.card.loading .card-content .content-placeholder span.text-bar {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+.card.loading .card-content .content-placeholder span.text-bar:nth-child(3) {
+  width: 50%;
+}
+.card.loading .card-content .content-placeholder span.date {
+  width: 70%;
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.7rem;
+}
+.card.loading .card-content .content {
+  opacity: 0;
 }

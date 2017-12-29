@@ -9,7 +9,16 @@ table
     width: 100%
     border-collapse: collapse
     
-    &.table2 
+    &.table2
+        tbody > tr 
+            td 
+                position: relative
+                padding-bottom: 40px
+            .labels
+                position: absolute
+                right: 0
+                bottom: 10px
+                white-space: nowrap
         td.actions 
             .button 
                 margin-left: 5px
@@ -39,12 +48,59 @@ table
         td 
             .title
                 margin-bottom: 5px !important
+            small.note 
+                display: block
+                color: #999
+                margin-top: 5px
         td 
             // text-align: "." center
         
 .target:target 
     color: red
 
+@media (max-width: 768px) 
+    table.table2
+        caption, tbody, tbody > tr, tbody > tr > th, tbody > tr > td, tbody > tr > td.qnt, tbody > tr > td.price
+            display: block
+            text-align: left
+        thead, th:empty, td:empty 
+            display: none
+            visibility: hidden
+        tbody tr
+            position: relative
+            padding-left: 30px
+        tbody > tr > td
+            padding-left: 20px 
+            padding-right: 10px
+            padding-bottom: 0px
+            .labels
+                position: relative
+                display: block
+                bottom: auto 
+                right: auto 
+                margin: 5px 0 10px
+                width: 100%
+                white-space: initial
+                .tag 
+                    margin: 2px
+                    &:first-child
+                        margin-left: 0
+        td.checkbox,
+        td.checkbox label
+            position: absolute
+            left: 0
+            top: 0
+            padding: 10px
+            height: 100%
+        td.total_price,
+        td.single_price,
+        td.build_size,
+        td.land_size,
+        td.date,
+        td.actions
+            display: inline-block
+            width: 49%
+            
 @media (max-width: 25em) 
     table, caption, tbody, tbody > tr, tbody > tr > th, tbody > tr > td, tbody > tr > td.qnt, tbody > tr > td.price
         display: block
@@ -65,21 +121,3 @@ table
                 display: inline-block
                 vertical-align: middle
     
-    table.table2
-        tbody tr
-            position: relative
-            padding-left: 30px
-        td
-            padding-left: 10px 
-            padding-right: 10px 
-        td.checkbox,
-        td.checkbox label
-            position: absolute
-            left: 0
-            top: 0
-            padding: 10px
-            height: 100%
-        td.date,
-        td.actions
-            display: inline-block
-            width: 49%

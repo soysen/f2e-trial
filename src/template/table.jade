@@ -46,62 +46,49 @@ html(lang='zh-TW')
             section.section
                 .container
                     .columns
-                        .column.is-8.is-offset-2
+                        .column.is-10.is-offset-1
                             table.table2 
                                 thead
                                     tr 
                                         th
-                                            label 
-                                                input(type="checkbox", name="check-all")
-                                        th Name
-                                        th Content 
-                                        th Date 
-                                        th.has-text-right Actions
+                                        th(width='70') 成交
+                                        th(width='150') 地址 
+                                        th 類型 
+                                        th 總價 
+                                        th 單價 
+                                        th 建坪 
+                                        th 地坪 
+                                        th 屋齡 
+                                        th(width='90') 樓層 
+                                        th 格局
                                 tbody 
                                     tr 
-                                        td.checkbox 
-                                            label 
-                                                input(type="checkbox", name="check[]")
-                                        td Dickey Hailee
-                                        td 在非洲每60秒就有一分鐘經過!!!
-                                        td.date 2017-11-10
-                                        td.actions.has-text-right
-                                            a.button.is-warning.is-small 
-                                                span.icon 
-                                                    i.fa.fa-pencil 
-                                            a.button.is-danger.is-small
-                                                span.icon 
-                                                    i.fa.fa-trash 
-                                    tr 
-                                        td.checkbox 
-                                            label 
-                                                input(type="checkbox", name="check[]")
-                                        td Dickey Hailee
-                                        td 在非洲每60秒就有一分鐘經過!!!
-                                        td.date 2017-11-10
-                                        td.actions.has-text-right
-                                            a.button.is-warning.is-small 
-                                                span.icon 
-                                                    i.fa.fa-pencil 
-                                            a.button.is-danger.is-small
-                                                span.icon 
-                                                    i.fa.fa-trash 
-                                    tr 
-                                        td.checkbox 
-                                            label 
-                                                input(type="checkbox", name="check[]")
-                                        td Dickey Hailee
-                                        td 在非洲每60秒就有一分鐘經過!!!
-                                        td.date 2017-11-10
-                                        td.actions.has-text-right
-                                            a.button.is-warning.is-small 
-                                                span.icon 
-                                                    i.fa.fa-pencil 
-                                            a.button.is-danger.is-small
-                                                span.icon 
-                                                    i.fa.fa-trash 
-
-                           
+                                        td.checkbox
+                                            figure.image
+                                                img.is-pulled-left(src="https://picsum.photos/30")
+                                        td 106年 10月
+                                        td 台北市ＸＸ區ＯＯ街口口巷ＹＹ樓ＺＺ號
+                                        td 電梯大樓/住宅
+                                            small.note 有車位
+                                        td.total_price 1,520萬
+                                        td.single_price 56.12萬
+                                        td.build_size 27.15坪
+                                            small.note 含車位 7.38 坪
+                                        td.land_size 2.71坪
+                                        td 18.2年
+                                        td 28-29樓/ 29樓
+                                        td.with-label 
+                                            div 4房2廳2.5衛2室
+                                                figure.image.is-pulled-right
+                                                    img(src="https://picsum.photos/30")
+                                            .labels
+                                                span.tag 註
+                                                span.tag.is-success.is-outlined 機能佳
+                                                span.tag.is-success.is-outlined 有裝潢
+                                                span.tag.is-success.is-outlined 近學區
+                                                span.tag.is-success 近捷運 中山站
+                                                span.tag.is-warning 社區 太子東都
+                                    
             section.section
                 .container
                     .columns                 
