@@ -8486,6 +8486,25 @@ body main {
   flex: 1;
   padding-top: 52px;
 }
+body.tween #card {
+  width: 100%;
+  max-width: 490px;
+  height: 500px;
+  background: #121212;
+  margin: 100px auto;
+  -webkit-backface-visibility: visible;
+  transform-origin: 50% 50%;
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transition: all 1 cubic-bezier(0.215, 0.61, 0.355, 1);
+  opacity: 1;
+}
+body.pixi canvas {
+  width: 100vw;
+  height: 100vh;
+}
+body.pixi main {
+  margin-top: -52px;
+}
 body.parallax main {
   display: block;
   flex: none;
