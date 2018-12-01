@@ -1,5 +1,6 @@
 @import 'https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&amp;subset=cyrillic,latin-ext,vietnamese'
 @import 'https://fonts.googleapis.com/css?family=Lobster'
+@import 'https://fonts.googleapis.com/css?family=Cabin+Sketch|Galada'
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
 @import '../../node_modules/bulma/bulma'
 @import '../../node_modules/animate.css/animate.css'
@@ -9,9 +10,17 @@ html, body
   text-rendering: optimizeLegibility
 
 body
-  min-height: 100vh
   display: flex
   flex-direction: column
+  min-height: 100vh
+  font-family: 'Cabin Sketch', 'NotoSans TC', 'PingFang TC', cursive
+  background-color: #f6f6f6
+  background-image: linear-gradient(#e3e3e3 2px, transparent 2px), linear-gradient(90deg, #e3e3e3 2px, transparent 2px), linear-gradient(#eee 1px, transparent 1px), linear-gradient(90deg, #eee 1px, transparent 1px)
+  background-size: 132px 132px, 132px 132px, 44px 44px, 44px 44px
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px
+
+  canvas 
+    background: transparent
   #xmas
     font-family: 'Lobster', cursive
     font-size: 1.6rem
@@ -40,7 +49,6 @@ body
       color: #FFF
   main
     flex: 1
-    padding-top: 52px
 
   &.tween
     #card 
@@ -58,8 +66,6 @@ body
     canvas 
       width: 100vw
       height: 100vh
-    main 
-      margin-top: -52px
 
   &.parallax
     main
@@ -334,7 +340,8 @@ body
       text-align: center
       z-index: 0
 
-
+main > section.section:first-child
+  margin-top: 60px
 
 header
   position: fixed
@@ -344,10 +351,30 @@ header
   z-index: 99
 
   nav.navbar
-    .navbar-brand > a.navbar-item.brand
-      color: #FFF
-      font-size: 1.5rem
-      background: #006284
+    background: none
+    &.inverse
+      .navbar-menu
+        > .navbar-item .navbar-link
+          color: #dedede
+          &:after
+            border-color: #dedede  
+        &:hover,
+        &:focus,
+        &:hover > .navbar-item .navbar-link,
+        &:focus > .navbar-item .navbar-link
+          color: #FFF
+          background: none
+    .navbar-menu
+      > .navbar-item .navbar-link
+        color: #999
+    .navbar-brand 
+      .brand
+        font-family: 'Cabin Sketch', cursive
+        color: #9CBCA5
+        font-size: 1.5rem
+        &:hover,
+        &:focus
+          background: none
 
 
 .canvas-container
@@ -487,12 +514,32 @@ canvas#rocket
     background: url(../img/rabbit.png) center no-repeat
     background-size: contain
 
+footer.footer
+  background: none
+  padding: 2rem
 
 
 
 
 
 
+
+@media screen and (max-width: 1024px)
+  header
+    .navbar-menu
+      position: fixed
+      left: 0
+      top: 0
+      width: 260px
+      height: 100vh
+      display: block
+      overflow-x: hidden
+      overflow-y: auto
+      transform: translateX(-260px)
+      transition: transform .3s ease
+
+      &.show
+        transform: translateX(0px)
 
 
 @media screen and (max-width: 768px)
@@ -502,7 +549,7 @@ canvas#rocket
       display: none
     h1.title
       font-size: 2rem
-
+  
   body.xmas
     .layer
       p.title
@@ -558,21 +605,13 @@ canvas#rocket
       z-index: -1
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 @import './components/table'
 @import './components/svg'
 @import './components/progress'
+@import './components/sortable'
+@import './components/map'
+@import './components/offline'
+@import './components/swipe-panel'
 
 
 

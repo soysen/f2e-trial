@@ -1,0 +1,21 @@
+doctype html
+html(lang='zh-TW')
+    head
+        include ../partials/head
+        style.
+          canvas#random_obj {
+            width: 100vw;
+            height: 100vh;
+          }
+    body 
+      
+        include ../partials/header
+        main
+            canvas#random_obj
+                    
+        include ../partials/footer
+
+    script(src="../js/app.js")
+    br
+    script(src="../js/random_obj.js")
+      

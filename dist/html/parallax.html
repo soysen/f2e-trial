@@ -10,28 +10,45 @@
   </head>
   <body class="parallax">
     <header>
-      <div class="container">
-        <nav class="navbar">
-          <div class="navbar-brand"><a href="#" class="navbar-item brand">F2E TRIAL</a>
-            <div data-target="navMenuTransparentExample" class="navbar-burger"><span></span><span></span><span></span></div>
+      <nav class="navbar">
+        <div class="navbar-brand"><a href="#" class="navbar-item brand">F2E TRIAL</a>
+          <div data-target="navMenuTransparentExample" class="navbar-burger"><span></span><span></span><span></span></div>
+        </div>
+        <div id="navMenuTransparentExample" class="navbar-menu">
+          <div class="navbar-item has-dropdown is-hoverable"> 
+            <div class="navbar-link">LAYOUT </div>
+            <div id="layoutDropdown" class="navbar-dropdown is-boxed"><a href="./svg.html" class="navbar-item">SVG</a><a href="./svg-mask.html" class="navbar-item">SVG Mask</a><a href="./table.html" class="navbar-item">Table</a><a href="./parallax.html" class="navbar-item">Parallax</a><a href="./placeholder.html" class="navbar-item">Placeholder</a><a href="./tweenmax.html" class="navbar-item">TweenMax Card</a><a href="./form.html" class="navbar-item">Form</a><a href="./sortable-list.html" class="navbar-item">Sortable List</a><a href="./offline.html" class="navbar-item">Offline</a></div>
           </div>
-          <div id="navMenuTransparentExample" class="navbar-menu">
-            <div class="navbar-item has-dropdown is-hoverable"> 
-              <div class="navbar-link">LAYOUT </div>
-              <div id="layoutDropdown" class="navbar-dropdown is-boxed"><a href="./svg.html" class="navbar-item">SVG</a><a href="./table.html" class="navbar-item">Table</a><a href="./parallax.html" class="navbar-item">Parallax</a><a href="./placeholder.html" class="navbar-item">Placeholder</a><a href="./tweenmax.html" class="navbar-item">TweenMax Card</a></div>
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable"> 
-              <div class="navbar-link">CANVAS </div>
-              <div id="canvasDropdown" class="navbar-dropdown is-boxed"><a href="./ball.html" class="navbar-item">重力加速度</a><a href="./rocket.html" class="navbar-item">火箭飛飛</a><a href="./cup.html" class="navbar-item">猜兔子</a><a href="./pixi.html" class="navbar-item">PIXI JS</a></div>
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable"> 
-              <div class="navbar-link">Chart </div>
-              <div id="chartDropdown" class="navbar-dropdown is-boxed"><a href="./chart.html" class="navbar-item">ChartFlow</a></div>
-            </div>
+          <div class="navbar-item has-dropdown is-hoverable"> 
+            <div class="navbar-link">CANVAS </div>
+            <div id="canvasDropdown" class="navbar-dropdown is-boxed"><a href="./ball.html" class="navbar-item">重力加速度</a><a href="./rocket.html" class="navbar-item">火箭飛飛</a><a href="./cup.html" class="navbar-item">猜兔子</a><a href="./pixi.html" class="navbar-item">PIXI JS</a><a href="./text_draw.html" class="navbar-item">Draw Text</a><a href="./random_obj.html" class="navbar-item">Random Object</a><a href="./ball-hit.html" class="navbar-item">Ball Hit</a><a href="./larva.html" class="navbar-item">Larva</a></div>
           </div>
-        </nav>
-      </div>
+          <div class="navbar-item has-dropdown is-hoverable"> 
+            <div class="navbar-link">Chart </div>
+            <div id="chartDropdown" class="navbar-dropdown is-boxed"><a href="./chart.html" class="navbar-item">ChartFlow</a><a href="./tax-chart.html" class="navbar-item">Tax Chart</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable"> 
+            <div class="navbar-link">Google </div>
+            <div id="chartDropdown" class="navbar-dropdown is-boxed"><a href="./google-map.html" class="navbar-item">Google Map</a></div>
+          </div>
+        </div>
+      </nav>
     </header>
+    <script>
+      var loc = window.location.pathname.split(/[\/,\.]/g);
+      loc.reverse();
+      
+      document.querySelector('.navbar-burger').addEventListener('click', (e) => {
+          let menu = document.querySelector("#navMenuTransparentExample"),
+              cls = menu.className;
+          
+          menu.className = (cls.indexOf('show')>-1) ? "navbar-menu" : "navbar-menu show"
+      })
+      
+      document.querySelectorAll('a.navbar-item').forEach((item) => {
+          if( (item.href).indexOf(loc[1]) > -1 )  item.className += " is-active";
+      })
+    </script>
     <main>
       <section class="section slide-1">
         <div class="heading">
@@ -59,6 +76,7 @@
       </section>
       <footer class="footer">
         <div class="container">
+          <div class="content has-text-centered">Powered by AJA ProTeam.</div>
         </div>
       </footer>
     </main>

@@ -18,13 +18,22 @@ html(lang='zh-TW')
                             path(d="M56.8,1.1h-6.4H29.3V3h1.6c0.3,0,0.5,0,0.7,0.1s0.4,0.2,0.6,0.3c0.2,0.2,0.3,0.4,0.4,0.7c0.1,0.3,0.1,0.7,0.1,1.2v13.2c0,1.2-0.1,2.2-0.4,3.1c-0.3,0.8-0.6,1.5-1.1,2c-0.4,0.5-1,0.9-1.5,1.1c-0.6,0.2-1.2,0.3-1.8,0.3c0,0-0.7,0-0.8,0c-0.3-0.1-0.5-0.2-0.8-0.4c-0.2-0.2-0.5-0.5-0.7-0.8S25.2,23,25,22.5L17,1.3h-5.2l-8,21.1c-0.2,0.5-0.4,0.9-0.7,1.3c-0.3,0.4-0.4,0.6-0.7,0.8s-0.5,0.3-0.8,0.4C1.3,25,1.1,25,0.7,25H0.3v1.9h9.9V25H8.6c-0.2,0-0.5,0-0.6-0.1c-0.1-0.1-0.3-0.1-0.5-0.3c-0.2-0.2-0.3-0.3-0.4-0.4S7,23.8,7,23.6c0-0.2,0.1-0.6,0.2-1s1.4-4.1,1.4-4.1h9.3l1.3,3.6c0.1,0.2,0.1,0.4,0.2,0.7c0.1,0.3,0.1,0.6,0.1,0.8c0,0.2,0,0.5-0.1,0.6c-0.1,0.2-0.2,0.3-0.4,0.4c-0.2,0.1-0.3,0.2-0.5,0.2C18.1,25,17.9,25,17.7,25h-1.5v1.9h12.6l0,0c0.8,0,1.6,0,2.4-0.1s1.6-0.3,2.4-0.6c0.8-0.3,1.4-0.6,2.1-1.1c0.6-0.4,1.2-1,1.6-1.6c0.5-0.6,0.8-1.4,1.1-2.2c0.3-0.8,0.4-1.8,0.4-2.9V5.3c0-0.5,0.1-0.9,0.2-1.2c0.1-0.3,0.2-0.5,0.4-0.7s0.4-0.3,0.6-0.3c0.1,0,8.8,0,8.8,0H49L40.8,27h5.6l1.9-6.1h9.9l1.9,6.1h5.6L56.8,1.1z M9.2,16.3l2.3-6.1c0.1-0.4,0.3-0.9,0.5-1.3c0.2-0.5,0.3-0.9,0.5-1.4s0.3-0.9,0.5-1.3c0.1-0.4,0.3-0.8,0.4-1.2c0.1,0.4,0.2,0.9,0.3,1.3c0.1,0.5,0.3,0.9,0.4,1.4c0.1,0.5,0.3,0.9,0.4,1.4c0.1,0.5,0.3,0.9,0.4,1.3l2,5.9H9.2z M53.4,4.6L57,16.1h-7.2L53.4,4.6z")
             section.section
                 #mask-banner
-                    img(src="//placeimg.com/3200/1800/any")
-                    svg#mask-svg(version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" viewBox="0 0 1600 900")
+                    //- img(src="../img/wallpaper-5120x3200.jpg")
+                    svg#mask-svg(version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" viewBox="0 0 1600 1600")
                         defs
                             clipPath#mask(transform="translate(0, 0)")
-                                circle(cx="50%", cy="50%", r="1000")
-                                animateTransform(attributeType="xml" additive="sum" attributeName="transform" type="scale" from="0 0" to="1 1" dur="1s" fill="freeze")
-
+                                circle(cx="800", cy="800", r="800" )
+                                    animateTransform(attributeType="xml" additive="sum" attributeName="transform" type="scale" from="0 0" to="1 1" dur="5s" fill="freeze")
+                        image(xlink:href="../img/wallpaper-5120x3200.jpg" clip-path="url(#mask)")
+            section.section
+                svg#clip(viewbox="0 0 1000 1000")
+                    defs
+                        clipPath#randomPath
+                            path#clip-path(d="M1.35802675,248.880243 14.2731103,67.1666697 144.369882,-8.68685091 259.270643,2.02359049 C374.171404,12.7340319 361.195292,90.8500717 330.841413,143.654684 C300.487534,196.459296 404.439684,327.24806 405.745846,330.545783 C435.717514,406.216549 384.896828,472.83675 230.350926,500.150658 118.989798,519.832238 -11.5570568,430.593817 1.35802675,248.880243 Z")
+                    image(xlink:href="../img/wallpaper-5120x3200.jpg" clip-path="url(#randomPath)")
         include ../partials/footer
-
-      script(src="/js/app.js")
+    script(src="/js/app.js")
+    script.
+        var path = document.querySelector('#clip-path'),
+            transform = path.getAttribute('transform');
+        //- debugger;

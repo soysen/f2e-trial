@@ -1,0 +1,105 @@
+.list.media-list, 
+#sortable
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+    position: relative
+  li 
+    position: relative
+    -webkit-box-sizing: border-box
+    box-sizing: border-box
+    margin-bottom: 10px
+    background: #ffffff
+    border: 1px solid #dedede
+    +box-shadow(0 5px 5px 0 rgba(0,0,0,.2))
+    +border-radius(10px)
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    -khtml-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+  .sortable-handler
+    width: 35px
+    height: 35px
+    position: absolute
+    top: 0
+    bottom: 1px
+    z-index: 10
+    background-repeat: no-repeat
+    background-size: 18px 12px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2018%2012'%20fill%3D'%23c7c7cc'%3E%3Cpath%20d%3D'M0%2C2V0h22v2H0z'%2F%3E%3Cpath%20d%3D'M0%2C7V5h22v2H0z'%2F%3E%3Cpath%20d%3D'M0%2C12v-2h22v2H0z'%2F%3E%3C%2Fsvg%3E")
+    opacity: 0
+    pointer-events: none
+    cursor: move
+    -webkit-transition-duration: .3s
+    transition-duration: .3s
+    right: 0
+    background-position: 100% 50%
+    pointer-events: auto
+    opacity: 1
+    background-position: 50% 50%
+  .member-content
+    border-top: 1px solid #dedede
+    padding: 8px 10px
+    > img 
+      margin-right: 5px
+      line-height: 0
+      +border-radius(50%)
+  .item-content
+    display: flex
+    flex-direction: row
+    .item-media
+      padding: 10px 0 10px 10px  
+    .item-inner
+      flex: 1
+      padding: 10px 40px 0 10px
+    .item-title-row
+      display: flex
+      flex-direction: row
+
+    .item-title 
+      min-width: 0
+      -webkit-flex-shrink: 1
+      -ms-flex-negative: 1
+      flex-shrink: 1
+      flex: 1
+      white-space: nowrap
+      position: relative
+      overflow: hidden
+      text-overflow: ellipsis
+      color: #000
+      font-size: 16px
+      max-width: 100%
+    .item-subtitle
+      position: relative
+      overflow: hidden
+      white-space: nowrap
+      max-width: 100%
+      text-overflow: ellipsis
+    .item-after
+      
+    .item-text 
+      position: relative
+      overflow: hidden
+      text-overflow: hidden
+      -webkit-line-clamp: 2
+      -webkit-box-orient: vertical
+      display: -webkit-box
+      font-size: 13px
+      color: #787878
+
+.sortable
+  &.sortable-sorting
+    li
+      // position: relative
+      z-index: 0
+      // transform: translate3d(0, 0, 0)
+      // // transition: all .2s
+      &.sorting
+        z-index: 99
+        transition: none
+        -webkit-box-shadow: 0 2px 8px rgba(0,0,0,.6)
+        box-shadow: 0 2px 8px rgba(0,0,0,.6)
+  

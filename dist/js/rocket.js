@@ -29359,7 +29359,7 @@ class rocket {
     this.outer_w = window.innerWidth;
     this.outer_h = window.innerHeight;
     this.canvas.width = this.outer_w;
-    this.canvas.height = this.outer_h - document.querySelector('header').clientHeight;
+    this.canvas.height = this.outer_h;
     this.startBtn;
     this.restartBtn;
     this.gameStart = false;

@@ -1,0 +1,229 @@
+doctype html
+html(lang='zh-TW')
+    head
+        include ../partials/head
+        
+    body 
+        include ../partials/header
+        main
+          section.section
+            .container
+              #map
+              input#pac-input.controls(type="text" placeholder="Search Box")
+              #map-pin
+              #map-info
+        //- include ../partials/footer
+
+
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJuZmyM2JDfQSx4HS8A-ib2ugMMTS4VlA&libraries=geometry,places&ext=.js")
+    script(src="https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js")
+    
+    script.
+      var map = null;
+      var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      var labelIndex = 0;
+      var changedTimeout = null;
+      var markers = [
+        ['Bondi Beach', -33.890542, 151.274856, 4],
+        ['Coogee Beach', -33.923036, 151.259052, 5],
+        ['Cronulla Beach', -34.028249, 151.157507, 3],
+        ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+        ['Maroubra Beach', -33.950198, 151.259302, 1]
+      ];
+
+      function initialize() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.890542, lng: 151.274856},
+          zoom: 13,
+          zoomControl: false,
+          mapTypeControl: false,
+          fullscreenControl: false,
+          rotateControl: false,
+          streetViewControl: false
+        });
+
+        var geocoder = new google.maps.Geocoder();        
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        
+        for(var i in markers) {
+          var marker = new google.maps.Marker({
+            position: {lat: markers[i][1], lng: markers[i][2]},
+            label: Number(i)+1,
+            map: map
+          });
+        }
+
+        //- 取得定位資訊
+        map.addListener('center_changed', function(event) {
+          
+          clearTimeout(changedTimeout);
+          
+          $("#map-info").removeClass('show').empty();
+
+          changedTimeout = setTimeout(function() {
+            geocoder.geocode({
+              'latLng': map.getCenter()
+            }, function(results, status) {
+              console.log(results);
+          
+              if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                  $("#map-info").append(
+                    $('<div/>', { class: 'place-item' }).html(`
+                      <h5>${results[0].formatted_address}</h5>
+                      <p>${results[0].formatted_address}</p>
+                      <div class="right aligned">
+                        <a>Add</a>
+                      </div>
+                    `)
+                  );
+                  $("#map-info").addClass('show');
+                }
+              }
+            });
+
+          }, 1000);
+        });
+        
+        //- 搜尋景點
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          //- // Clear out the old markers.
+          //- //- markers.forEach(function(marker) {
+          //- //-   marker.setMap(null);
+          //- //- });
+          //- //- markers = [];
+
+          //- // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+
+          map.fitBounds(bounds);
+
+        });
+
+      }
+
+      // Adds a marker to the map.
+      function addMarker(event, map, type) {
+        // Add the marker at the clicked location, and add the next-available label
+        // from the array of alphabetical characters.
+        switch (type) {
+          case 1: 
+            var pos = event.latLng
+            break;
+          case 2: 
+            var pos = event.geometry.location
+            break;
+        }
+
+        var marker = new MarkerWithLabel({
+          position: pos,
+          index: markers.length,
+          map: map,
+          placeId: event.placeId,
+          type: type,
+          info: event,
+          draggable: true,
+          labelContent: type==2 ? event.name : "地點 " + labels[labelIndex++ % labels.length],
+          labelAnchor: new google.maps.Point(28, 40),
+          labelClass: "map-label", // the CSS class for the label
+          labelInBackground: false
+        });
+
+        markers.push(marker)
+
+        if( markers.length ) {
+          rednerMarkerInfo()
+        }
+        
+        google.maps.event.addListener(marker, 'dragend', function(event) {
+          MarkerChange(event, map)
+        });
+        google.maps.event.addListener(marker, 'click', function(event) {
+          var idx = 0;
+          for(var i in markers) {
+            if( markers[i].position.lat() == event.latLng.lat() 
+                && markers[i].position.lng() == event.latLng.lng()
+            )
+              idx = i
+          }
+          $("#map-info").animate({
+            scrollTop: $("#map-info .place-item").eq(idx).position().top
+          })
+        });
+      }
+
+      function rednerMarkerInfo() {
+        $("#map-info").empty();
+        for(var i in markers) {
+          var mark = markers[i];
+          if(mark.type == 2) {
+            var str = `
+                  Lat: ${mark.info.geometry.location.lat()}, Lng: ${mark.info.geometry.location.lng()} <br/>
+                  Address: ${mark.info.formatted_address}<br/>
+                  Phone: ${mark.info.formatted_phone_number}<br/>
+                  Types: ${mark.info.types.toString()}<br/>
+                  PlaceId: ${mark.info.place_id}
+                `
+          } else {
+            var str = `
+                  Lat: ${mark.position.lat()}, Lng: ${mark.position.lng()} <br/>
+                  PlaceId: ${mark.placeId}
+                `
+          }
+          $("#map-info").append(
+            $("<div/>", { class: "place-item" })
+              .append($("<h5/>").html(mark.labelContent))
+              .append($("<small/>").html(str))
+          )
+        }
+
+        $("#map-info").addClass("show");
+        $("#map-info").animate({
+          scrollTop: $("#map-info .place-item").eq(markers.length - 1).position().top
+        })
+      }
+
+      function placeMarker(location) {
+        console.log(location)
+        var marker = new google.maps.Marker({
+            position: location, 
+            map: map,
+            draggable: true
+        });
+        
+        google.maps.event.addListener(marker, 'dragend', function(event) {
+          MarkerChange(event)
+        });
+
+        markers.push(marker)
+      }
+
+      function MarkerChange(event) {
+        console.log(event)
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+      

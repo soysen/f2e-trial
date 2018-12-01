@@ -12,7 +12,7 @@ html(lang='zh-TW')
       
       include ../partials/header
       
-      main
+      main(style="padding-top: 0;")
         canvas#rocket
         
         #start-layer.layer.hidden
@@ -45,7 +45,9 @@ html(lang='zh-TW')
               |  light year away.
           button#restart.button.is-info.is-large.is-inverted.is-outlined PLAY AGAIN
       
-        include ../partials/footer
+        //- include ../partials/footer
 
-      script(src="/js/app.js")
-      script(src="/js/rocket.js")
+      script(src="../js/app.js")
+      script(src="../js/rocket.js")
+      script.
+        $('header nav.navbar').addClass('inverse');
