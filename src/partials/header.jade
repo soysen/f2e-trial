@@ -1,30 +1,61 @@
 header
-    .container
-        nav.navbar
-            .navbar-brand
-                a.navbar-item.brand(href="#") F2E TRIAL
-                .navbar-burger(data-target="navMenuTransparentExample")
-                    span
-                    span
-                    span
-            
-            #navMenuTransparentExample.navbar-menu
+    nav.navbar
+        .navbar-brand
+            a.navbar-item.brand(href="#") F2E TRIAL
+            .navbar-burger(data-target="navMenuTransparentExample")
+                span
+                span
+                span
+        
+        #navMenuTransparentExample.navbar-menu
 
-                .navbar-item.has-dropdown.is-hoverable 
-                    .navbar-link LAYOUT 
-                    #layoutDropdown.navbar-dropdown.is-boxed
-                        a.navbar-item(href="./svg.html") SVG
-                        a.navbar-item(href="./table.html") Table
-                        a.navbar-item(href="./parallax.html") Parallax
+            .navbar-item.has-dropdown.is-hoverable 
+                .navbar-link LAYOUT 
+                #layoutDropdown.navbar-dropdown.is-boxed
+                    a.navbar-item(href="./svg.html") SVG
+                    a.navbar-item(href="./svg-mask.html") SVG Mask
+                    a.navbar-item(href="./table.html") Table
+                    a.navbar-item(href="./parallax.html") Parallax
+                    a.navbar-item(href="./placeholder.html") Placeholder
+                    a.navbar-item(href="./tweenmax.html") TweenMax Card
+                    a.navbar-item(href="./form.html") Form
+                    a.navbar-item(href="./sortable-list.html") Sortable List
+                    a.navbar-item(href="./offline.html") Offline
 
-                .navbar-item.has-dropdown.is-hoverable 
-                    .navbar-link CANVAS 
-                    #canvasDropdown.navbar-dropdown.is-boxed
-                        a.navbar-item(href="./ball.html") 重力加速度
-                        a.navbar-item(href="./rocket.html") 火箭飛飛
-                        a.navbar-item(href="./cup.html") 猜兔子
+            .navbar-item.has-dropdown.is-hoverable 
+                .navbar-link CANVAS 
+                #canvasDropdown.navbar-dropdown.is-boxed
+                    a.navbar-item(href="./ball.html") 重力加速度
+                    a.navbar-item(href="./rocket.html") 火箭飛飛
+                    a.navbar-item(href="./cup.html") 猜兔子
+                    a.navbar-item(href="./pixi.html") PIXI JS
+                    a.navbar-item(href="./text_draw.html") Draw Text
+                    a.navbar-item(href="./random_obj.html") Random Object
+                    a.navbar-item(href="./ball-hit.html") Ball Hit
+                    a.navbar-item(href="./larva.html") Larva
 
-                .navbar-item.has-dropdown.is-hoverable 
-                    .navbar-link Chart 
-                    #chartDropdown.navbar-dropdown.is-boxed
-                        a.navbar-item(href="./chart.html") ChartFlow
+            .navbar-item.has-dropdown.is-hoverable 
+                .navbar-link Chart 
+                #chartDropdown.navbar-dropdown.is-boxed
+                    a.navbar-item(href="./chart.html") ChartFlow
+                    a.navbar-item(href="./tax-chart.html") Tax Chart
+
+            .navbar-item.has-dropdown.is-hoverable 
+                .navbar-link Google 
+                #chartDropdown.navbar-dropdown.is-boxed
+                    a.navbar-item(href="./google-map.html") Google Map
+
+script.
+    var loc = window.location.pathname.split(/[\/,\.]/g);
+    loc.reverse();
+    
+    document.querySelector('.navbar-burger').addEventListener('click', (e) => {
+        let menu = document.querySelector("#navMenuTransparentExample"),
+            cls = menu.className;
+        
+        menu.className = (cls.indexOf('show')>-1) ? "navbar-menu" : "navbar-menu show"
+    })
+
+    document.querySelectorAll('a.navbar-item').forEach((item) => {
+        if( (item.href).indexOf(loc[1]) > -1 )  item.className += " is-active";
+    })

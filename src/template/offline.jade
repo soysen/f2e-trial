@@ -1,0 +1,59 @@
+doctype html
+html(lang='zh-TW')
+  head
+    include ../partials/head
+    script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+  body
+    include ../partials/header
+    main
+      section.section
+        #power 
+          span.light.on
+          span.text Power on
+        small#log
+      
+    include ../partials/footer
+
+    script.
+      var init = true;
+      var max = 0;
+      var obj_n = 0;
+      var links = ["https://picsum.photos/1200/1200", "http://lorempixel.com/1200/1200/"];
+      var start_time, end_time;
+
+      function getSpeed () {
+        //- var obj = links[obj_n];
+        //- start_time = new Date().getTime();
+
+        //- $.get(links[obj_n], (a, b, c) => {
+        //-   var end_time = new Date().getTime();
+        //-   var pass_time = (end_time - start_time);
+        //-   if( init) {
+        //-     max = pass_time;
+        //-     init = false;
+        //-   }
+        //-   debugger
+        //-   obj_n = obj_n + 1 == links.length ? 0 : obj_n + 1;
+          
+        //-   getSpeed()
+        //- })
+      }
+
+      window.addEventListener('load', function() {
+        window.addEventListener('online',  updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+      });
+
+      setTimeout(() => {
+        updateOnlineStatus(event)
+      }, 1000)
+
+      function updateOnlineStatus(event) {
+        var status = document.getElementById("power");
+        var condition = navigator.onLine ? "on" : "off";
+        status.className = condition;
+
+        //- if( navigator.onLine ) {
+        //-   getSpeed()
+        //- }
+      }

@@ -1,0 +1,39 @@
+doctype html
+html(lang='zh-TW')
+    head
+        include ../partials/head
+    body 
+        include ../partials/header
+      
+        main
+            section.section
+                .container
+                    .columns
+                        .column.is-3-desktop.is-6-tablet.is-12-mobile
+                            .card.loading
+                                .card-image 
+                                    figure.image.is-4by3 
+                                        img(src="https://picsum.photos/400/300/?random", alt="", srcset="")
+                                .card-content
+                                    .content-placeholder 
+                                        span.text-bar
+                                        span.text-bar
+                                        span.text-bar
+                                        span.date.bottom
+                                    .content Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                                        br
+                                        time(datetime="2016-1-1") 11:09 PM - 1 Jan 2016
+                                        
+        include ../partials/footer
+
+        script(src="/js/app.js")
+
+        script.
+
+            $("img").on("load", function() {
+                var item = $(this).parents(".loading");
+                item.removeClass('loading');
+                setTimeout(function() {
+                    item.find('.content-placeholder').remove();
+                }, 500);
+            });

@@ -1,0 +1,64 @@
+doctype html
+html(lang='zh-TW')
+    head
+        include ../partials/head
+    body 
+      
+        include ../partials/header
+        main
+            section.section
+                svg#clip(viewbox="0 0 2200 2200")
+                    defs
+                      mask#mask(maskunits='userSpaceOnUse')
+                        path#mask-path(fill='#fff', d='M1271.3172000000004,271.9874666666667 C1019.8389333333336,206.8899866666666 736.0176000000001,248.30839999999995 524.7706666666669,404.08774666666665 270.55306666666684,591.49692 238.72693333333342,965.5014666666665 448.1422666666666,1198.7633333333333 652.5787999999998,1427.2093333333335 971.7865333333331,1543.8782666666666 1275.094653333333,1539.0013333333334 1453.4854666666665,1536.1725333333334 1614.8634533333334,1496.4390666666666 1738.7058666666667,1360.3789333333332 1860.4450533333334,1226.610413333333 1926.0513333333333,1030.4149333333332 1874.7982666666667,849.2865466666667 1783.7304000000001,527.5429333333335 1563.7529333333337,347.7358666666668 1271.3172000000004,271.9874666666667 z', data-svg-origin='1156.2247924804688 886.1474914550781', transform='matrix(1,0,0,1,1.7871783143615732,-2.7527775425720202)', style='transform-origin: 0px 0px 0px;', data-original='M1268.4,271.7c-251.6-64.1-534.6-23-745.8,132.6c-254.2,187.2-284.8,563.4-73.5,795.6 c206,226.4,524.8,344.1,827.9,339.6c178.2-2.6,338-42.2,461.7-178.2c121.6-133.7,187.3-330.8,136-511.7 C1783,526,1561,346.3,1268.4,271.7 Z')
+                    image(xlink:href="../img/wallpaper-5120x3200.jpg" mask="url(#mask)")
+        include ../partials/footer
+
+    script(src="/js/app.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js")
+    script.
+        class Slime {
+            constructor(path, animate) {
+                this.obj = document.querySelector(path),
+                this.path = this.obj.getAttribute('d').split(/ /g);
+                this.oriPath = this.path
+                this.endPath = [];
+                this.currentPath = [];
+                this.dur = 1;
+
+                this.run();
+            }
+
+            run() {
+                var newPath = '';
+                this.path.forEach((p, idx) => {
+                    if( p!=='Z' && p!=='z' ) {
+                        var cmd = (/[A-Z]\d/).test(p) ? p.slice(0,1) : '';
+                        var point = ( (/[A-Z]\d/).test(p) ? p.slice(1) : p ).split(/\,/g);
+                        var x = Number(point[0]), y = Number(point[1]);
+                        var ox = Number(this.oriPath[idx][0]), oy = Number(this.oriPath[idx][1]);
+
+                        point[0] = x + this.randomNumber(ox, x);
+                        point[1] = y + this.randomNumber(oy, y);
+
+                        newPath += `${cmd}${point[0]},${point[1]}${(idx+1<this.path.length) ? ' ' : ''}`; 
+                    } else {
+                        newPath += p
+                    }
+                });
+                
+                this.path = newPath.split(/ /g);
+                this.obj.setAttribute('d', newPath)
+                //- TweenLite.to(, 1, {d: newPath})
+                
+                setTimeout(() => {
+                    this.run();
+                }, 500)
+            }
+
+            randomNumber(oldNum, newNum) {
+                return (Math.random() * 5) * (Math.floor(Math.random(10) * 10) % 2 > 0 ? 1 : -1);
+            }
+        } 
+        
+        const round = new Slime('#mask-path', '#mask-animate')

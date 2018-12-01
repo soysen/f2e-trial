@@ -1,0 +1,67 @@
+
+#map-pin
+  position: fixed
+  width: 100vw
+  height: 100vh
+  left: 0
+  top: 0
+  background: url('../img/map-pin.png') center no-repeat
+  background-size: 16px auto
+  pointer-events: none
+
+#map
+  position: fixed !important
+  width: 100vw
+  left: 0
+  top: 0
+  height: 100vh
+  display: block
+  z-index: 0
+
+.place-item
+  padding: 1rem
+  border-bottom: 1px solid #d3d3d3
+
+.map-label
+  color: white
+  background-color: #e94336
+  font-family: "Lucida Grande", "Arial", sans-serif
+  font-size: 14px
+  text-align: center
+  padding: 3px 7px
+  white-space: nowrap
+  border-radius: 10px
+
+#map-info
+  position: fixed
+  width: 100vw
+  height: 100px
+  background: #FFF
+  bottom: 0
+  left: 0
+  transition: transform .3s ease
+  transform: translateY(150px)
+  overflow-x: hidden
+  overflow-y: auto
+
+
+#map-info.show
+  transform: translateY(0px)
+
+#pac-input
+  position: fixed
+  width: 100%
+  max-width: 450px
+  padding: .5rem .75rem
+  font-size: 1.15rem
+  top: 0
+  left: 0 !important
+  right: 0 !important
+  margin: 60px auto 0
+  border: 2px solid #787878
+  z-index: 9
+  +border-radius(10px)
+  +box-shadow(0, 5px, 10px, 0, rgba(0,0,0,.2))
+
+  &:focus
+    outline: 0

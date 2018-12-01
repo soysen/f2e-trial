@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["curve.js"],"sourcesContent":["window.createjs = this.createjs = require('createjs-module')\nrequire('createjs-easeljs')\nrequire('hammerjs')\n\n;(function() {\n  const larva = 0\n\n})();\n"],"file":"curve.js"}

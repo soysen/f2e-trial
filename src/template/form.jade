@@ -1,0 +1,59 @@
+doctype html
+html(lang='zh-TW')
+    head
+        include ../partials/head
+    body 
+      
+        include ../partials/header
+        main
+            section.section
+                .container
+                    .field
+                      label.label Input
+                      .control
+                        input#input.input(type="text", placeholder="Text input")
+                      p#input-help.help 
+                    .field
+                      label.label Select
+                      .control
+                        .select
+                          select#select
+                            option(value=' ') Please select
+                            option(value='1') option 1
+                            option(value='2') option 2
+                      p#select-help.help 
+
+        include ../partials/footer
+
+      script(src="/js/app.js")
+
+    script.
+      document.querySelector("#input").addEventListener('change', function (e) {
+        alert('change');
+        document.querySelector("#input-help").innerHTML = "got change"
+      });
+
+      document.querySelector("#input").addEventListener('keypress', function (e) {
+        alert('onkeypress');
+        document.querySelector("#input-help").innerHTML = "got change"
+      });
+
+      document.querySelector("#input").addEventListener('tap', function (e) {
+        alert('ontap');
+        document.querySelector("#input-help").innerHTML = "got change"
+      });
+
+      document.querySelector("#select").addEventListener('change', function (e) {
+        alert('change');
+        document.querySelector("#select-help").innerHTML = "got change"
+      });
+
+      document.querySelector("#select").addEventListener('keypress', function (e) {
+        alert('onkeypress');
+        document.querySelector("#select-help").innerHTML = "got change"
+      });
+
+      document.querySelector("#select").addEventListener('tap', function (e) {
+        alert('ontap');
+        document.querySelector("#select-help").innerHTML = "got change"
+      });

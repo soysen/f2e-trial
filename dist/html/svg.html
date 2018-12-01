@@ -5,32 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AJA::F2E TRIAL</title>
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="../css/app.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   </head>
   <body> 
     <header>
-      <div class="container">
-        <nav class="navbar">
-          <div class="navbar-brand"><a href="#" class="navbar-item brand">F2E TRIAL</a>
-            <div data-target="navMenuTransparentExample" class="navbar-burger"><span></span><span></span><span></span></div>
+      <nav class="navbar">
+        <div class="navbar-brand"><a href="#" class="navbar-item brand">F2E TRIAL</a>
+          <div data-target="navMenuTransparentExample" class="navbar-burger"><span></span><span></span><span></span></div>
+        </div>
+        <div id="navMenuTransparentExample" class="navbar-menu">
+          <div class="navbar-item has-dropdown is-hoverable"> 
+            <div class="navbar-link">LAYOUT </div>
+            <div id="layoutDropdown" class="navbar-dropdown is-boxed"><a href="./svg.html" class="navbar-item">SVG</a><a href="./svg-mask.html" class="navbar-item">SVG Mask</a><a href="./table.html" class="navbar-item">Table</a><a href="./parallax.html" class="navbar-item">Parallax</a><a href="./placeholder.html" class="navbar-item">Placeholder</a><a href="./tweenmax.html" class="navbar-item">TweenMax Card</a><a href="./form.html" class="navbar-item">Form</a><a href="./sortable-list.html" class="navbar-item">Sortable List</a><a href="./offline.html" class="navbar-item">Offline</a></div>
           </div>
-          <div id="navMenuTransparentExample" class="navbar-menu">
-            <div class="navbar-item has-dropdown is-hoverable"> 
-              <div class="navbar-link">LAYOUT </div>
-              <div id="layoutDropdown" class="navbar-dropdown is-boxed"><a href="./svg.html" class="navbar-item">SVG</a><a href="./table.html" class="navbar-item">Table</a><a href="./parallax.html" class="navbar-item">Parallax</a></div>
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable"> 
-              <div class="navbar-link">CANVAS </div>
-              <div id="canvasDropdown" class="navbar-dropdown is-boxed"><a href="./ball.html" class="navbar-item">重力加速度</a><a href="./rocket.html" class="navbar-item">火箭飛飛</a><a href="./cup.html" class="navbar-item">猜兔子</a></div>
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable"> 
-              <div class="navbar-link">Chart </div>
-              <div id="chartDropdown" class="navbar-dropdown is-boxed"><a href="./chart.html" class="navbar-item">ChartFlow</a></div>
-            </div>
+          <div class="navbar-item has-dropdown is-hoverable"> 
+            <div class="navbar-link">CANVAS </div>
+            <div id="canvasDropdown" class="navbar-dropdown is-boxed"><a href="./ball.html" class="navbar-item">重力加速度</a><a href="./rocket.html" class="navbar-item">火箭飛飛</a><a href="./cup.html" class="navbar-item">猜兔子</a><a href="./pixi.html" class="navbar-item">PIXI JS</a><a href="./text_draw.html" class="navbar-item">Draw Text</a><a href="./random_obj.html" class="navbar-item">Random Object</a><a href="./ball-hit.html" class="navbar-item">Ball Hit</a><a href="./larva.html" class="navbar-item">Larva</a></div>
           </div>
-        </nav>
-      </div>
+          <div class="navbar-item has-dropdown is-hoverable"> 
+            <div class="navbar-link">Chart </div>
+            <div id="chartDropdown" class="navbar-dropdown is-boxed"><a href="./chart.html" class="navbar-item">ChartFlow</a><a href="./tax-chart.html" class="navbar-item">Tax Chart</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable"> 
+            <div class="navbar-link">Google </div>
+            <div id="chartDropdown" class="navbar-dropdown is-boxed"><a href="./google-map.html" class="navbar-item">Google Map</a></div>
+          </div>
+        </div>
+      </nav>
     </header>
+    <script>
+      var loc = window.location.pathname.split(/[\/,\.]/g);
+      loc.reverse();
+      
+      document.querySelector('.navbar-burger').addEventListener('click', (e) => {
+          let menu = document.querySelector("#navMenuTransparentExample"),
+              cls = menu.className;
+          
+          menu.className = (cls.indexOf('show')>-1) ? "navbar-menu" : "navbar-menu show"
+      })
+      
+      document.querySelectorAll('a.navbar-item').forEach((item) => {
+          if( (item.href).indexOf(loc[1]) > -1 )  item.className += " is-active";
+      })
+    </script>
     <main>
       <section class="section">
         <div class="container">
@@ -51,23 +69,40 @@
         </div>
       </section>
       <section class="section">
-        <div id="mask-banner"><img src="//placeimg.com/3200/1800/any">
-          <svg id="mask-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" viewBox="0 0 1600 900">
+        <div id="mask-banner">
+          <svg id="mask-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" viewBox="0 0 1600 1600">
             <defs>
               <clipPath id="mask" transform="translate(0, 0)">
-                <circle cx="50%" cy="50%" r="1000"></circle>
-                <animateTransform attributeType="xml" additive="sum" attributeName="transform" type="scale" from="0 0" to="1 1" dur="1s" fill="freeze"></animateTransform>
+                <circle cx="800" cy="800" r="800">
+                  <animateTransform attributeType="xml" additive="sum" attributeName="transform" type="scale" from="0 0" to="1 1" dur="5s" fill="freeze"></animateTransform>
+                </circle>
               </clipPath>
             </defs>
+            <image xlink:href="../img/wallpaper-5120x3200.jpg" clip-path="url(#mask)"></image>
           </svg>
         </div>
+      </section>
+      <section class="section">
+        <svg id="clip" viewbox="0 0 1000 1000">
+          <defs>
+            <clipPath id="randomPath">
+              <path id="clip-path" d="M1.35802675,248.880243 14.2731103,67.1666697 144.369882,-8.68685091 259.270643,2.02359049 C374.171404,12.7340319 361.195292,90.8500717 330.841413,143.654684 C300.487534,196.459296 404.439684,327.24806 405.745846,330.545783 C435.717514,406.216549 384.896828,472.83675 230.350926,500.150658 118.989798,519.832238 -11.5570568,430.593817 1.35802675,248.880243 Z"></path>
+            </clipPath>
+          </defs>
+          <image xlink:href="../img/wallpaper-5120x3200.jpg" clip-path="url(#randomPath)"></image>
+        </svg>
       </section>
     </main>
     <footer class="footer">
       <div class="container">
-        <div class="content has-text-centered">Powered by Nelson Chung.</div>
+        <div class="content has-text-centered">Powered by AJA ProTeam.</div>
       </div>
     </footer>
   </body>
   <script src="/js/app.js"></script>
+  <script>
+    var path = document.querySelector('#clip-path'),
+        transform = path.getAttribute('transform');
+    //- debugger;
+  </script>
 </html>

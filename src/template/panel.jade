@@ -1,0 +1,41 @@
+doctype html
+html(lang='zh-TW')
+    head
+        include ../partials/head
+        link(href="../css/panel.css" rel="stylesheet")
+    body.page-lock
+        include ../partials/header
+        #app
+            header
+            main
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+              .box
+            .panel.is-open
+              header
+              main
+                .box
+                .box
+                .box
+                .box
+                .box
+
+      script.
+          document.querySelector('.panel').addEventListener('click', function(e) {
+            console.log(e)
+          })
+

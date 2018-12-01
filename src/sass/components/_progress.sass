@@ -1,0 +1,58 @@
+@import 'compass'
+
+@keyframes loading 
+    0%
+        background-position-x: 0
+    100%
+        background-position-x: -200%
+
+
+.card 
+    .card-image
+        background: #eee
+        overflow: hidden
+        .image  
+            +filter(blur(0px))
+            +transition(filter .3s ease-in-out)
+    .card-content 
+        .content-placeholder
+            opacity: 0
+            +transition(opacity .3s ease-in-out)
+        .content
+            opacity: 1
+            +transition(opacity .3s ease-in-out)
+
+    &.loading
+        .card-image .image 
+            +filter(blur(30px))
+        .card-content 
+            position: relative
+            .content-placeholder
+                position: absolute
+                display: block
+                top: 0
+                left: 0
+                width: 100%
+                height: 168px
+                opacity: 1
+                visibility: visible
+                padding: 1.7rem 1.5rem 1.5rem
+                span
+                    display: block
+                    @include background-image(linear-gradient(to right, #eeeeee 50%, #cccccc 65%, #eeeeee 80%))
+                    background-size: 200% 1rem
+                    height: 1rem
+                    +animation(loading 2s ease-in-out)
+                    +animation-iteration-count(infinite)
+                span.text-bar
+                    width: 100%
+                    margin-bottom: .5rem
+                    &:nth-child(3)
+                        width: 50%
+                span.date 
+                    width: 70%
+                    position: absolute
+                    left: 1.5rem
+                    bottom: 1.7rem
+            .content
+                opacity: 0

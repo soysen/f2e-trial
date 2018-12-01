@@ -1,22 +1,73 @@
 @import 'https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&amp;subset=cyrillic,latin-ext,vietnamese'
+@import 'https://fonts.googleapis.com/css?family=Lobster'
+@import 'https://fonts.googleapis.com/css?family=Cabin+Sketch|Galada'
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
 @import '../../node_modules/bulma/bulma'
 @import '../../node_modules/animate.css/animate.css'
 
-html, body 
-  font-family: 'Oswald', sans-serif
+html, body
+  // font-family: 'Oswald', sans-serif
   text-rendering: optimizeLegibility
-  
-body 
-  min-height: 100vh
-  display: flex
-  flex-direction: column 
 
-  main 
+body
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+  font-family: 'Cabin Sketch', 'NotoSans TC', 'PingFang TC', cursive
+  background-color: #f6f6f6
+  background-image: linear-gradient(#e3e3e3 2px, transparent 2px), linear-gradient(90deg, #e3e3e3 2px, transparent 2px), linear-gradient(#eee 1px, transparent 1px), linear-gradient(90deg, #eee 1px, transparent 1px)
+  background-size: 132px 132px, 132px 132px, 44px 44px, 44px 44px
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px
+
+  canvas 
+    background: transparent
+  #xmas
+    font-family: 'Lobster', cursive
+    font-size: 1.6rem
+    color: #E83015
+  #loading 
+    position: fixed
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    z-index: 99
+    .content
+      text-align: center
+      position: absolute
+      height: 200px
+      width: 100%
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+      margin: auto
+    img
+      width: auto
+      height: 100px
+    h5.title 
+      color: #FFF
+  main
     flex: 1
-    padding-top: 52px
-  
-  &.parallax 
+
+  &.tween
+    #card 
+      width: 100%
+      max-width: 490px
+      height: 500px
+      background: #121212
+      margin: 100px auto
+      -webkit-backface-visibility: visible
+      transform-origin: 50% 50%
+      transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+      transition: all 1 cubic-bezier(.215, .61, .355, 1)
+      opacity: 1
+  &.pixi
+    canvas 
+      width: 100vw
+      height: 100vh
+
+  &.parallax
     main
       display: block
       flex: none
@@ -25,16 +76,16 @@ body
       height: 100vh
       overflow-y: scroll
       overflow-x: hidden
-  
-    section.section 
+
+    section.section
       position: relative
       padding: 25vh 10%
       min-height: 100vh
       width: 100vw
       box-sizing: border-box
       transform-style: inherit
-      
-      &:before 
+
+      &:before
         content: ""
         position: absolute
         top: 0
@@ -42,7 +93,7 @@ body
         left: 0
         right: 0
         background: 50% 50% / cover
-      
+
       &.slide-1
         // background: #EB7A77
         .heading
@@ -73,7 +124,7 @@ body
           margin-right: 10%
       &.slide-4
         // background: #B5CAA0
-        .heading 
+        .heading
           position: absolute
           transform: translateZ(0px) scale(1.8)
 
@@ -82,17 +133,217 @@ body
           background-attachment: fixed
           transform: translateZ(-1px) scale(1.8)
           z-index: -1
-      
-      &:nth-child(2n) .title 
+
+      &:nth-child(2n) .title
         margin-left: 0
         margin-right: auto
-      
-      &:nth-child(2n+1) .title 
+
+      &:nth-child(2n+1) .title
         margin-left: auto
         margin-right: 0
-      
 
-header 
+  .white
+    color: #fff !important
+  .center
+    text-align: center !important
+
+
+
+  &.xmas
+    overflow: hidden
+    background: #181861
+    header
+      background: #fff
+    a#sound
+      position: fixed
+      display: block
+      width: 70px
+      height: 32px
+      line-height: 0
+      right: 10px
+      top: 64px
+      border: 1px solid #FFF
+      padding-top: 0
+      padding-bottom: 0
+      text-align: center
+      color: #FFF
+      z-index: 99
+      border-radius: 5px
+      &:hover,
+      &:focus
+        color: #000
+        background: #FFF
+      &:active
+        color: #e83015
+        background: #FFF
+      .icon
+        margin-right: 3px
+        margin-left: -3px
+      .icon,
+      span
+        height: 32px
+        vertical-align: middle
+        line-height: 1
+      i.fa
+        vertical-align: middle
+        font-size: 1.5rem
+      i.fa-volume-up
+        display: none
+      &.on
+        i.fa-volume-up
+          display: inline-block
+        i.fa-volume-off
+          display: none
+    .brand
+      padding: 12px 20px 8px 10px
+      img
+        width: 72px
+        vertical-align: bottom
+    main
+      height: 100vh
+      position: relative
+      overflow: hidden
+    .layer
+      z-index: 1
+      button
+        top: 12%
+      h1.title,
+      p.title
+        margin-top: 0
+        top: 10%
+        width: 80%
+        margin: 0 auto
+        font-size: 1.8rem
+        line-height: 1.5
+
+    .swipe
+      display: none
+
+    canvas#rocket
+      background: none
+      z-index: 1
+
+    #start-layer
+      position: relative
+      z-index: 2
+
+    .xmas-plant
+      width: 100%
+      position: absolute
+      bottom: -6px
+      text-align: center
+      z-index: 0
+
+    .button.is-inverted.is-outlined
+      background: rgba(0,0,0,.3)
+
+    #start
+      // border-color: #999
+      // color: #999
+      color: #fff
+      border-color: #fff
+      &:hover,
+      &:focus
+        color: #000
+        background: #f3f3f3
+      &:active
+        color: #666
+        background: #f3f3f3
+
+
+    #finish-layer
+      background: rgba(0,0,0,.3)
+      button
+        top: 50%
+      p.wording
+        top: 12%
+        color: #FFF
+
+    .card-content
+      padding: 52px 0 0 0
+      position: relative
+      height: 100vh
+      overflow: hidden
+      background: #181861
+      z-index: 999
+
+    h1.title
+      position: relative
+      margin-top: 0
+      font-size: 3rem
+      z-index: 20
+      small
+        font-size: .7rem
+        line-height: 1.2rem
+    .wording
+      width: 60%
+      margin: 0 auto
+      z-index: 20
+      position: relative
+
+    .santa-cloud
+      height: 347px
+      text-align: center
+      z-index: 18
+      bottom: 90px
+
+    .gifts,
+    .snowflake
+      z-index: 17
+
+    .santa-cloud,
+    .gifts,
+    .snowflakes
+      width: 100%
+      position: absolute
+
+    .gifts
+      height: 50%
+      [class^='gift-']
+        position: relative
+    .gift-1
+      top: 70%
+      left: 5%
+    .gift-2
+      top: 10%
+      left: 60%
+    .gift-3
+      top: 60%
+      left: 71%
+
+    .snowflakes
+      height: 80%
+      top: 0
+      opacity: .5
+      [class^='snowflakes-']
+        position: relative
+    .snowflakes-1
+      top: 10%
+      left: 10%
+    .snowflakes-2
+      top: 7%
+      left: 80%
+    .snowflakes-3
+      top: 50%
+      left: 9%
+    .snowflakes-4
+      top: 25%
+      left: 55%
+    .snowflakes-5
+      top: 60%
+      left: 74%
+
+    .xmas-plant-img
+      width: 100%
+      position: absolute
+      bottom: -6px
+      text-align: center
+      z-index: 0
+
+main > section.section:first-child
+  margin-top: 60px
+
+header
   position: fixed
   width: 100%
   top: 0
@@ -100,13 +351,33 @@ header
   z-index: 99
 
   nav.navbar
-    .navbar-brand > a.navbar-item.brand 
-      color: #FFF
-      font-size: 1.5rem
-      background: #006284
+    background: none
+    &.inverse
+      .navbar-menu
+        > .navbar-item .navbar-link
+          color: #dedede
+          &:after
+            border-color: #dedede  
+        &:hover,
+        &:focus,
+        &:hover > .navbar-item .navbar-link,
+        &:focus > .navbar-item .navbar-link
+          color: #FFF
+          background: none
+    .navbar-menu
+      > .navbar-item .navbar-link
+        color: #999
+    .navbar-brand 
+      .brand
+        font-family: 'Cabin Sketch', cursive
+        color: #9CBCA5
+        font-size: 1.5rem
+        &:hover,
+        &:focus
+          background: none
 
 
-.canvas-container 
+.canvas-container
   position: relative
   display: block
   width: 100%
@@ -116,7 +387,7 @@ header
   padding-bottom: 500px
   text-align: center
 
-canvas 
+canvas
   position: absolute
   background: #f3f3f3
   display: block
@@ -124,7 +395,7 @@ canvas
 canvas#rocket
   background: #181861
 
-.hidden 
+.hidden
   display: none !important
 
 .layer
@@ -137,46 +408,46 @@ canvas#rocket
   text-align: center
   height: calc(100vh - 52px)
 
-  .left
-    right: 60%
-  .right
-    left: 60%
+  // .left
+  //   right: 60%
+  // .right
+  //   left: 60%
   .left,
   .right
     position: absolute
     display: block
-    width: 200px
-    height: 240px
-    top: 0
-    bottom: 0
-    margin: auto 
+    top: 40%
+    width: 100%
     opacity: .7
-    .title 
+
+    .title
       position: relative
       top: 0
       margin-top: 0
-    .box 
+      margin-left: auto
+      margin-right: auto
+    .box
       display: inline-block
       width: 64px
-      border: 1px solid #FFF 
+      border: 1px solid #FFF
       background: transparent
       color: #FFF
 
   .title
-    position: absolute
-    font-family: 'Oswald'
+    // font-family: 'Oswald'
     color: #FFF
     display: block
     width: 100%
     left: 0
-    top: 50%
+    max-width: 600px
     margin-top: -170px
-  
+
   button
     position: absolute
-    font-family: 'Oswald'
+    // font-family: 'Oswald'
     display: block
-    width: 150px
+    width: 170px
+    text-align: center
     left: 0
     right: 0
     top: 50%
@@ -192,7 +463,7 @@ canvas#rocket
   display: block
   z-index: 3
 
-  button 
+  button
     position: absolute
     display: block
     width: 200px
@@ -205,8 +476,7 @@ canvas#rocket
     top: 50px
     bottom: 0
     margin: auto
-    background: #FFF 
-
+    background: #FFF
     &:hover,
     &:focus
       background: #f3f3f3
@@ -222,7 +492,7 @@ canvas#rocket
   height: 300px
   margin: 20px
   overflow: hidden
-  .hat 
+  .hat
     position: relative
     display: block
     width: 200px
@@ -244,14 +514,105 @@ canvas#rocket
     background: url(../img/rabbit.png) center no-repeat
     background-size: contain
 
+footer.footer
+  background: none
+  padding: 2rem
 
-@media screen and (max-width: 768px) 
+
+
+
+
+
+
+@media screen and (max-width: 1024px)
+  header
+    .navbar-menu
+      position: fixed
+      left: 0
+      top: 0
+      width: 260px
+      height: 100vh
+      display: block
+      overflow-x: hidden
+      overflow-y: auto
+      transform: translateX(-260px)
+      transition: transform .3s ease
+
+      &.show
+        transform: translateX(0px)
+
+
+@media screen and (max-width: 768px)
   .layer
     .left,
     .right
       display: none
-    h1.title 
+    h1.title
       font-size: 2rem
+  
+  body.xmas
+    .layer
+      p.title
+        font-size: 1rem
+      button
+        width: 150px
+        top: 25%
+        // margin-top: 0
+        font-size: 1.3rem
+    h1.title
+      width: 80%
+      font-size: 2rem
+      line-height: 1.5
+      margin: 0 10%
+
+    .swipe
+      width: 100%
+      display: block
+      position: absolute
+      top: 25%
+      img
+        width: 20%
+        opacity: 0.5
+    .wording
+      width: 75%
+      margin: 0 auto
+      text-align: justify
+    .card-content
+      .santa-cloud
+        img
+          max-width: 20%
+
+      .santa-cloud
+        height: 50%
+        bottom: -60px
+
+      .snowflakes,
+      .gifts
+        img
+          max-width: 10%
+
+    .gift-1
+      top: 35%
+    .gift-3
+      top: 40%
+      left: 67%
+
+    .santa-cloud
+      bottom: -100px
+
+    .xmas-plant-img
+      bottom: 45px
+      z-index: -1
+
 
 @import './components/table'
 @import './components/svg'
+@import './components/progress'
+@import './components/sortable'
+@import './components/map'
+@import './components/offline'
+@import './components/swipe-panel'
+
+
+
+

@@ -1,0 +1,75 @@
+doctype html
+html(lang='zh-TW')
+    head
+        include ../partials/head
+        style.
+            .score-container {
+                width: 100%;
+                display: inline-block;
+                margin-top: 1rem;
+                text-align: center;
+            }
+            .score h1.title.is-1 {
+                margin-top: 0rem;
+            }
+            .score {
+                display: inline-block;
+                margin: 0 1.5rem;
+            }
+            .score > * {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            small.subtitle > * {
+                vertical-align: middle;
+            }
+            small.subtitle {
+                margin-right: 10px;
+                margin-bottom: 0 !important;
+            }
+            .pro > small.subtitle:before,
+            .begin > small.subtitle:before {
+                content: "";
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                margin-right: 3px;
+                border-radius: 6px;
+                vertical-align: middle;
+            }
+            .begin > small.subtitle:before {
+                background-color: rgb(149,206,255);
+            }
+            .pro > small.subtitle:before {
+                background-color: rgb(92,92,97);
+            }
+    body 
+      
+        include ../partials/header
+        main
+            section.section
+                .container
+                    #date-chart-container
+                .container
+                    hr
+                    .columns
+                        .column
+                            #like-chart-container
+                            .score-container
+                                .score.begin
+                                    small.subtitle 
+                                        span 新手 
+                                    h1.is-1.title#begin-score 0
+                                .score.pro
+                                    small.subtitle 
+                                        span 老手 
+                                    h1.is-1.title#pro-score 0
+                        .column
+                            #comment-chart-container
+                    
+        include ../partials/footer
+
+    script(src="../js/app.js")
+    br
+    script(src="../js/tax-chart.js")
+      

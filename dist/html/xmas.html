@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <title>AJA - Xmas</title>
+    <link href="../css/app.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  </head>
+  <body class="xmas">
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <div class="navbar-brand"><a href="http://www.aja.com.tw/" class="brand"><img src="../img/aja@2x.png"></a>
+            <div id="xmas" class="navbar-item">Merry Christmas</div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <canvas id="rocket"></canvas><a id="sound" role="button">
+        <div class="icon"><i class="fa fa-volume-up fa-3"></i><i class="fa fa-volume-off fa-3"></i></div><span>Off</span></a>
+      <div id="loading">
+        <div class="content"><img src="../img/santa-loading.gif">
+          <h5 class="title is-5">Loading...</h5>
+        </div>
+      </div>
+      <div id="start-layer" class="layer hidden">
+        <p class="title is-1">聖誕老人太匆忙禮物弄丟了，你可以幫忙找回"三"個禮物放到身後的雪橇嗎？要小心躲避滿天飄忽不定的星球喔！</p>
+        <div class="note">
+          <div class="right">
+            <h3 class="title is-5">ROTATE LEFT / RIGHT</h3>
+            <div class="box">A</div>
+            <div class="box">D</div>
+            <div class="box">
+              <div class="fa fa-arrow-left"></div>
+            </div>
+            <div class="box">
+              <div class="fa fa-arrow-right"></div>
+            </div>
+          </div>
+        </div>
+        <div class="swipe"><img src="../img/swipe.png"></div>
+        <button id="start" class="button is-info is-large is-inverted is-outlined">START</button>
+      </div>
+      <div id="got-gift-layer" class="layer hidden"><small>你找到了 &nbsp;<span id="gift-score">0</span>&nbsp; 個禮物</small></div>
+      <div id="finish-layer" class="layer hidden">
+        <h1 class="title animated center bounceIn is-1">OOPS, 還差一點點!!!<br/></h1>
+        <p class="wording">聖誕老公公被天上的星球擋住了，現在還差&nbsp;<span id="final-scoreGift"></span>&nbsp;個禮物，請你再接再厲試試看。</p>
+        <button id="restart" class="button is-info is-large is-inverted is-outlined">PLAY AGAIN</button>
+      </div>
+      <div class="card-content hidden">
+        <h1 class="title white center animated bounceIn">親愛的夥伴</h1>
+        <p class="wording white animated bounceIn">
+          謝謝你及時協助耶誕老人完成任務，一如過去您對AJA的協助與支持。
+          在這個充滿祝福的聖誕節裡，我們想藉由這個互動小遊戲，讓你輕鬆一下喘口氣再出發。
+          也藉此獻上我們誠摯的祝福，希望您在新的一年持續成長，平安順心！<br/><br/><br/>
+        </p>
+        <h4 class="title is-4 white center animated bounceIn">聖誕快樂～</h4>
+        <div class="gifts"><img src="../img/gift-1.png" class="gift-1"><img src="../img/gift-2.png" class="gift-2"><img src="../img/gift-3.png" class="gift-3"></div>
+        <div class="snowflakes"><img src="../img/snowflake-1.png" class="snowflakes-1"><img src="../img/snowflake-2.png" class="snowflakes-2"><img src="../img/snowflake-3.png" class="snowflakes-3"><img src="../img/snowflake-4.png" class="snowflakes-4"><img src="../img/snowflake-5.png" class="snowflakes-5"></div>
+        <div class="santa-cloud"><img src="../img/santa-claus.png"></div>
+        <div class="xmas-plant-img"><img src="../img/xmas-planet.png"></div>
+      </div>
+      <div class="xmas-plant"><img src="../img/xmas-planet.png"></div>
+    </main>
+    <script src="../js/xmas.js"></script>
+    <script>
+      $('#start').on('click', function() {
+        $('.swipe').addClass('hidden');
+        $('.xmas-plant').animate({
+          bottom: '-=480'
+        }, 2000, function() {
+          /* stuff to do after animation is complete */
+        });
+      });
+    </script>
+  </body>
+</html>
