@@ -1,5 +1,5 @@
 {
-  "name": "f2e-trial",
+  "name": "f2e-startkit",
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
@@ -18,7 +18,7 @@
     "bootstrap-sass": "^3.3.7",
     "browser-sync": "^2.18.8",
     "browserify": "^14.3.0",
-    "bulma": "^0.6.0",
+    "bulma": "^0.6.2",
     "createjs-easeljs": "^0.8.2",
     "createjs-module": "^0.8.2-beta",
     "createjs-tweenjs": "^0.6.0",
@@ -26,7 +26,6 @@
     "d3.chart.sankey": "^0.4.0",
     "del": "^3.0.0",
     "glob": "^7.1.2",
-    "gsap": "^1.20.6",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^6.1.2",
@@ -40,22 +39,20 @@
     "gulp-imagemin": "^3.4.0",
     "gulp-jade": "^1.1.0",
     "gulp-jscs": "^4.0.0",
+    "gulp-jshint": "^2.0.4",
     "gulp-load-plugins": "^1.5.0",
-    "gulp-minify": "^1.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.6.1",
     "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.11",
-    "hammerjs": "^2.0.8",
-    "highcharts": "^5.0.12",
     "install": "^0.10.1",
-    "jquery": "^3.2.1",
+    "jquery": "^1.12.4",
     "merge-stream": "^1.0.1",
     "node-sri": "^1.1.1",
     "optipng-bin": "^4.0.0",
-    "pixi.js": "^4.6.2",
     "run-sequence": "^2.0.0"
   },
   "engines": {
@@ -71,16 +68,10 @@
     "directories": {
       "archive": "archive",
       "dist": "dist",
-      "src": "src",
-      "test": "test"
+      "src": "src"
     },
-    "scripts": [
-      "./node_modules/jquery/dist/jquery.min.js",
-      "./node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js"
-    ],
+    "scripts": [],
     "styles": [],
-    "assets": [
-      "'./node_modules/bootstrap-sass/assets/fonts/bootstrap/*'"
-    ]
+    "assets": []
   }
 }

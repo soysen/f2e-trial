@@ -4,7 +4,7 @@ import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import gutil from 'gulp-util';
 import concat from 'gulp-concat';
-import minify from 'gulp-minify';
+import uglify from 'gulp-uglify';
 import copy from 'gulp-copy';
 import compass from 'gulp-compass';
 import jade from 'gulp-jade';
@@ -34,16 +34,14 @@ var srcPath = {
   jade: dirs.src + "/template/**/*.jade",
   partials: dirs.src + "/partials/**/*.jade",
   img: dirs.src + '/img',
-  font: dirs.src + '/font',
-  sound: dirs.src + '/sounds'
+  font: dirs.src + '/fonts'
 };
 var dist = {
-  font: dirs.dist + '/font',
+  font: dirs.dist + '/fonts',
   style: dirs.dist + '/css',
   js: dirs.dist + '/js',
   html: dirs.dist + '/html',
-  img: dirs.dist + '/img',
-  sound: dirs.dist + '/sounds'
+  img: dirs.dist + '/img'
 };
 
 const date = new Date();
@@ -107,9 +105,16 @@ gulp.task('compileJS', () => {
   pipe.on('error', () => {
 
   });
+
   return pipe;
 });
 
+
+gulp.task('minifyJS', () => {
+  var pipe = gulp.src(dist.js + '/!(lib).js')
+    .pipe(uglify())
+    .pipe(gulp.dest(dist.js))
+});
 
 /** Compass **/
 gulp.task('compass', () => {
@@ -133,7 +138,7 @@ gulp.task('compass', () => {
     .pipe(sourcemaps.write('.'))
     .on('error', (err) => {
       console.log(err.message);
-      // Would like to catch the error here
+      // Would like to catch the error here 
     })
     .pipe(gulp.dest('css'));
 });
@@ -151,44 +156,37 @@ gulp.task('clean-html', () => {
 });
 
 gulp.task('copy-font', () => {
-  gulp.src(assetPath).pipe(gulp.dest(srcPath.font));
   return gulp.src(assetPath).pipe(gulp.dest(dist.font));
-});
-
-gulp.task('copy-sounds', () => {
-  gulp.src(assetPath).pipe(gulp.dest(srcPath.sounds));
-  return gulp.src(assetPath).pipe(gulp.dest(dist.sounds));
 });
 
 gulp.task('compileCSS', ['compass', 'clean-img'], () => {
   var css = gulp.src(srcPath.css + '/**/!(lib).css')
     .pipe(cleanCSS())
     .pipe(gulp.dest(dist.style));
-
+  
   var img = gulp.src([
       srcPath.img + "/*.png",
-      srcPath.img + "/**/*.jpg",
-      srcPath.img + "/**/*.gif",
+      srcPath.img + "/*.jpg",
+      srcPath.img + "/*.gif",
       srcPath.img + "/!(icons|icons-2x)/*.png"
     ]).pipe(gulp.dest(dist.img));
 
   return merge(css, img).pipe(browserSync.stream());
 });
 
-
-gulp.task('compressIMG', ['clean-img'], () => {
-
+gulp.task('compileIMG', ['clean-img'], () => {
   var img = gulp.src([
     srcPath.img + "/*.png",
-    srcPath.img + "/**/*.jpg",
-    srcPath.img + "/**/*.gif",
+    srcPath.img + "/*.jpg",
+    srcPath.img + "/*.gif",
     srcPath.img + "/!(icons|icons-2x)/*.png"
   ]).pipe(imagemin({
     verbose: true
-  }))
-  .pipe(gulp.dest(dist.img));
+  })).pipe(gulp.dest(dist.img));
 
+  return merge(img);
 });
+
 // Jade
 gulp.task('jade', ['clean-html'], () => {
   return gulp.src(srcPath.jade)
@@ -220,17 +218,6 @@ gulp.task('concatJSLib', () => {
     .pipe(gulp.dest(dist.js));
 });
 
-gulp.task('clean-sound', () => {
-  return gulp.src(dist.sound, {
-    read: false
-  }).pipe(clean());
-});
-
-gulp.task('copySound', ['clean-sound'], () => {
-  return gulp.src(srcPath.sound + '/*.mp3')
-    .pipe(gulp.dest(dist.sound));
-});
-
 // Static server
 gulp.task('server', ['jade', 'compileCSS', 'compileJS'], () => {
   browserSync.init({
@@ -242,7 +229,6 @@ gulp.task('server', ['jade', 'compileCSS', 'compileJS'], () => {
   watch("./src/js/**/*.js", function () {
     runSequence('compileJS')
   });
-
   watch([
     srcPath.jade,
     srcPath.partials
@@ -250,15 +236,10 @@ gulp.task('server', ['jade', 'compileCSS', 'compileJS'], () => {
     runSequence('jade')
   });
   watch([
-    srcPath.sass + "/**/*.sass", 
+    srcPath.sass + "/**/*.sass",
     srcPath.img + "/*"
   ], function () {
     runSequence('compileCSS')
-  });
-  watch([
-    srcPath.sound + "/*.mp3"
-  ], function () {
-    runSequence('copySound')
   });
 
 });
@@ -270,9 +251,13 @@ gulp.task('archive', () => {
 
 // If project need separate library css and js, you can use 'concatCSSLib', 'concatJSLib'
 gulp.task('default', () => {
-  runSequence('jade', 'compileCSS', 'copy-font', 'compileJS', 'copySound', 'compressIMG');
+  runSequence('jade', 'compileCSS', 'copy-font', 'concatJSLib', 'compileJS');
 });
 
 gulp.task('watch', () => {
-  runSequence('server', 'jade', 'compileCSS', 'copy-font', 'compileJS', 'copySound');
+  runSequence('server', 'jade', 'compileCSS', 'copy-font', 'concatJSLib', 'compileJS');
+});
+
+gulp.task('production', () => {
+  runSequence('jade', 'compileCSS', 'compileIMG', 'copy-font', 'concatJSLib', 'compileJS', 'minifyJS');
 });
