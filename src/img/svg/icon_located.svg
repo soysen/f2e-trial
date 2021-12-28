@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="55px" height="65px" viewBox="0 0 55 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Group 3 Copy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-3" transform="translate(-20.000000, -12.000000)">
+            <g id="Group-3-Copy" transform="translate(20.809823, 12.696745)">
+                <path d="M26.9892897,52.6620287 C36.1076259,52.6620287 44.169829,48.250474 49.0558134,41.4957406 C52.1569632,37.20849 53.9785794,31.9772942 53.9785794,26.3310143 C53.9785794,11.7887967 41.8950628,0 26.9892897,0 C12.0835166,0 0,11.7887967 0,26.3310143 C0,31.8129378 1.71710954,36.9035907 4.65521967,41.1189641 C9.51120536,48.0859573 17.7024882,52.6620287 26.9892897,52.6620287 Z" id="Oval" fill="#0B1F38"></path>
+                <g id="Group-14" transform="translate(26.989290, 43.296544) rotate(-315.000000) translate(-26.989290, -43.296544) translate(11.489290, 27.796544)">
+                    <polygon id="Rectangle-Copy-3" fill="#051122" transform="translate(22.569441, 22.569441) rotate(-90.000000) translate(-22.569441, -22.569441) " points="15.0462939 15.0462939 30.0925878 15.0462939 30.0925878 30.0925878 15.0462939 30.0925878"></polygon>
+                    <polygon id="Rectangle-Copy-9" fill="#F14A42" transform="translate(7.523147, 22.569441) rotate(-90.000000) translate(-7.523147, -22.569441) " points="-4.22186558e-13 15.0462939 15.0462939 15.0462939 15.0462939 30.0925878 -4.22186558e-13 30.0925878"></polygon>
+                    <polygon id="Rectangle-Copy-8" fill="#F14A42" transform="translate(22.569441, 7.523147) rotate(-90.000000) translate(-22.569441, -7.523147) " points="15.0462939 1.27623722e-12 30.0925878 1.27623722e-12 30.0925878 15.0462939 15.0462939 15.0462939"></polygon>
+                    <polygon id="Rectangle-Copy-7" fill="#FFFFFF" transform="translate(7.523147, 7.523147) rotate(-90.000000) translate(-7.523147, -7.523147) " points="-3.95696421e-13 -3.69816773e-12 15.0462939 -3.69816773e-12 15.0462939 15.0462939 -3.95696421e-13 15.0462939"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

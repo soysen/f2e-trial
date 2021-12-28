@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="68px" height="58px" viewBox="0 0 68 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>ICON</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ICON" transform="translate(-14.000000, -24.000000)">
+            <rect id="Rectangle-Copy-2" opacity="0.15" x="0" y="1" width="96" height="96"></rect>
+            <g id="Group-18" transform="translate(48.000000, 42.000000) rotate(-315.000000) translate(-48.000000, -42.000000) translate(19.000000, 13.000000)">
+                <path d="M17.4859902,22.6471006 C26.9901432,22.6471006 34.6947814,30.3517389 34.6947814,39.8558918 L34.6947814,57.0646831 L34.6947814,57.0646831 L0.277199021,57.0646831 L0.277199021,39.8558918 C0.277199021,30.3517389 7.98183728,22.6471006 17.4859902,22.6471006 Z" id="Rectangle-Copy-9" fill="#F14A42" transform="translate(17.485990, 39.855892) rotate(-90.000000) translate(-17.485990, -39.855892) "></path>
+                <path d="M22.6471006,0.277199021 L39.8558918,0.277199021 C49.3600448,0.277199021 57.0646831,7.98183728 57.0646831,17.4859902 C57.0646831,26.9901432 49.3600448,34.6947814 39.8558918,34.6947814 L22.6471006,34.6947814 L22.6471006,34.6947814 L22.6471006,0.277199021 Z" id="Rectangle-Copy-8" fill="#F14A42" transform="translate(39.855892, 17.485990) rotate(-90.000000) translate(-39.855892, -17.485990) "></path>
+                <polygon id="Rectangle-Copy-3" fill="#0B1F38" transform="translate(39.855892, 39.855892) rotate(-90.000000) translate(-39.855892, -39.855892) " points="22.6471006 22.6471006 57.0646831 22.6471006 57.0646831 57.0646831 22.6471006 57.0646831"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,32 @@
+doctype html
+html(lang='zh-TW')
+    head
+        include ../partials/head
+    body 
+        include ../partials/header
+
+        main.2021demo
+          .demo-wrapper
+            //- .columns
+            .circle.cursor
+            .circle
+            .circle
+            .circle
+            .circle
+            .circle
+            .circle
+            .circle
+            .circle
+          .text-wrapper
+            h1 Good Bye 2020, <br/>Lets Do Something Cool
+        include ../partials/footer
+
+    script(src="../js/app.js")
+
+    script.
+      $(document).mousemove(function(e) {
+        $('.circle.cursor').css({
+          top: e.pageY + 'px',
+          left: e.pageX + 'px',
+        })
+      })

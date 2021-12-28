@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="60px" viewBox="0 0 54 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icon_gift</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ICON" transform="translate(-21.250000, -18.000000)">
+            <g id="icon_gift" transform="translate(21.000000, 18.000000)">
+                <g id="Group-17" transform="translate(0.529412, 0.000000)">
+                    <polygon id="Path" fill="#0B1F38" points="0 14.1176471 52.9411765 14.1176471 52.9411765 59.4485294 0 59.4485294"></polygon>
+                    <polygon id="Shape" fill="#F14A42" points="13.0450368 14.1176471 52.9411765 14.1176471 52.9411765 20.7352941 29.7959559 20.7352941 29.7959559 59.4485294 23.1783088 59.4485294 23.1783088 20.7352941 0 20.7352941 0 14.1176471"></polygon>
+                    <g id="Group-18" transform="translate(10.588235, 0.000000)" fill="#F14A42">
+                        <path d="M7.94117647,0 C12.3269671,-8.05656674e-16 15.8823529,3.55538581 15.8823529,7.94117647 L15.8823529,15.8823529 L15.8823529,15.8823529 L7.94117647,15.8823529 C3.55538581,15.8823529 5.37104449e-16,12.3269671 0,7.94117647 C-5.37104449e-16,3.55538581 3.55538581,8.05656674e-16 7.94117647,0 Z" id="Rectangle"></path>
+                        <path d="M23.8235294,0 C28.2093201,-8.05656674e-16 31.7647059,3.55538581 31.7647059,7.94117647 L31.7647059,15.8823529 L31.7647059,15.8823529 L23.8235294,15.8823529 C19.4377388,15.8823529 15.8823529,12.3269671 15.8823529,7.94117647 C15.8823529,3.55538581 19.4377388,8.05656674e-16 23.8235294,0 Z" id="Rectangle-Copy-28" transform="translate(23.823529, 7.941176) scale(-1, 1) translate(-23.823529, -7.941176) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

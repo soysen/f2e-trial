@@ -1,21 +1,109 @@
+@keyframes maskIn
+    0%
+        fill: transparent
+        transform: translate3d(40px, -37px, 0)
 
-@keyframes dash 
+    100%
+        fill: #0b1f38
+        transform: translate3d(0px, 0px, 0)
+
+@keyframes yoxiLogo
+    0%
+        stroke: #8a8a8a
+        stroke-dashoffset: 1000
+
+    60%
+        stroke: #8a8a8a
+        stroke-dashoffset: 0
+
+    65%
+        stroke: #ef392a
+        fill: transparent
+        stroke-dashoffset: 0
+
+    90%
+        stroke: #ef392a
+        fill: #ef392a
+        stroke-width: 1px
+        stroke-dashoffset: 0
+
+    100%
+        stroke: #ef392a
+        fill: #ef392a
+        stroke-width: 0px
+        stroke-dashoffset: 0
+
+@keyframes dash
     0%
         stroke-dashoffset: 1000
+
     80%
         fill: transparent
-    90% 
+
+    90%
         stroke-dashoffset: 0
-    100% 
+
+    100%
         fill: #004E8A
         stroke-dashoffset: 0
+
+.svg-box
+    display: block
+    width: 100%
+    min-height: 160px
+    max-height: 300px
+    padding: 40px 0
+    background: #FFF url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAZklEQVQoU22Q0RHAIAhDYRja/dcpw+ClyIlRflR8JhF1/8LsUTkKrRCRvNIEX81m1Q4RiGPBV9DDzDQtWLUeK6wBImPl4TXhCULxT0L2LfX5a46QAhfrlavHIbDb99HOjH2w+36pD6HuPqFRD6yGAAAAAElFTkSuQmCC)
+
+    svg
+        width: 100%
+        height: 100%
+
+svg#yoxi-horizontal,
+svg#yoxi-symbol
+    width: 100%
+    height: 200px
+    margin: 0 auto
+    display: block
+
+    path
+        stroke: none
+        stroke-width: 1px
+        stroke-dasharray: 1000
+        stroke-dashoffset: 1000
+        fill: transparent
+
+#SVGID_2_
+    fill: transparent
+    transform: translate3d(40px, -37px, 0)
+    animation: maskIn 0.5s 2s ease-in forwards
+
+#SVGID_1_
+    fill: transparent
+    stroke: none
+    stroke-width: 1px
+    stroke-dasharray: 1000
+    stroke-dashoffset: 1000
+    animation: yoxiLogo 2s ease-in forwards
+
+svg#yoxi-symbol
+    path
+        animation: yoxiLogo 3s ease-in forwards
+
+svg#yoxi-horizontal
+    path#horizontal-logo
+        animation: yoxiLogo 4s ease-in forwards
+
+    path#horizontal-text
+        animation: yoxiLogo 3s 1s ease-in forwards
 
 svg#font
     width: 100%
     max-height: 150px
     margin: 0 auto
     display: block
-    path 
+
+    path
         stroke: #004E8A
         stroke-width: 1px
         stroke-dasharray: 1000
@@ -27,20 +115,22 @@ svg#font
     position: relative
     padding-bottom: 350px
     overflow: hidden
-    svg, 
+
+    svg,
     svg g
         position: absolute
         width: 100%
         height: 100%
         top: 0
-        left: 0 
+        left: 0
         display: block
-    img 
+
+    img
         position: absolute
         width: 100%
         top: -100%
         bottom: -100%
-        margin: auto 
+        margin: auto
         left: 0
         right: 0
         -webkit-clip-path: url(#mask)
@@ -50,18 +140,20 @@ svg#font
     fill: transparent
     stroke: #eee
     stroke-miterlimit: 10
-    stroke-dasharray: 6.9954,3.9973
+    stroke-dasharray: 6.9954, 3.9973
+
     &:hover
         stroke: #4B90E2
-    
+
 .st1
     fill: none
     stroke: #999
     stroke-miterlimit: 10
-    stroke-dasharray: 7,4
+    stroke-dasharray: 7, 4
 
 .st2
     fill: #eee
+
     &:hover
         fill: #4B90E2
 
@@ -72,33 +164,35 @@ svg#font
         width: 100vh
         max-width: 100vh
         display: block
+
     font: 13px sans-serif
-    .node rect 
-        fill-opacity: .9
+
+    .node rect
+        fill-opacity: 0.9
         shape-rendering: crispEdges
         stroke-width: 0
-    
-    .node text 
+
+    .node text
         text-shadow: 0 1px 0 #fff
-        
-    .link 
+
+    .link
         fill: none
         stroke: #000
-        stroke-opacity: .2
-    
-#step-flow-container 
+        stroke-opacity: 0.2
+
+#step-flow-container
     height: 300px
     font: 13px sans-serif
-    .node rect 
-        fill-opacity: .9
+
+    .node rect
+        fill-opacity: 0.9
         shape-rendering: crispEdges
         stroke-width: 0
-    
-    .node text 
+
+    .node text
         text-shadow: 0 1px 0 #fff
-        
-    .link 
+
+    .link
         fill: none
         stroke: #000
-        stroke-opacity: .2
-    
+        stroke-opacity: 0.2

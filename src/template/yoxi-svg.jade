@@ -1,0 +1,56 @@
+doctype html
+html(lang='zh-TW')
+    head
+        include ../partials/head
+    body 
+      
+        include ../partials/header
+        main
+            section.section
+                .container
+                  .svg-box
+                    svg#yoxi-symbol(version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 64 67" style="enable-background:new 0 0 101.7 149.5;" xml:space="preserve")
+                      g(stroke='none' stroke-width='.5' fill='none' fill-rule='evenodd')
+                        path(d='M3.87436534,38.3683376 L26.4010362,38.3683376 C24.0888672,46.7294604 17.3189008,51.5460342 5.14794471,53.1345272 L6.37113065,67 C35.4128364,65.2782855 48.8606057,54.1240582 54.3367814,33.6975584 L63.4113712,0 L0,0 L3.87436534,38.3683376 Z' fill='#EF392A')
+
+            section.section
+                .container
+                  .svg-box
+
+                    //- #yoxi_horizontal
+                    svg#yoxi-horizontal(viewBox='0 0 240 68' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink')
+                      g
+                        path#horizontal-logo.st0(d='M5.7,53.6c11.9-1.7,18.9-6.6,21.2-15.1l0.2-0.6H4.3L0.6,0.5h62.2l-8.9,33.1c-5.7,21.3-19.8,31.2-47,32.9\
+                        L5.7,53.6z')
+                          path.st1(d='M62.1,1l-8.7,32.4c-5.6,21-19.4,30.7-46.1,32.5L6.2,54c11.8-1.8,18.8-6.8,21.1-15.4l0.4-1.3h-1.3H4.8L1.1,1\
+                          H62.1 M63.4,0H0l3.9,38.4h22.5c-2.3,8.4-9.1,13.2-21.3,14.8L6.4,67c29-1.7,42.5-12.9,48-33.3L63.4,0L63.4,0z')
+                        path#horizontal-text.st0(d='M98.8,20.7l1.2,18.7l10.6-18.7H126l-22,34.4C98.4,64,93,67,85.2,67c-4.6,0-7.9-1-10.6-2.7\
+l0,0l5.7-10.9c2.2,1.5,4.1,2.1,5.9,2.1l0,0h0c0.3,0,0.6-0.1,0.9-0.2c0.3-0.1-2.9-33.2-3-34.5l0,0H98.8z M147.5,19.9\
+c11.3,0,17.9,7.3,17.9,16.6c0,10.9-9,20.8-21.4,20.8c-11.3,0-17.9-7.3-17.9-16.6C126,29.8,135,19.9,147.5,19.9z M235.2,20.7\
+l-9.4,35.1h-14.7l9.4-35.1H235.2z M189.2,20.7l2.3,7.2l6-7.2h16l-16.4,17.8l7.1,17.3h-15l-2.4-7.5l-6.2,7.5h-16l16.6-18.1l-6.9-17\
+H189.2z M146.5,32.1c-3.7,0-6.5,3.8-6.5,8.1c0,3,1.9,5.2,4.8,5.2c3.7,0,6.5-3.8,6.5-8.1C151.3,34.2,149.4,32.1,146.5,32.1z\
+M233.4,0c4.4,0,7.3,3.6,6.5,8s-4.9,8-9.3,8c-4.4,0-7.3-3.6-6.5-8S229,0,233.4,0z')
+
+            section.section
+                .container
+                  .svg-box
+                    svg#yoxi-checkmark(version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 300 300' style='enable-background:new 0 0 60 46;' xml:space='preserve')
+                      style(type='text/css').
+                        #mask-item{clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:#0B1F38;}
+                        
+                      g
+                        defs
+                          polygon#SVGID_1_(points='0.1,26.7 19.8,45.4 59.3,8.1 51.4,0.6 19.8,30.4 8,19.3 		')
+                        use(xlink:href='#SVGID_1_' style='overflow:visible;fill-rule:evenodd;clip-rule:evenodd;fill:#EF392A;')
+                        clippath#SVGID_2_
+                          use(xlink:href='#SVGID_1_' style='overflow:visible;')
+                        polygon#mask-item(points='27.6,38.1 59.3,8.1 51.3,0.6 19.8,30.4 	')
+
+
+
+        include ../partials/footer
+    script(src="/js/app.js")
+    script.
+        var path = document.querySelector('#clip-path'),
+            transform = path.getAttribute('transform');
+        //- debugger;

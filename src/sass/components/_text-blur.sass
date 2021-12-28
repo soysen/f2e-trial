@@ -1,0 +1,95 @@
+@keyframes blurOut
+    0%
+        opacity: 1
+
+    20%
+        opacity: 1
+
+    100%
+        opacity: 0
+
+@keyframes blurIn
+    0%
+        opacity: 0
+
+    80%
+        opacity: 1
+
+    100%
+        opacity: 1
+
+h1.text-blur
+    position: relative
+    font-size: 72px
+    -webkit-filter: contrast(50)
+    filter: contrast(50)
+    font-family: serif
+    font-weight: 900
+    background: $white
+    cursor: default
+
+    .default
+        opacity: 1
+        filter: blur(1px)
+        transition: all 1s ease
+
+    .hover
+        opacity: 0
+        position: absolute
+        left: 0
+        top: 0
+        margin: 0
+        filter: blur(1px)
+        transition: all 1s ease
+
+    *
+        display: inline-block
+        width: 120px
+        text-align: right
+        font-weight: 900
+        font-family: serif
+
+        // transition: all 1s ease-out
+
+    &.is-leaving
+        .default
+            opacity: 0
+            animation: blurIn 1.5s ease forwards
+
+        .hover
+            opacity: 1
+            animation: blurOut 1.5s ease-out forwards
+
+    &.is-hover
+        .default
+            opacity: 1
+            animation: blurOut 1.5s ease-out forwards
+
+        .hover
+            opacity: 0
+            animation: blurIn 1.5s ease-out forwards
+
+.blur-ball
+    width: 100%
+    height: 300px
+    filter: contrast(50)
+
+    &.ball.small,
+    &.ball.big,
+    &::before,
+    &::after
+        content: ""
+        position: absolute
+        width: 20px
+        height: 20px
+        display: block
+
+    &.ball.small,
+    &::before
+        background: coral
+
+    &.ball.big,
+    &::after
+        width: 40px
+        height: 40px
+        background: black
